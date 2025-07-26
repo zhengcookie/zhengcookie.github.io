@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>广漂码农第二周：手撕验证码Session，给订单系统“安家落户” | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本周核心任务： 车位项目后端接口开发、前端订单页面设计与数据库设计（车位、订单、优惠规则）。 每日进展：  Day 1: 主要进行上周项目成果汇报，未开展新开发工作。 Day 2: 需求新增： 实现“记住手机号”功能。 实现自定义弹窗组件。 添加价格相关需求。   技术调研： 学习后端如何使用 Session 存储手机号-验证码键值对。   Day 3: 功能实现： 完成“记住手机号”功能。 完成">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>广漂码农第二周：手撕验证码Session，给订单系统“安家落户” | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="核心任务： 独立完成车位项目订单系统后端接口、前端页面及数据库设计。 本周开发纪实：  周一： 复盘上周工作，为本周冲刺蓄力。 周二： 承接新需求： 记住手机号： 提升用户体验。 自定义弹窗： 实现灵活交互。 价格需求： 核心业务逻辑。 技术选型： 确定使用 HttpSession 存储 手机号:验证码 键值对，作为临时认证方案。   周三： 功能实现日 完成“记住手机号” ✅ 集成验证码登录 ✅">
 <meta property="og:type" content="article">
 <meta property="og:title" content="广漂码农第二周：手撕验证码Session，给订单系统“安家落户”">
 <meta property="og:url" content="https://github.com/zhengcookie/zhengcookie.github.io/2025/07/27/%E5%B9%BF%E6%BC%82%E7%A0%81%E5%86%9C%E7%AC%AC%E4%BA%8C%E5%91%A8%EF%BC%9A%E6%89%8B%E6%92%95%E9%AA%8C%E8%AF%81%E7%A0%81Session%EF%BC%8C%E7%BB%99%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F%E2%80%9C%E5%AE%89%E5%AE%B6%E8%90%BD%E6%88%B7%E2%80%9D/index.html">
 <meta property="og:site_name" content="zhengcookie">
-<meta property="og:description" content="本周核心任务： 车位项目后端接口开发、前端订单页面设计与数据库设计（车位、订单、优惠规则）。 每日进展：  Day 1: 主要进行上周项目成果汇报，未开展新开发工作。 Day 2: 需求新增： 实现“记住手机号”功能。 实现自定义弹窗组件。 添加价格相关需求。   技术调研： 学习后端如何使用 Session 存储手机号-验证码键值对。   Day 3: 功能实现： 完成“记住手机号”功能。 完成">
+<meta property="og:description" content="核心任务： 独立完成车位项目订单系统后端接口、前端页面及数据库设计。 本周开发纪实：  周一： 复盘上周工作，为本周冲刺蓄力。 周二： 承接新需求： 记住手机号： 提升用户体验。 自定义弹窗： 实现灵活交互。 价格需求： 核心业务逻辑。 技术选型： 确定使用 HttpSession 存储 手机号:验证码 键值对，作为临时认证方案。   周三： 功能实现日 完成“记住手机号” ✅ 集成验证码登录 ✅">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/zhengcookie/zhengcookie.github.io/img/butterfly-icon.png">
 <meta property="article:published_time" content="2025-07-26T17:20:11.000Z">
-<meta property="article:modified_time" content="2025-07-26T17:23:35.743Z">
+<meta property="article:modified_time" content="2025-07-26T17:36:34.541Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="工作">
 <meta name="twitter:card" content="summary">
@@ -18,7 +18,7 @@
   "url": "https://github.com/zhengcookie/zhengcookie.github.io/2025/07/27/%E5%B9%BF%E6%BC%82%E7%A0%81%E5%86%9C%E7%AC%AC%E4%BA%8C%E5%91%A8%EF%BC%9A%E6%89%8B%E6%92%95%E9%AA%8C%E8%AF%81%E7%A0%81Session%EF%BC%8C%E7%BB%99%E8%AE%A2%E5%8D%95%E7%B3%BB%E7%BB%9F%E2%80%9C%E5%AE%89%E5%AE%B6%E8%90%BD%E6%88%B7%E2%80%9D/",
   "image": "https://github.com/zhengcookie/zhengcookie.github.io/img/butterfly-icon.png",
   "datePublished": "2025-07-26T17:20:11.000Z",
-  "dateModified": "2025-07-26T17:23:35.743Z",
+  "dateModified": "2025-07-26T17:36:34.541Z",
   "author": [
     {
       "@type": "Person",
@@ -159,62 +159,44 @@
   isHighlightShrink: false,
   isToc: false,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">广漂码农第二周：手撕验证码Session，给订单系统“安家落户”</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">广漂码农第二周：手撕验证码Session，给订单系统“安家落户”</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-26T17:20:11.000Z" title="发表于 2025-07-27 01:20:11">2025-07-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-26T17:23:35.743Z" title="更新于 2025-07-27 01:23:35">2025-07-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/">工作心得</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>本周核心任务：</strong> 车位项目后端接口开发、前端订单页面设计与数据库设计（车位、订单、优惠规则）。</p>
-<p><strong>每日进展：</strong></p>
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">广漂码农第二周：手撕验证码Session，给订单系统“安家落户”</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">广漂码农第二周：手撕验证码Session，给订单系统“安家落户”</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-26T17:20:11.000Z" title="发表于 2025-07-27 01:20:11">2025-07-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-26T17:36:34.541Z" title="更新于 2025-07-27 01:36:34">2025-07-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/">工作心得</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>核心任务：</strong> 独立完成车位项目订单系统后端接口、前端页面及数据库设计。</p>
+<p><strong>本周开发纪实：</strong></p>
 <ol>
-<li><strong>Day 1:</strong> 主要进行上周项目成果汇报，未开展新开发工作。</li>
-<li><strong>Day 2:</strong><ul>
-<li><strong>需求新增：</strong><ul>
-<li>实现“记住手机号”功能。</li>
-<li>实现自定义弹窗组件。</li>
-<li>添加价格相关需求。</li>
+<li><strong>周一：</strong> 复盘上周工作，为本周冲刺蓄力。</li>
+<li><strong>周二：</strong> 承接新需求：<ul>
+<li><strong>记住手机号：</strong> 提升用户体验。</li>
+<li><strong>自定义弹窗：</strong> 实现灵活交互。</li>
+<li><strong>价格需求：</strong> 核心业务逻辑。</li>
+<li><strong>技术选型：</strong> 确定使用 <code>HttpSession</code> 存储 <code>手机号:验证码</code> 键值对，作为临时认证方案。</li>
 </ul>
 </li>
-<li><strong>技术调研：</strong> 学习后端如何使用 Session 存储手机号-验证码键值对。</li>
+<li><strong>周三：</strong> 功能实现日<ul>
+<li>完成“记住手机号” ✅</li>
+<li>集成验证码登录 ✅ (<strong>注意点：</strong> 接口参数类型需严格匹配，<code>Session ID</code> 不一致会导致校验失败 - <em>已解决</em>)</li>
+<li>实现协议勾选及自定义弹窗 ✅</li>
+<li><strong>兼容性问题：</strong> 确认微信浏览器不支持 <code>datalist</code> 元素。 (<em>已找到替代方案-采用div来自定义下拉框</em>✅)</li>
 </ul>
 </li>
-<li><strong>Day 3:</strong><ul>
-<li><strong>功能实现：</strong><ul>
-<li>完成“记住手机号”功能。</li>
-<li>完成验证码登录接口集成，注意接口参数类型匹配。</li>
-<li>添加协议勾选及对应的自定义弹窗。</li>
-</ul>
-</li>
-<li><strong>问题发现与解决：</strong><ul>
-<li>发现 <code>datalist</code> 元素在微信浏览器中存在兼容性问题（暂未支持数据的显示）。</li>
-<li>明确 Session 中验证码存储依赖 Session ID 一致性，解决因 Session ID 不一致导致的报错。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Day 4:</strong><ul>
-<li><strong>功能优化：</strong><ul>
-<li>重构 Cookie 清除逻辑：由原先固定 5 分钟清除 (<code>setMaxInterval</code>)，优化为调用一次或达到 5 分钟即清除。</li>
-</ul>
-</li>
-<li><strong>数据库设计：</strong><ul>
-<li>在抢购逻辑中新增 <code>订单表 (order)</code>。</li>
-<li>订单表通过外键 <code>spot_id</code> 关联车位。</li>
-<li>说明：未直接使用车位表的 <code>user_id</code> 作为外键（因车位归属逻辑不一致）。</li>
+<li><strong>周四：</strong> 优化与设计<ul>
+<li><strong>验证码生命周期优化：</strong> 将清除逻辑从固定5分钟 (<code>setInterval</code>)，升级为 <strong>登录成功即销毁</strong> 或 <strong>5分钟到期销毁</strong>，更贴合实际场景。</li>
+<li><strong>数据库设计：</strong> 新增 <code>订单表 (order)</code>。<ul>
+<li>关键设计：通过 <code>spot_id</code> 外键关联车位表。</li>
+<li>决策说明：未直接复用车位表 <code>user_id</code> 字段 (因车位归属逻辑与订单用户逻辑存在差异)。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><strong>Day 5:</strong><ul>
-<li><strong>数据库设计：</strong><ul>
-<li>完成 <code>订单表 (order)</code> 的详细设计，用于存储用户购买的车位订单信息。</li>
-<li>设计 <code>优惠规则表 (discount_rule)</code>，用于定义和管理不同车位的优惠类型及规则。</li>
+<li><strong>周五：</strong> 数据库深化<ul>
+<li>完善 <code>订单表</code> 结构，清晰记录交易信息。</li>
+<li>设计 <code>优惠规则表 (discount_rule)</code>，定义车位关联的折扣类型与规则。 (<em>终于给优惠上了“户口本”</em>)</li>
 </ul>
 </li>
-</ul>
-</li>
-<li><strong>Day 6:</strong><ul>
-<li><strong>功能实现：</strong><ul>
-<li>实现订单金额计算逻辑，匹配优惠规则。</li>
-</ul>
-</li>
-<li><strong>性能优化：</strong><ul>
-<li>优化相关接口：将原先需要调用“所有用户的所有已购车位信息”的两个接口，合并&#x2F;重构为仅调用“用户订单信息”接口，显著提升性能。</li>
+<li><strong>周六：</strong> 逻辑实现 &amp; 性能飞跃<ul>
+<li>完成订单金额计算引擎，支持匹配优惠规则。</li>
+<li><strong>接口性能重大优化：</strong><ul>
+<li><strong>问题：</strong> 原有设计需两个接口拉取 <strong>全量用户车位数据</strong>，效率低下。</li>
+<li><strong>方案：</strong> 重构为单一接口，精准查询 <strong>当前用户订单信息</strong>。</li>
+<li><strong>成果：</strong> <strong>响应速度显著提升，数据库压力大幅降低。</strong> ( <em>成功给臃肿接口“瘦身”</em> )</li>
 </ul>
 </li>
 </ul>
