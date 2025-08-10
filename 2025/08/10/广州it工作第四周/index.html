@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>广州it工作第四周 | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="周一：    完成租地功能：设计租赁信息表，JWT鉴权后创建租赁记录。   注意点： 补充了状态字段设计。  周二：    构建订单系统：创建订单主表及详情表，实现：   JWT用户订单查询   多状态分类（待支付&#x2F;待发货等）   PageHelper分页（&gt;10自动分页）   遗留问题： 订单号长度仅20位（需32位）。  周三：    订单详情增强：调用土地接口展示租赁地块信息">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>广州it工作第四周 | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="周一：    完成租地功能：设计租赁信息表，JWT鉴权后创建租赁记录。   注意点： 补充了状态字段设计。  周二：    构建订单系统：创建订单主表及详情表，实现：   JWT用户订单查询   多状态分类（待支付&#x2F;待发货等）   PageHelper分页（&gt;10自动分页，加载页面缓存进度）   遗留问题： 订单号长度仅20位（需32位）。  周三：    订单详情增强：调用土地接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="广州it工作第四周">
 <meta property="og:url" content="https://github.com/zhengcookie/zhengcookie.github.io/2025/08/10/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%9B%9B%E5%91%A8/index.html">
 <meta property="og:site_name" content="zhengcookie">
-<meta property="og:description" content="周一：    完成租地功能：设计租赁信息表，JWT鉴权后创建租赁记录。   注意点： 补充了状态字段设计。  周二：    构建订单系统：创建订单主表及详情表，实现：   JWT用户订单查询   多状态分类（待支付&#x2F;待发货等）   PageHelper分页（&gt;10自动分页）   遗留问题： 订单号长度仅20位（需32位）。  周三：    订单详情增强：调用土地接口展示租赁地块信息">
+<meta property="og:description" content="周一：    完成租地功能：设计租赁信息表，JWT鉴权后创建租赁记录。   注意点： 补充了状态字段设计。  周二：    构建订单系统：创建订单主表及详情表，实现：   JWT用户订单查询   多状态分类（待支付&#x2F;待发货等）   PageHelper分页（&gt;10自动分页，加载页面缓存进度）   遗留问题： 订单号长度仅20位（需32位）。  周三：    订单详情增强：调用土地接">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/zhengcookie/zhengcookie.github.io/img/butterfly-icon.png">
 <meta property="article:published_time" content="2025-08-10T05:28:04.000Z">
-<meta property="article:modified_time" content="2025-08-10T05:29:01.489Z">
+<meta property="article:modified_time" content="2025-08-10T05:34:36.002Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="工作">
 <meta name="twitter:card" content="summary">
@@ -18,7 +18,7 @@
   "url": "https://github.com/zhengcookie/zhengcookie.github.io/2025/08/10/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%9B%9B%E5%91%A8/",
   "image": "https://github.com/zhengcookie/zhengcookie.github.io/img/butterfly-icon.png",
   "datePublished": "2025-08-10T05:28:04.000Z",
-  "dateModified": "2025-08-10T05:29:01.489Z",
+  "dateModified": "2025-08-10T05:34:36.002Z",
   "author": [
     {
       "@type": "Person",
@@ -159,7 +159,7 @@
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">广州it工作第四周</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">广州it工作第四周</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-10T05:28:04.000Z" title="发表于 2025-08-10 13:28:04">2025-08-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-10T05:29:01.489Z" title="更新于 2025-08-10 13:29:01">2025-08-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/">工作心得</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>周一：</strong>  </p>
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">广州it工作第四周</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">广州it工作第四周</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-10T05:28:04.000Z" title="发表于 2025-08-10 13:28:04">2025-08-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-10T05:34:36.002Z" title="更新于 2025-08-10 13:34:36">2025-08-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/">工作心得</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>周一：</strong>  </p>
 <ul>
 <li>完成租地功能：设计租赁信息表，JWT鉴权后创建租赁记录。  </li>
 <li><em>注意点：</em> 补充了状态字段设计。</li>
@@ -169,7 +169,7 @@
 <li>构建订单系统：创建订单主表及详情表，实现：  <ul>
 <li>JWT用户订单查询  </li>
 <li>多状态分类（待支付&#x2F;待发货等）  </li>
-<li>PageHelper分页（&gt;10自动分页）</li>
+<li>PageHelper分页（&gt;10自动分页，加载页面缓存进度）</li>
 </ul>
 </li>
 <li><em>遗留问题：</em> 订单号长度仅20位（需32位）。</li>
@@ -177,7 +177,7 @@
 <p><strong>周三：</strong>  </p>
 <ul>
 <li>订单详情增强：调用土地接口展示租赁地块信息。  </li>
-<li>修复前端隐患：重构 <code>this.orderInfo.items[0]</code> 强耦合数据绑定。</li>
+<li>修复前端隐患：<code>this.orderInfo.items[0]</code> 强耦合数据绑定。</li>
 </ul>
 <p><strong>周四：</strong>  </p>
 <ul>
@@ -201,7 +201,7 @@
 <li>开放数据解密流程复杂且无进展</li>
 </ul>
 </li>
-<li><em>结论：</em> 当前微信政策下，个人开发者获取手机号不可行。</li>
+<li><em>结论：</em> 当前微信政策下，获取手机号一键登录不可行。</li>
 </ul>
 <hr>
 <p><strong>核心卡点：</strong>  </p>
@@ -267,15 +267,18 @@
 </ol>
 <hr>
 <h3 id="三、未来同样机会的做法"><a href="#三、未来同样机会的做法" class="headerlink" title="三、未来同样机会的做法"></a><strong>三、未来同样机会的做法</strong></h3><ol>
-<li><strong>预研四象限（首日必做）</strong>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[技术]      [政策]      [环境]       [兼容性]  </span><br><span class="line">│          │          │            │  </span><br><span class="line">├─HTTPS?   ├─微信文档? ├─测试账号?   ├─字段长度?  </span><br><span class="line">└─SDK兼容  └─权限范围  └─域名备案    └─数据格式  </span><br></pre></td></tr></table></figure></li>
-<li><strong>设计两原则</strong>  <ul>
+<li><p><strong>预研四象限（首日必做）</strong>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[技术]      [政策]      [环境]       [兼容性]  </span><br><span class="line">│          │          │            │  </span><br><span class="line">├─HTTPS?   ├─微信文档? ├─测试账号?   ├─字段长度?  </span><br><span class="line">└─SDK兼容  └─权限范围  └─域名备案    └─数据格式  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设计两原则</strong>  </p>
+<ul>
 <li><strong>字段设计</strong>：订单号&#x2F;金额等支付相关字段，直接对齐微信要求（32位&#x2F;UUID）  </li>
-<li><strong>解耦开发</strong>：支付模块用<strong>门面模式</strong>隔离，便于替换（例：HTTPS未就绪时模拟支付）</li>
+<li><strong>解耦开发</strong>：支付模块用模拟运行，便于替换（例：HTTPS未就绪时模拟支付）</li>
 </ul>
 </li>
-<li><strong>政策应对</strong>  <ul>
-<li>个人项目避免强依赖微信敏感接口（如手机号）  </li>
-<li>准备<strong>降级方案</strong>（例：支付失败 → 跳转人工客服）</li>
+<li><p><strong>政策应对</strong>  </p>
+<ul>
+<li>项目避免强依赖微信敏感接口（如手机号）</li>
 </ul>
 </li>
 </ol>
