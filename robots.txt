@@ -1,4 +1,8 @@
-sitemap:
-  path: sitemap.xml
-baidusitemap:
-  path: baidusitemap.xml
+User-agent: Baiduspider
+
+Sitemap: https://blog.ning.moe/baidusitemap.xml
+
+User-agent: *
+Disallow:
+
+Sitemap: https://blog.ning.moe/sitemap.xml
