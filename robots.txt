@@ -1,8 +1,8 @@
 User-agent: Baiduspider
 
-Sitemap: https://blog.ning.moe/baidusitemap.xml
+Sitemap: https://www.zhengcookie.site/baidusitemap.xml
 
 User-agent: *
 Disallow:
 
-Sitemap: https://blog.ning.moe/sitemap.xml
+Sitemap: https://www.zhengcookie.site/sitemap.xml
