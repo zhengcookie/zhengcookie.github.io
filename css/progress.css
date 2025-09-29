@@ -15,3 +15,15 @@
 body.has-progressbar {
     padding-top: 0;
 }
+
+.post-reading-meta {
+    font-size: .92rem;
+    color: #666;
+    margin: 8px 0 14px
+}
+
+.post-reading-meta span {
+    background: #f6f6f6;
+    border-radius: 6px;
+    padding: 4px 8px
+}
