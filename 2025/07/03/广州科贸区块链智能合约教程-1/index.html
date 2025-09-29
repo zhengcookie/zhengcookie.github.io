@@ -1,0 +1,488 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>广州科贸区块链智能合约教程-食品溯源 | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="源码  Distributor.sol   FoodInfoItem.sol   Producer.sol  Retailer.sol   Roles.sol  Trace.sol  智能合约功能需求文档:  具备合约用户管理功能，包括创建用户以及查询用户信息的功能，与其相关联的需要具备用户权限功能。  具备生产订单管理功能，包括创建与查询订单功能，在创建生产订单功能中限制该功能只能具有生产权限的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="广州科贸区块链智能合约教程-食品溯源">
+<meta property="og:url" content="https://www.zhengcookie.site/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/index.html">
+<meta property="og:site_name" content="zhengcookie">
+<meta property="og:description" content="源码  Distributor.sol   FoodInfoItem.sol   Producer.sol  Retailer.sol   Roles.sol  Trace.sol  智能合约功能需求文档:  具备合约用户管理功能，包括创建用户以及查询用户信息的功能，与其相关联的需要具备用户权限功能。  具备生产订单管理功能，包括创建与查询订单功能，在创建生产订单功能中限制该功能只能具有生产权限的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250416170645.jpg">
+<meta property="article:published_time" content="2025-07-03T10:23:43.000Z">
+<meta property="article:modified_time" content="2025-07-08T08:06:09.954Z">
+<meta property="article:author" content="zhengcookie">
+<meta property="article:tag" content="区块链赛题智能合约">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250416170645.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "广州科贸区块链智能合约教程-食品溯源",
+  "url": "https://www.zhengcookie.site/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/",
+  "image": "https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg",
+  "datePublished": "2025-07-03T10:23:43.000Z",
+  "dateModified": "2025-07-08T08:06:09.954Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "zhengcookie",
+      "url": "https://www.zhengcookie.site/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.zhengcookie.site/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-fVYv9VWvzQ"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '广州科贸区块链智能合约教程-食品溯源',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">广州科贸区块链智能合约教程-食品溯源</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">广州科贸区块链智能合约教程-食品溯源</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-03T10:23:43.000Z" title="发表于 2025-07-03 18:23:43">2025-07-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-08T08:06:09.954Z" title="更新于 2025-07-08 16:06:09">2025-07-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/" data-flag-title="广州科贸区块链智能合约教程-食品溯源"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span class="leancloud-visitors-count"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>源码</p>
+<p> <a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/FoodTrace/Distributor.sol">Distributor.sol</a> </p>
+<p> <a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/FoodTrace/FoodInfoItem.sol">FoodInfoItem.sol</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://zhengcookie.github.io//file/%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/FoodTrace/Producer.sol">Producer.sol</a> </p>
+<p><a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/FoodTrace/Retailer.sol">Retailer.sol</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/FoodTrace/Roles.sol">Roles.sol</a> </p>
+<p><a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/%E5%8C%BA%E5%9D%97%E9%93%BE/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/FoodTrace/Trace.sol">Trace.sol</a> </p>
+<p>智能合约功能需求文档:</p>
+<ol>
+<li><p>具备合约用户管理功能，包括创建用户以及查询用户信息的功能，与其相关联的需要具备用户权限功能。</p>
+</li>
+<li><p>具备生产订单管理功能，包括创建与查询订单功能，在创建生产订单功能中限制该功能只能具有生产权限的人员使用，并且加入订单创建时需要与产业链的总订单信息，从而与产业链的其他业务关联。</p>
+</li>
+<li><p>具备分销订单管理功能，包括创建与查询订单功能，在创建收购订单功能中限制该功能只能具有分销权限的人员使用，并且加入订单</p>
+</li>
+</ol>
+<h1 id="BsYGX">经销商</h1>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.25</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Roles.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//经销商</span></span><br><span class="line"></span><br><span class="line">contract Distributor &#123;</span><br><span class="line">    using Roles <span class="keyword">for</span> Roles.Role;</span><br><span class="line"></span><br><span class="line">    event <span class="title function_">DistributorAdded</span><span class="params">(address indexed account)</span>;</span><br><span class="line">    event <span class="title function_">DistributorRemoved</span><span class="params">(address indexed account)</span>;</span><br><span class="line"></span><br><span class="line">    Roles.Role <span class="keyword">private</span> _distributors;</span><br><span class="line"></span><br><span class="line">    constructor(address distributor) <span class="keyword">public</span> &#123;</span><br><span class="line">        _addDistributor(distributor);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    modifier <span class="title function_">onlyDistributor</span><span class="params">()</span> &#123;</span><br><span class="line">        require(</span><br><span class="line">            isDistributor(msg.sender),</span><br><span class="line">            <span class="string">&quot;DistributorRole: caller does not have the Distributor role&quot;</span></span><br><span class="line">        );</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">isDistributor</span><span class="params">(address account)</span> <span class="keyword">public</span> view <span class="title function_">returns</span> <span class="params">(bool)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> _distributors.has(account);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">addDistributor</span><span class="params">(address account)</span> <span class="keyword">public</span> onlyDistributor &#123;</span><br><span class="line">        _addDistributor(account);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">renounceDistributor</span><span class="params">()</span> <span class="keyword">public</span> &#123;</span><br><span class="line">        _removeDistributor(msg.sender);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">_addDistributor</span><span class="params">(address account)</span> internal &#123;</span><br><span class="line">        _distributors.add(account);</span><br><span class="line">        emit <span class="title function_">DistributorAdded</span><span class="params">(account)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">_removeDistributor</span><span class="params">(address account)</span> internal &#123;</span><br><span class="line">        _distributors.remove(account);</span><br><span class="line">        emit <span class="title function_">DistributorRemoved</span><span class="params">(account)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这段Solidity代码定义了一个名为<code>Distributor</code>的智能合约，该合约主要用于管理具有“经销商”角色的账户。以下是代码的详细解析：</p>
+<h3 id="VnCyS">导入依赖</h3>
+
+<ul>
+<li><code>import &quot;./Roles.sol&quot;;</code>：这行导入了另一个名为<code>Roles</code>的合约，假设这个合约提供了一些关于角色管理的功能，比如添加、移除和检查某个地址是否拥有特定的角色。</li>
+</ul>
+<h3 id="s6lMe">合约声明</h3>
+
+<ul>
+<li><code>contract Distributor &#123; ... &#125;</code>：定义了一个新的合约<code>Distributor</code>。</li>
+</ul>
+<h3 id="hNR7o">使用库</h3>
+
+<ul>
+<li><code>using Roles for Roles.Role;</code>：这句表示将<code>Roles</code>库的方法直接应用到<code>Roles.Role</code>类型上，使得可以更简洁地使用这些方法（例如直接调用<code>_distributors.add(account)</code>）。</li>
+</ul>
+<h3 id="fllmQ">事件</h3>
+
+<ul>
+<li><code>event DistributorAdded(address indexed account);</code> 和 <code>event DistributorRemoved(address indexed account);</code>：这两个事件分别在成功添加或移除一个经销商时被触发，其中<code>indexed</code>关键字意味着可以在日志中快速查找与特定账户相关的事件。</li>
+</ul>
+<h3 id="v3Hnq">私有变量</h3>
+
+<ul>
+<li><code>Roles.Role private _distributors;</code>：这是一个私有的角色列表，用来存储所有经销商的地址。</li>
+</ul>
+<h3 id="MWuyd">构造函数</h3>
+
+<ul>
+<li><code>constructor(address distributor) public &#123; _addDistributor(distributor); &#125;</code>：当创建此合同时，需要指定一个初始的经销商，并自动将其加入到经销商名单中。</li>
+</ul>
+<h3 id="rXX62">修饰符</h3>
+
+<ul>
+<li><code>modifier onlyDistributor() &#123; ... &#125;</code>：这是一个自定义的访问控制修饰符，确保只有当前是经销商的账号才能执行某些操作。如果不是经销商，则会抛出错误信息。</li>
+</ul>
+<h3 id="vcrj3">公共函数</h3>
+
+<ul>
+<li><code>function isDistributor(address account) public view returns (bool) &#123; ... &#125;</code>：允许任何人查询给定地址是否为经销商。</li>
+<li><code>function addDistributor(address account) public onlyDistributor &#123; ... &#125;</code>：允许现有经销商添加新的经销商。注意这里使用了<code>onlyDistributor</code>修饰符来限制访问权限。</li>
+<li><code>function renounceDistributor() public &#123; ... &#125;</code>：允许任何经销商放弃自己的经销商身份。</li>
+</ul>
+<h3 id="yp53H">内部函数</h3>
+
+<ul>
+<li><code>_addDistributor(address account) internal &#123; ... &#125;</code> 和 <code>_removeDistributor(address account) internal &#123; ... &#125;</code>：这两个内部函数分别用于向经销商列表中添加或移除地址，并且在这两个动作完成后都会发出相应的事件通知。</li>
+</ul>
+<h3 id="Rvqqb">总结</h3>
+
+<p>整体来看，这个<code>Distributor</code>合约实现了一个简单的角色管理系统，专注于管理经销商的身份认证。它通过引入外部的<code>Roles</code>库简化了角色管理逻辑，同时也提供了必要的功能来维护一个动态更新的经销商列表。这样的设计常见于需要区分不同用户权限的应用场景，如供应链管理、会员制服务等。</p>
+<h1 id="fJ5Sz">食品信息</h1>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.5</span><span class="number">.0</span>;</span><br><span class="line">pragma experimental ABIEncoderV2;</span><br><span class="line"></span><br><span class="line">contract FoodInfoItem &#123;</span><br><span class="line">    string _currentTraceName;</span><br><span class="line">    string _name;</span><br><span class="line">    address _owner;</span><br><span class="line">    uint8 _quality;</span><br><span class="line">    uint8 _status;</span><br><span class="line">    string[] _traceName;</span><br><span class="line">    uint256[] _timestamp;</span><br><span class="line">    address[] _traceAddress;</span><br><span class="line">    uint8[] _traceQuality;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//生产食物</span></span><br><span class="line">    constructor(</span><br><span class="line">        string name,</span><br><span class="line">        string traceName,</span><br><span class="line">        uint8 quality,</span><br><span class="line">        address producer</span><br><span class="line">    ) <span class="keyword">public</span> &#123;</span><br><span class="line">        _currentTraceName = traceName;</span><br><span class="line">        _name = name;</span><br><span class="line">        _owner = msg.sender;</span><br><span class="line">        _quality = quality;</span><br><span class="line">        _status = <span class="number">0</span>;</span><br><span class="line">        _traceName.push(traceName);</span><br><span class="line">        _timestamp.push(now);</span><br><span class="line">        _traceAddress.push(producer);</span><br><span class="line">        _traceQuality.push(quality);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">addTraceInfoByDistributor</span><span class="params">(</span></span><br><span class="line"><span class="params">        string traceName,</span></span><br><span class="line"><span class="params">        address distributor,</span></span><br><span class="line"><span class="params">        uint8 quality</span></span><br><span class="line"><span class="params">    )</span> <span class="keyword">public</span> <span class="title function_">returns</span> <span class="params">(bool)</span> &#123;</span><br><span class="line">        require(_status == <span class="number">0</span>, <span class="string">&quot;status must be producing&quot;</span>);</span><br><span class="line">        require(_owner == msg.sender, <span class="string">&quot;only trace contract can invoke&quot;</span>);</span><br><span class="line">        _timestamp.push(now);</span><br><span class="line">        _traceName.push(traceName);</span><br><span class="line">        _currentTraceName = traceName;</span><br><span class="line">        _traceAddress.push(distributor);</span><br><span class="line">        _quality = quality;</span><br><span class="line">        _traceQuality.push(_quality);</span><br><span class="line">        _status = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">addTraceInfoByRetailer</span><span class="params">(</span></span><br><span class="line"><span class="params">        string traceName,</span></span><br><span class="line"><span class="params">        address retailer,</span></span><br><span class="line"><span class="params">        uint8 quality</span></span><br><span class="line"><span class="params">    )</span> <span class="keyword">public</span> <span class="title function_">returns</span> <span class="params">(bool)</span> &#123;</span><br><span class="line">        <span class="comment">/* 【9】请在此注释后作答，勿删除此注释*/</span></span><br><span class="line">        <span class="comment">//补充食品分销方法</span></span><br><span class="line">        require(_status == <span class="number">1</span>, <span class="string">&quot;status must be distributor&quot;</span>);</span><br><span class="line">        require(_owner == msg.sender, <span class="string">&quot;only trace contract can invoke&quot;</span>);</span><br><span class="line">        _timestamp.push(now);</span><br><span class="line">        _traceName.push(traceName);</span><br><span class="line">        _currentTraceName = traceName;</span><br><span class="line">        _traceAddress.push(retailer);</span><br><span class="line">        _quality = quality;</span><br><span class="line">        _traceQuality.push(_quality);</span><br><span class="line">        _status = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">     </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">getTraceInfo</span><span class="params">()</span></span><br><span class="line">        <span class="keyword">public</span></span><br><span class="line">        constant</span><br><span class="line">        <span class="title function_">returns</span> <span class="params">(</span></span><br><span class="line"><span class="params">            uint256[],</span></span><br><span class="line"><span class="params">            string[],</span></span><br><span class="line"><span class="params">            address[],</span></span><br><span class="line"><span class="params">            uint8[]</span></span><br><span class="line"><span class="params">        )</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> (_timestamp, _traceName, _traceAddress, _traceQuality);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">getFood</span><span class="params">()</span></span><br><span class="line">        <span class="keyword">public</span></span><br><span class="line">        constant</span><br><span class="line">        <span class="title function_">returns</span> <span class="params">(</span></span><br><span class="line"><span class="params">            uint256,</span></span><br><span class="line"><span class="params">            string,</span></span><br><span class="line"><span class="params">            string,</span></span><br><span class="line"><span class="params">            string,</span></span><br><span class="line"><span class="params">            address,</span></span><br><span class="line"><span class="params">            uint8</span></span><br><span class="line"><span class="params">        )</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            _timestamp[<span class="number">0</span>],</span><br><span class="line">            _traceName[<span class="number">0</span>],</span><br><span class="line">            _name,</span><br><span class="line">            _currentTraceName,</span><br><span class="line">            _traceAddress[<span class="number">0</span>],</span><br><span class="line">            _quality</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段Solidity代码定义了一个名为<code>FoodInfoItem</code>的智能合约，用于追踪食品从生产到分销再到零售的过程。以下是对合约中各个部分的详细解析：</p>
+<h3 id="LMdE5">版本声明和特性启用</h3>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity &gt;=0.4.22 &lt;0.5.0;</span><br><span class="line">pragma experimental ABIEncoderV2;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一行声明了合约支持的Solidity版本范围，合约需要编译器版本在0.4.22和0.5.0之间。</li>
+<li>第二行启用了<code>ABIEncoderV2</code>实验特性，这允许结构体和数组的返回。</li>
+</ul>
+<h3 id="dhvJT">合约定义</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">contract FoodInfoItem &#123;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里定义了一个名为<code>FoodInfoItem</code>的新合约。</li>
+</ul>
+<h3 id="WnZkq">状态变量</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">string _currentTraceName;</span><br><span class="line">string _name;</span><br><span class="line">address _owner;</span><br><span class="line">uint8 _quality;</span><br><span class="line">uint8 _status;</span><br><span class="line">string[] _traceName;</span><br><span class="line">uint256[] _timestamp;</span><br><span class="line">address[] _traceAddress;</span><br><span class="line">uint8[] _traceQuality;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这些是合约的私有状态变量，用于存储食品信息，包括名称、所有者、质量、状态、追踪过程中的名称、时间戳、地址和质量。</li>
+</ul>
+<h3 id="vGMng">构造函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">constructor(</span><br><span class="line">    string name,</span><br><span class="line">    string traceName,</span><br><span class="line">    uint8 quality,</span><br><span class="line">    address producer</span><br><span class="line">) <span class="keyword">public</span> &#123;</span><br><span class="line">    <span class="comment">// 初始化状态变量...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>构造函数在创建合约实例时执行，用于初始化状态变量。</li>
+</ul>
+<h3 id="cpo6g">添加追踪信息的方法（由分销商调用）</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">addTraceInfoByDistributor</span><span class="params">(</span></span><br><span class="line"><span class="params">    string traceName,</span></span><br><span class="line"><span class="params">    address distributor,</span></span><br><span class="line"><span class="params">    uint8 quality</span></span><br><span class="line"><span class="params">)</span> <span class="keyword">public</span> <span class="title function_">returns</span> <span class="params">(bool)</span> &#123;</span><br><span class="line">    <span class="comment">// 添加追踪信息...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该方法允许分销商添加食品追踪信息，并更新状态变量。</li>
+</ul>
+<h3 id="Uqtnx">添加追踪信息的方法（由零售商调用）</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">addTraceInfoByRetailer</span><span class="params">(</span></span><br><span class="line"><span class="params">    string traceName,</span></span><br><span class="line"><span class="params">    address retailer,</span></span><br><span class="line"><span class="params">    uint8 quality</span></span><br><span class="line"><span class="params">)</span> <span class="keyword">public</span> <span class="title function_">returns</span> <span class="params">(bool)</span> &#123;</span><br><span class="line">    <span class="comment">// 补充食品分销方法...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该方法允许零售商添加食品追踪信息，并更新状态变量。</li>
+</ul>
+<h3 id="jT0jN">获取追踪信息的方法</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">getTraceInfo</span><span class="params">()</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    constant</span><br><span class="line">    <span class="title function_">returns</span> <span class="params">(</span></span><br><span class="line"><span class="params">        uint256[],</span></span><br><span class="line"><span class="params">        string[],</span></span><br><span class="line"><span class="params">        address[],</span></span><br><span class="line"><span class="params">        uint8[]</span></span><br><span class="line"><span class="params">    )</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 返回追踪信息...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该方法返回食品的完整追踪信息。</li>
+</ul>
+<h3 id="vNWca">获取食品信息的方法</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">getFood</span><span class="params">()</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    constant</span><br><span class="line">    <span class="title function_">returns</span> <span class="params">(</span></span><br><span class="line"><span class="params">        uint256,</span></span><br><span class="line"><span class="params">        string,</span></span><br><span class="line"><span class="params">        string,</span></span><br><span class="line"><span class="params">        string,</span></span><br><span class="line"><span class="params">        address,</span></span><br><span class="line"><span class="params">        uint8</span></span><br><span class="line"><span class="params">    )</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 返回食品的初始信息...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该方法返回食品的初始信息，如生产时的时间戳、追踪名称、食品名称、当前追踪名称、生产者地址和质量。</li>
+</ul>
+<h3 id="E4CQL">注意事项</h3>
+
+<ul>
+<li>合约中使用了<code>now</code>，它在Solidity 0.5.0之后被替换为<code>block.timestamp</code>，用于获取当前区块的时间戳。</li>
+<li><code>require</code>语句用于验证调用条件，确保合约状态和调用者权限的正确性。</li>
+</ul>
+<p>这个合约是一个基本的食品安全追踪系统，它允许追踪食品从生产到分销再到零售的每一个步骤。通过区块链技术，可以确保这些信息的不可篡改性和透明性。</p>
+<h1 id="P513C">角色库</h1>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^<span class="number">0.4</span><span class="number">.25</span>;</span><br><span class="line">library Roles &#123;</span><br><span class="line">    struct Role &#123;</span><br><span class="line">        mapping(address =&gt; bool) bearer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">add</span><span class="params">(Role storage role, address account)</span> internal &#123;</span><br><span class="line">        require(!has(role,account),<span class="string">&quot;Role: has a account！&quot;</span>);</span><br><span class="line">        role.bearer[account] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">remove</span><span class="params">(Role storage role, address account)</span> internal &#123;</span><br><span class="line">        require(has(role,account),<span class="string">&quot;Role: has not a account！&quot;</span>);</span><br><span class="line">        role.bearer[account] = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function <span class="title function_">has</span><span class="params">(Role storage role, address account)</span></span><br><span class="line">        internal</span><br><span class="line">        view</span><br><span class="line">        <span class="title function_">returns</span> <span class="params">(bool)</span></span><br><span class="line">    &#123;</span><br><span class="line">        require(account != address(<span class="number">0</span>), <span class="string">&quot;Role: has a zero address&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> role.bearer[account];</span><br><span class="line">    &#125;</span><br><span class="line">      </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段Solidity代码定义了一个名为<code>Roles</code>的库，它包含了一个用于管理角色的简单数据结构和一些用于操作这些角色的函数。以下是对这段代码的详细解析：</p>
+<h3 id="z9Y4U">库定义</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">library Roles &#123;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这里定义了一个名为<code>Roles</code>的库，库在Solidity中是一种可以重用的代码方式，它可以被其他合约调用。</li>
+</ul>
+<h3 id="azj4P">角色结构体</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct Role &#123;</span><br><span class="line">    mapping(address =&gt; bool) bearer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Role</code>是一个结构体，它包含了一个映射（mapping），该映射将地址映射到布尔值。这里的<code>bearer</code>映射用于记录拥有特定角色的账户。</li>
+</ul>
+<h3 id="BBLst">添加角色函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">add</span><span class="params">(Role storage role, address account)</span> internal &#123;</span><br><span class="line">    require(!has(role, account), <span class="string">&quot;Role: has a account！&quot;</span>);</span><br><span class="line">    role.bearer[account] = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>add</code>函数用于向给定的角色（<code>role</code>）中添加一个账户（<code>account</code>）。如果账户已经拥有角色，则会抛出错误。<code>internal</code>关键字意味着这个函数只能在当前库或继承了这个库的合约内部调用。</li>
+</ul>
+<h3 id="P48Or">移除角色函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">remove</span><span class="params">(Role storage role, address account)</span> internal &#123;</span><br><span class="line">    require(has(role, account), <span class="string">&quot;Role: has not a account！&quot;</span>);</span><br><span class="line">    role.bearer[account] = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>remove</code>函数用于从给定的角色中移除一个账户。如果账户没有这个角色，则会抛出错误。</li>
+</ul>
+<h3 id="cGDw8">检查角色函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">has</span><span class="params">(Role storage role, address account)</span></span><br><span class="line">    internal</span><br><span class="line">    view</span><br><span class="line">    <span class="title function_">returns</span> <span class="params">(bool)</span></span><br><span class="line">&#123;</span><br><span class="line">    require(account != address(<span class="number">0</span>), <span class="string">&quot;Role: has a zero address&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> role.bearer[account];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>has</code>函数用于检查一个账户是否拥有特定的角色。它返回一个布尔值，指示账户是否具有该角色。同时，它会检查账户地址是否为零地址，如果是，则抛出错误。</li>
+</ul>
+<h3 id="LeixZ">注意事项</h3>
+
+<ul>
+<li><code>require</code>语句用于确保函数调用的条件被满足，如果没有，则回滚交易。</li>
+<li><code>internal</code>关键字意味着函数只能在内部调用，外部无法直接通过合约接口调用。</li>
+<li><code>view</code>关键字表示该函数不会改变合约的状态。</li>
+</ul>
+<p>这个库可以被其他合约用来管理不同的角色，例如，一个去中心化应用（DApp）可能会使用这个库来管理管理员、用户、审核员等不同的角色，为不同的角色赋予不同的权限。这样的设计使得权限管理变得更加模块化和可复用。</p>
+<h1 id="pQcqH">食品安全追踪</h1>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line">pragma experimental ABIEncoderV2;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./FoodInfoItem.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Distributor.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Producer.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Retailer.sol&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//食品工厂合约，负责具体食品溯源信息的生成</span></span><br><span class="line">contract Trace is Producer, Distributor, Retailer&#123;</span><br><span class="line"></span><br><span class="line">        mapping (uint256 =&gt; address)  foods;<span class="comment">//食品溯源id到具体食品溯源合约的映射表</span></span><br><span class="line">        uint[]  foodList;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//构造函数</span></span><br><span class="line">        constructor(address producer, address distributor, address retailer) </span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">Producer</span><span class="params">(producer)</span> </span><br><span class="line">	Distributor(distributor) </span><br><span class="line">	Retailer(retailer)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//生成食品溯源信息接口</span></span><br><span class="line">        <span class="comment">//只有Producer能调用</span></span><br><span class="line">        <span class="comment">//name 食品名称</span></span><br><span class="line">        <span class="comment">//traceNumber 食品溯源id</span></span><br><span class="line">        <span class="comment">//traceName 当前用户名称</span></span><br><span class="line">	    <span class="comment">//quality 当前食品质量</span></span><br><span class="line">        function <span class="title function_">newFood</span><span class="params">(string name, uint256 traceNumber, string traceName, uint8 quality)</span> </span><br><span class="line">	<span class="keyword">public</span> onlyProducer <span class="title function_">returns</span><span class="params">(address)</span></span><br><span class="line">        &#123;</span><br><span class="line">            require(foods[traceNumber] == address(<span class="number">0</span>), <span class="string">&quot;traceNumber already exist&quot;</span>);</span><br><span class="line">            <span class="type">FoodInfoItem</span> <span class="variable">food</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FoodInfoItem</span>(name, traceName, quality, msg.sender);</span><br><span class="line">            foods[traceNumber] = food;</span><br><span class="line">            foodList.push(traceNumber);</span><br><span class="line">            <span class="keyword">return</span> food;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//食品分销过程中增加溯源信息的接口</span></span><br><span class="line">        <span class="comment">//只有Distributor能调用</span></span><br><span class="line">        <span class="comment">//traceNumber 食品溯源id</span></span><br><span class="line">        <span class="comment">//traceName 当前用户名称</span></span><br><span class="line">        <span class="comment">//quality 当前食品质量</span></span><br><span class="line">        function <span class="title function_">addTraceInfoByDistributor</span><span class="params">(uint256 traceNumber, string traceName, uint8 quality)</span> </span><br><span class="line">	<span class="keyword">public</span> onlyDistributor <span class="title function_">returns</span><span class="params">(bool)</span> &#123;</span><br><span class="line">            <span class="comment">/* 【8】请在此注释后作答，勿删除此注释*/</span></span><br><span class="line">            <span class="comment">// 补充完整食品分销过程增加溯源信息的接口</span></span><br><span class="line">          require(foods[traceNumber] != address(<span class="number">0</span>), <span class="string">&quot;traceNumber does not exist&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> FoodInfoItem(foods[traceNumber]).addTraceInfoByDistributor(traceName, msg.sender, quality);</span><br><span class="line">           </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//食品出售过程中增加溯源信息的接口</span></span><br><span class="line">        <span class="comment">//只有Retailer能调用</span></span><br><span class="line">        <span class="comment">//traceNumber 食品溯源id</span></span><br><span class="line">        <span class="comment">//traceName 当前用户名称</span></span><br><span class="line">        <span class="comment">//quality 当前食品质量</span></span><br><span class="line">        function <span class="title function_">addTraceInfoByRetailer</span><span class="params">(uint256 traceNumber, string traceName, uint8 quality)</span> </span><br><span class="line">	<span class="keyword">public</span> onlyRetailer <span class="title function_">returns</span><span class="params">(bool)</span> &#123;</span><br><span class="line">            require(foods[traceNumber] != address(<span class="number">0</span>), <span class="string">&quot;traceNumber does not exist&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> FoodInfoItem(foods[traceNumber]).addTraceInfoByRetailer(traceName, msg.sender, quality);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取食品溯源信息接口</span></span><br><span class="line">        <span class="comment">//string[] 保存食品流转过程中各个阶段的相关信息</span></span><br><span class="line">        <span class="comment">//address[] 保存食品流转过程各个阶段的用户地址信息（和用户一一对应）</span></span><br><span class="line">        <span class="comment">//uint8[] 保存食品流转过程中各个阶段的状态变化</span></span><br><span class="line">        function <span class="title function_">getTraceInfo</span><span class="params">(uint256 traceNumber)</span> <span class="keyword">public</span> constant <span class="title function_">returns</span><span class="params">(uint[], string[], address[], uint8[])</span> &#123;</span><br><span class="line">            <span class="comment">/* 【12】请在此注释后作答，勿删除此注释*/</span></span><br><span class="line">            require(foods[traceNumber] != address(<span class="number">0</span>), <span class="string">&quot;traceNumber does not exist&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> FoodInfoItem(foods[traceNumber]).getTraceInfo();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function <span class="title function_">getFood</span><span class="params">(uint256 traceNumber)</span> <span class="keyword">public</span> constant <span class="title function_">returns</span><span class="params">(uint, string, string, string, address, uint8)</span> &#123;</span><br><span class="line">            <span class="comment">/* 【9】请在此注释后作答，勿删除此注释*/</span></span><br><span class="line">            <span class="comment">//补充食品信息获取接口</span></span><br><span class="line">            require(foods[traceNumber] != address(<span class="number">0</span>), <span class="string">&quot;traceNumber does not exist&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> FoodInfoItem(foods[traceNumber]).getFood();</span><br><span class="line">         </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function <span class="title function_">getAllFood</span><span class="params">()</span> <span class="keyword">public</span> constant <span class="title function_">returns</span> <span class="params">(uint[])</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> foodList;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段Solidity代码定义了一个名为<code>Trace</code>的智能合约，该合约继承了<code>Producer</code>、<code>Distributor</code>和<code>Retailer</code>三个接口（或合约），并实现了一个食品安全追踪系统。以下是该合约的详细解析：</p>
+<h3 id="esbNV">合约导入和版本声明</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity &gt;=<span class="number">0.4</span><span class="number">.22</span> &lt;<span class="number">0.7</span><span class="number">.0</span>;</span><br><span class="line">pragma experimental ABIEncoderV2;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./FoodInfoItem.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Distributor.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Producer.sol&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;./Retailer.sol&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>声明了合约支持的Solidity版本范围，并启用了<code>ABIEncoderV2</code>实验特性。</li>
+<li>导入了<code>FoodInfoItem</code>、<code>Distributor</code>、<code>Producer</code>和<code>Retailer</code>合约，这些合约可能包含了与食品安全追踪相关的接口和功能。</li>
+</ul>
+<h3 id="sflM7">合约定义</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">contract Trace is Producer, Distributor, Retailer &#123;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>定义了一个名为<code>Trace</code>的合约，该合约继承了<code>Producer</code>、<code>Distributor</code>和<code>Retailer</code>，这意味着<code>Trace</code>合约具有这三个合约的所有功能。</li>
+</ul>
+<h3 id="Z0hWn">状态变量</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mapping (uint256 =&gt; address) foods;</span><br><span class="line">uint[] foodList;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>foods</code>是一个映射，将食品溯源ID映射到具体的<code>FoodInfoItem</code>合约地址。</li>
+<li><code>foodList</code>是一个数组，存储了所有的食品溯源ID。</li>
+</ul>
+<h3 id="EdNOl">构造函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">constructor(address producer, address distributor, address retailer)</span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    <span class="title function_">Producer</span><span class="params">(producer)</span></span><br><span class="line">    Distributor(distributor)</span><br><span class="line">    Retailer(retailer) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>构造函数接收生产者、分销商和零售商的地址，并调用相应的基础合约构造函数。</li>
+</ul>
+<h3 id="SGaJE">生成食品溯源信息接口</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">newFood</span><span class="params">(string name, uint256 traceNumber, string traceName, uint8 quality)</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    onlyProducer</span><br><span class="line">    <span class="title function_">returns</span><span class="params">(address)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该函数允许生产者创建新的食品溯源信息，并返回新创建的<code>FoodInfoItem</code>合约地址。</li>
+</ul>
+<h3 id="zYFbD">食品分销过程中增加溯源信息的接口</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">addTraceInfoByDistributor</span><span class="params">(uint256 traceNumber, string traceName, uint8 quality)</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    onlyDistributor</span><br><span class="line">    <span class="title function_">returns</span><span class="params">(bool)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该函数允许分销商为指定的食品溯源ID添加分销信息。</li>
+</ul>
+<h3 id="AlnU4">食品出售过程中增加溯源信息的接口</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">addTraceInfoByRetailer</span><span class="params">(uint256 traceNumber, string traceName, uint8 quality)</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    onlyRetailer</span><br><span class="line">    <span class="title function_">returns</span><span class="params">(bool)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该函数允许零售商为指定的食品溯源ID添加零售信息。</li>
+</ul>
+<h3 id="tSCpV">获取食品溯源信息接口</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">getTraceInfo</span><span class="params">(uint256 traceNumber)</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    constant</span><br><span class="line">    <span class="title function_">returns</span><span class="params">(uint[], string[], address[], uint8[])</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该函数返回指定食品溯源ID的完整追踪信息。</li>
+</ul>
+<h3 id="QT2SZ">获取食品信息的方法</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">getFood</span><span class="params">(uint256 traceNumber)</span></span><br><span class="line">    <span class="keyword">public</span></span><br><span class="line">    constant</span><br><span class="line">    <span class="title function_">returns</span><span class="params">(uint, string, string, string, address, uint8)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该函数返回指定食品溯源ID的食品初始信息。</li>
+</ul>
+<h3 id="wXVaD">获取所有食品溯源ID</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">getAllFood</span><span class="params">()</span> <span class="keyword">public</span> constant <span class="title function_">returns</span> <span class="params">(uint[])</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> foodList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该函数返回所有食品溯源ID的列表。</li>
+</ul>
+<h3 id="YggQ6">注意事项</h3>
+
+<ul>
+<li>合约中使用了<code>onlyProducer</code>、<code>onlyDistributor</code>和<code>onlyRetailer</code>这些修饰符，它们应该在继承的合约中定义，以确保只有对应角色的地址能够调用特定的函数。</li>
+<li><code>require</code>语句用于验证食品溯源ID的存在性和唯一性。</li>
+</ul>
+<p>这个<code>Trace</code>合约通过整合生产者、分销商和零售商的功能，提供了一个完整的食品安全追踪解决方案。它通过区块链技术保证了食品信息的不篡改性，增加了整个食品供应链的透明度。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site">zhengcookie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/">https://www.zhengcookie.site/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.zhengcookie.site" target="_blank">zhengcookie</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%B5%9B%E9%A2%98%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/">区块链赛题智能合约</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/07/03/%E4%B8%AA%E4%BA%BA%E4%BB%8B%E7%BB%8D/" title="个人介绍"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">个人介绍</div></div><div class="info-2"><div class="info-item-1">广州IT毕业生，专注于前后端开发与区块链技术分享。不定期更新技术内容，欢迎交流讨论！ 📱 联系方式：微信：ZKL13169070960B站：yoimiya科普时间的个人空间 个人文章区块链分类: 区块链 | zhengcookie 前端分类: 前端面试题 | zhengcookie 📺 个人视频资源【使用电脑打开更加方便】🔗 智能合约系列教程                       区块链图书管理系统                 🎥 Vue 前端教程系列                           Vue 3.0 零基础入门教程                </div></div></div></a><a class="pagination-related" href="/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/" title="合约结构语法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">合约结构语法</div></div><div class="info-2"><div class="info-item-1">状态变量状态变量是永久地存储在合约存储中的值。 123456pragma solidity &gt;=0.4.0 &lt;0.9.0;contract TinyStorage &#123;    uint storedXlbData; // 状态变量    // ...&#125;  函数函数是代码的可执行单元。函数通常在合约内部定义，但也可以在合约外定义。 12345678910111213// SPDX-License-Identifier: GPL-3.0pragma solidity &gt;=0.7.1 &lt;0.9.0;contract TinyAuction &#123;    function Mybid() public payable &#123; // 定义函数        // ...    &#125;&#125;// Helper function defined outside of a contractfunction helper(uint x) pure returns (uint) &#123;    return x *...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/07/12/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-%E5%8C%BB%E7%96%97/" title="区块链智能合约教程-医疗"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-12</div><div class="info-item-2">区块链智能合约教程-医疗</div></div><div class="info-2"><div class="info-item-1">源码  Main.sol  以下是智能合约代码的逐段解析，按功能模块分类说明：  1. 患者信息管理结构体定义1234567struct Sick &#123;    address accountAddress; // 患者钱包地址    string name;            // 姓名    string sex;             // 性别    uint256 age;            // 年龄    uint256 id;             // 身份证号(主键)&#125;  数据存储12mapping(uint256 =&gt; Sick) public sicks;  // 身份证号→患者信息的映射uint256[] public sickIds;               // 所有患者身份证号列表  核心功能12345678910111213141516171819202122232425262728293031323334353637// 创建患者档案 (需校验参数有效性)function createSick(...)...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">zhengcookie</div><div class="author-info-description">欢迎来到zhengcookie的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhengcookie"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zhengcookie" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/z2132085753@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BsYGX"><span class="toc-number">1.</span> <span class="toc-text">经销商</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VnCyS"><span class="toc-number">1.0.1.</span> <span class="toc-text">导入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#s6lMe"><span class="toc-number">1.0.2.</span> <span class="toc-text">合约声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hNR7o"><span class="toc-number">1.0.3.</span> <span class="toc-text">使用库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fllmQ"><span class="toc-number">1.0.4.</span> <span class="toc-text">事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v3Hnq"><span class="toc-number">1.0.5.</span> <span class="toc-text">私有变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MWuyd"><span class="toc-number">1.0.6.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rXX62"><span class="toc-number">1.0.7.</span> <span class="toc-text">修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vcrj3"><span class="toc-number">1.0.8.</span> <span class="toc-text">公共函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#yp53H"><span class="toc-number">1.0.9.</span> <span class="toc-text">内部函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rvqqb"><span class="toc-number">1.0.10.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fJ5Sz"><span class="toc-number">2.</span> <span class="toc-text">食品信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LMdE5"><span class="toc-number">2.0.1.</span> <span class="toc-text">版本声明和特性启用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dhvJT"><span class="toc-number">2.0.2.</span> <span class="toc-text">合约定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WnZkq"><span class="toc-number">2.0.3.</span> <span class="toc-text">状态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vGMng"><span class="toc-number">2.0.4.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cpo6g"><span class="toc-number">2.0.5.</span> <span class="toc-text">添加追踪信息的方法（由分销商调用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Uqtnx"><span class="toc-number">2.0.6.</span> <span class="toc-text">添加追踪信息的方法（由零售商调用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jT0jN"><span class="toc-number">2.0.7.</span> <span class="toc-text">获取追踪信息的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vNWca"><span class="toc-number">2.0.8.</span> <span class="toc-text">获取食品信息的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#E4CQL"><span class="toc-number">2.0.9.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#P513C"><span class="toc-number">3.</span> <span class="toc-text">角色库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#z9Y4U"><span class="toc-number">3.0.1.</span> <span class="toc-text">库定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#azj4P"><span class="toc-number">3.0.2.</span> <span class="toc-text">角色结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BBLst"><span class="toc-number">3.0.3.</span> <span class="toc-text">添加角色函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P48Or"><span class="toc-number">3.0.4.</span> <span class="toc-text">移除角色函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cGDw8"><span class="toc-number">3.0.5.</span> <span class="toc-text">检查角色函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LeixZ"><span class="toc-number">3.0.6.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pQcqH"><span class="toc-number">4.</span> <span class="toc-text">食品安全追踪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#esbNV"><span class="toc-number">4.0.1.</span> <span class="toc-text">合约导入和版本声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sflM7"><span class="toc-number">4.0.2.</span> <span class="toc-text">合约定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Z0hWn"><span class="toc-number">4.0.3.</span> <span class="toc-text">状态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EdNOl"><span class="toc-number">4.0.4.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SGaJE"><span class="toc-number">4.0.5.</span> <span class="toc-text">生成食品溯源信息接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zYFbD"><span class="toc-number">4.0.6.</span> <span class="toc-text">食品分销过程中增加溯源信息的接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AlnU4"><span class="toc-number">4.0.7.</span> <span class="toc-text">食品出售过程中增加溯源信息的接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tSCpV"><span class="toc-number">4.0.8.</span> <span class="toc-text">获取食品溯源信息接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QT2SZ"><span class="toc-number">4.0.9.</span> <span class="toc-text">获取食品信息的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wXVaD"><span class="toc-number">4.0.10.</span> <span class="toc-text">获取所有食品溯源ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YggQ6"><span class="toc-number">4.0.11.</span> <span class="toc-text">注意事项</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周">广州it工作第九周</a><time datetime="2025-09-13T08:16:54.000Z" title="发表于 2025-09-13 16:16:54">2025-09-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/" title="广州it工作第八周">广州it工作第八周</a><time datetime="2025-09-07T12:22:49.000Z" title="发表于 2025-09-07 20:22:49">2025-09-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周">广州it工作第七周</a><time datetime="2025-08-30T11:18:00.000Z" title="发表于 2025-08-30 19:18:00">2025-08-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周">广州it工作第六周</a><time datetime="2025-08-25T15:01:50.000Z" title="发表于 2025-08-25 23:01:50">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/17/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%BA%94%E5%91%A8/" title="广州it工作第五周">广州it工作第五周</a><time datetime="2025-08-16T16:04:11.000Z" title="发表于 2025-08-17 00:04:11">2025-08-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By zhengcookie</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz',
+      appKey: 'KJPXk2hOqDfll4hbw93yYmUc',
+      avatar: 'https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg',
+      serverURLs: 'https://stzbx4mw.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
