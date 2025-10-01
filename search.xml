@@ -614,6 +614,17 @@
     
     
     <entry>
+      <title></title>
+      <link href="/js/reading-progress.js"/>
+      <url>/js/reading-progress.js</url>
+      
+        <content type="html"><![CDATA[// source/js/reading-progress.js(function() {    const bar = document.createElement('div');    bar.id = 'reading-progress';    document.body.appendChild(bar);    document.body.classList.add('has-progressbar');    const set = () => {        const doc = document.documentElement;        const scrolled = (doc.scrollTop || document.body.scrollTop);        const height = (doc.scrollHeight - doc.clientHeight);        const percent = height > 0 ? (scrolled / height) * 100 : 0;        bar.style.width = percent + '%';    };    window.addEventListener('scroll', set, { passive: true });    window.addEventListener('resize', set);    document.addEventListener('DOMContentLoaded', set);    set();})();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>tags</title>
       <link href="/tags/index.html"/>
       <url>/tags/index.html</url>
@@ -626,21 +637,10 @@
     
     <entry>
       <title></title>
-      <link href="/js/reading-progress.js"/>
-      <url>/js/reading-progress.js</url>
+      <link href="/css/progress.css"/>
+      <url>/css/progress.css</url>
       
-        <content type="html"><![CDATA[// source/js/reading-progress.js(function() {    const bar = document.createElement('div');    bar.id = 'reading-progress';    document.body.appendChild(bar);    document.body.classList.add('has-progressbar');    const set = () => {        const doc = document.documentElement;        const scrolled = (doc.scrollTop || document.body.scrollTop);        const height = (doc.scrollHeight - doc.clientHeight);        const percent = height > 0 ? (scrolled / height) * 100 : 0;        bar.style.width = percent + '%';    };    window.addEventListener('scroll', set, { passive: true });    window.addEventListener('resize', set);    document.addEventListener('DOMContentLoaded', set);    set();})();]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>link</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[<hr>]]></content>
+        <content type="html"><![CDATA[/* source/css/progress.css */#reading-progress {    position: fixed;    left: 0;    top: 0;    height: 3px;    width: 0;    background: linear-gradient(90deg, #42a5f5, #7e57c2);    z-index: 2147483647;    /* 保证在最上层 */    transition: width .15s ease-out;}body.has-progressbar {    padding-top: 0;}.post-reading-meta {    font-size: .92rem;    color: #666;    margin: 8px 0 14px}.post-reading-meta span {    background: #f6f6f6;    border-radius: 6px;    padding: 4px 8px}]]></content>
       
     </entry>
     
@@ -658,11 +658,11 @@
     
     
     <entry>
-      <title></title>
-      <link href="/css/progress.css"/>
-      <url>/css/progress.css</url>
+      <title>link</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
       
-        <content type="html"><![CDATA[/* source/css/progress.css */#reading-progress {    position: fixed;    left: 0;    top: 0;    height: 3px;    width: 0;    background: linear-gradient(90deg, #42a5f5, #7e57c2);    z-index: 2147483647;    /* 保证在最上层 */    transition: width .15s ease-out;}body.has-progressbar {    padding-top: 0;}.post-reading-meta {    font-size: .92rem;    color: #666;    margin: 8px 0 14px}.post-reading-meta span {    background: #f6f6f6;    border-radius: 6px;    padding: 4px 8px}]]></content>
+        <content type="html"><![CDATA[<hr>]]></content>
       
     </entry>
     
