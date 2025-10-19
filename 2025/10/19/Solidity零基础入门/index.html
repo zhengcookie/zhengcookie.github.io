@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Solidity零基础入门 | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="课程安排模块一：启程 - 区块链与智能合约概念比特币 vs 以太坊：为什么需要智能合约？ 比特币 vs 以太坊：为什么需要智能合约？比特币作为区块链技术的第一个成功应用，开创了去中心化数字货币的先河。它的核心功能是提供一种安全、透明且不可篡改的价值转移方式。然而，比特币的设计初衷是专注于支付和存储价值，其脚本语言（Script）虽然具有一定的可编程性，但功能较为有限，无法支持复杂的逻辑操作。相比之">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solidity零基础入门">
+<meta property="og:url" content="https://www.zhengcookie.site/2025/10/19/Solidity%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="zhengcookie">
+<meta property="og:description" content="课程安排模块一：启程 - 区块链与智能合约概念比特币 vs 以太坊：为什么需要智能合约？ 比特币 vs 以太坊：为什么需要智能合约？比特币作为区块链技术的第一个成功应用，开创了去中心化数字货币的先河。它的核心功能是提供一种安全、透明且不可篡改的价值转移方式。然而，比特币的设计初衷是专注于支付和存储价值，其脚本语言（Script）虽然具有一定的可编程性，但功能较为有限，无法支持复杂的逻辑操作。相比之">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250416170645.jpg">
+<meta property="article:published_time" content="2025-10-19T14:17:53.000Z">
+<meta property="article:modified_time" content="2025-10-19T14:28:24.828Z">
+<meta property="article:author" content="zhengcookie">
+<meta property="article:tag" content="区块链智能合约语法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250416170645.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Solidity零基础入门",
+  "url": "https://www.zhengcookie.site/2025/10/19/Solidity%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/",
+  "image": "https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg",
+  "datePublished": "2025-10-19T14:17:53.000Z",
+  "dateModified": "2025-10-19T14:28:24.828Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "zhengcookie",
+      "url": "https://www.zhengcookie.site/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.zhengcookie.site/2025/10/19/Solidity%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-fVYv9VWvzQ"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Solidity零基础入门',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">Solidity零基础入门</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Solidity零基础入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-19T14:17:53.000Z" title="发表于 2025-10-19 22:17:53">2025-10-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-19T14:28:24.828Z" title="更新于 2025-10-19 22:28:24">2025-10-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/2025/10/19/Solidity%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" data-flag-title="Solidity零基础入门"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span class="leancloud-visitors-count"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="课程安排"><a href="#课程安排" class="headerlink" title="课程安排"></a>课程安排</h1><h2 id="模块一：启程-区块链与智能合约概念"><a href="#模块一：启程-区块链与智能合约概念" class="headerlink" title="模块一：启程 - 区块链与智能合约概念"></a>模块一：启程 - 区块链与智能合约概念</h2><p>比特币 vs 以太坊：为什么需要智能合约？</p>
+<h3 id="比特币-vs-以太坊：为什么需要智能合约？"><a href="#比特币-vs-以太坊：为什么需要智能合约？" class="headerlink" title="比特币 vs 以太坊：为什么需要智能合约？"></a>比特币 vs 以太坊：为什么需要智能合约？</h3><p>比特币作为区块链技术的第一个成功应用，开创了去中心化数字货币的先河。它的核心功能是提供一种安全、透明且不可篡改的价值转移方式。然而，比特币的设计初衷是专注于支付和存储价值，其脚本语言（Script）虽然具有一定的可编程性，但功能较为有限，无法支持复杂的逻辑操作。<br>相比之下，以太坊在设计上引入了一个革命性的概念——<strong>智能合约</strong>。智能合约是一种运行在区块链上的程序代码，能够根据预设条件自动执行特定的操作。它使得以太坊不仅是一个去中心化的支付系统，更是一个通用的计算平台。通过智能合约，开发者可以构建各种去中心化应用（DApps），例如去中心化金融（DeFi）、非同质化代币（NFT）、去中心化自治组织（DAO）等。这种灵活性使以太坊成为区块链生态系统的核心支柱之一。<br>那么，为什么需要智能合约？智能合约的核心优势在于<strong>自动化执行</strong>和<strong>信任最小化</strong>。传统合约需要依赖第三方（如律师或仲裁机构）来确保执行，而智能合约通过代码直接定义规则并自动执行，无需中介参与。这不仅降低了交易成本，还提高了效率，同时减少了人为干预带来的风险。此外，智能合约的透明性和不可篡改性进一步增强了信任，使其在金融、供应链管理、身份认证等领域展现出巨大的潜力。</p>
+<h3 id="什么是Gas？什么是交易？"><a href="#什么是Gas？什么是交易？" class="headerlink" title="什么是Gas？什么是交易？"></a>什么是Gas？什么是交易？</h3><h4 id="Gas"><a href="#Gas" class="headerlink" title="Gas"></a>Gas</h4><p>在以太坊网络中，<strong>Gas</strong> 是衡量执行智能合约或进行交易所需计算资源的单位。简单来说，Gas 是用户为使用以太坊网络支付的“燃料费”。每笔交易或智能合约的执行都需要消耗一定数量的 Gas，而 Gas 的价格由市场供需决定，通常以以太币（ETH）计价。<br>Gas 的存在有几个重要意义：</p>
+<ol>
+<li><strong>防止滥用网络资源</strong>：通过收取 Gas 费用，以太坊可以防止恶意用户发起无限循环或占用大量计算资源的操作。</li>
+<li><strong>激励矿工&#x2F;验证者</strong>：Gas 费用作为奖励分配给矿工（在 PoW 机制下）或验证者（在 PoS 机制下），以保障网络的安全性和稳定性。</li>
+<li><strong>动态调节网络负载</strong>：当网络拥堵时，用户可以通过提高 Gas 价格来优先处理自己的交易。</li>
+</ol>
+<h4 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h4><p>在区块链语境中，<strong>交易</strong>是指任何改变区块链状态的操作。交易可以分为两类：</p>
+<ol>
+<li><strong>普通转账交易</strong>：指从一个账户向另一个账户转移加密货币（如 ETH）。</li>
+<li><strong>智能合约交互交易</strong>：指调用智能合约中的函数，可能涉及复杂的数据处理或状态更新。<br>每笔交易都需要包含以下信息：</li>
+</ol>
+<ul>
+<li>发送方地址</li>
+<li>接收方地址（如果是普通转账）或智能合约地址（如果是合约交互）</li>
+<li>转账金额（如果是普通转账）</li>
+<li>Gas 限制（Gas Limit）：用户愿意为该交易支付的最大 Gas 数量</li>
+<li>Gas 价格（Gas Price）：每单位 Gas 的价格<br>如果交易执行所需的 Gas 超过了用户设置的 Gas 限制，交易将失败，但已消耗的 Gas 不会退还。</li>
+</ul>
+<h3 id="开发环境搭建（FISCO-BCOS-Remix-IDE）"><a href="#开发环境搭建（FISCO-BCOS-Remix-IDE）" class="headerlink" title="开发环境搭建（FISCO-BCOS, Remix IDE）"></a>开发环境搭建（FISCO-BCOS, Remix IDE）</h3><p>为了在区块链上开发和部署智能合约，我们需要搭建合适的开发环境。以下是两种常用的工具：<strong>FISCO-BCOS</strong> 和 <strong>Remix IDE</strong>。</p>
+<h4 id="FISCO-BCOS"><a href="#FISCO-BCOS" class="headerlink" title="FISCO-BCOS"></a>FISCO-BCOS</h4><p>FISCO-BCOS 是一个国产的区块链底层平台，专注于企业级应用场景。它支持联盟链模式，适合构建私有链或联盟链项目。以下是搭建 FISCO-BCOS 的基本步骤：</p>
+<p><a target="_blank" rel="noopener" href="https://fisco-bcos-doc.readthedocs.io/zh-cn/latest/index.html">https://fisco-bcos-doc.readthedocs.io/zh-cn/latest/index.html</a></p>
+<h4 id="Remix-IDE"><a href="#Remix-IDE" class="headerlink" title="Remix IDE"></a>Remix IDE</h4><p>Remix 是一个基于浏览器的集成开发环境（IDE），专为以太坊智能合约开发设计。它的界面友好，功能强大，非常适合初学者和快速原型开发。以下是使用 Remix 的基本流程：</p>
+<ol>
+<li><strong>访问 Remix IDE</strong>：</li>
+</ol>
+<ul>
+<li><ul>
+<li>打开浏览器，访问 <a target="_blank" rel="noopener" href="https://remix.ethereum.org/">Remix 官网</a>。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><strong>编写智能合约</strong>：</li>
+</ol>
+<ul>
+<li><ul>
+<li>在 Remix 的“File Explorer”区域新建一个 <code>.sol</code> 文件，例如 <code>MyContract.sol</code>。</li>
+<li>编写 Solidity 代码，例如：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line">contract MyContract &#123;</span><br><span class="line">    uint public value;</span><br><span class="line">    function setValue(uint _value) public &#123;</span><br><span class="line">        value = _value;</span><br><span class="line">    &#125;</span><br><span class="line">    function getValue() public view returns (uint) &#123;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>编译合约</strong>：</li>
+</ol>
+<ul>
+<li><ul>
+<li>切换到“Solidity Compiler”标签页，选择适当的编译器版本并点击“Compile”。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><strong>部署合约</strong>：</li>
+</ol>
+<ul>
+<li><ul>
+<li>切换到“Deploy &amp; Run Transactions”标签页，选择 JavaScript VM（虚拟机）或其他环境（如 MetaMask）。</li>
+<li>点击“Deploy”按钮将合约部署到测试网络。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><strong>测试合约</strong>：</li>
+</ol>
+<ul>
+<li><ul>
+<li>在“Deployed Contracts”区域，调用合约的函数（如 <code>setValue</code> 和 <code>getValue</code>）进行交互。</li>
+</ul>
+</li>
+</ul>
+<h2 id="模块二：Solidity基础语法"><a href="#模块二：Solidity基础语法" class="headerlink" title="模块二：Solidity基础语法"></a>模块二：Solidity基础语法</h2><p>一、引言</p>
+<p>Solidity是一种合约导向编程语言，用于编写智能合约，运行在Ethereum虚拟机（EVM）上。本文档将为您介绍Solidity的基本语法和概念，帮助您快速上手智能合约开发。</p>
+<p>二、基本结构</p>
+<ol>
+<li>版本声明</li>
+</ol>
+<p>在Solidity文件的开头，需要声明使用的Solidity版本。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>合约</li>
+</ol>
+<p>合约是Solidity中的基本单位，相当于面向对象编程中的类。以下是一个简单的合约示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract HelloWorld &#123;</span><br><span class="line">    // 合约内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三、数据类型</p>
+<p>Solidity支持以下几种数据类型：</p>
+<ol>
+<li>值类型：包括布尔型（bool）、整型（int&#x2F;uint）、定长字节数组（bytes1~bytes32）、地址（address）等。</li>
+<li>引用类型：包括数组（array）、结构体（struct）、映射（mapping）等。</li>
+</ol>
+<p>以下是一个示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract DataType &#123;</span><br><span class="line">    bool public isTrue = true;</span><br><span class="line">    int public num = -1;</span><br><span class="line">    uint public unsignedNum = 1;</span><br><span class="line">    bytes32 public myBytes32 = &quot;Hello World&quot;;</span><br><span class="line">    address public myAddress = 0x1234567890123456789012345678901234567890;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>四、函数</p>
+<p>函数是合约中的行为，可以修改合约的状态或返回值。以下是一个简单的函数示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract FunctionExample &#123;</span><br><span class="line">    uint public myNum;</span><br><span class="line"></span><br><span class="line">    function setNum(uint _num) public &#123;</span><br><span class="line">        myNum = _num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getNum() public view returns (uint) &#123;</span><br><span class="line">        return myNum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>五、修饰符</p>
+<p>Solidity中的修饰符用于指定函数的可见性、状态可变性等。以下是一些常见的修饰符：</p>
+<ul>
+<li>public：函数对所有外部账户和合约可见。</li>
+<li>private：函数仅在合约内部可见。</li>
+<li>internal：函数在合约内部和继承的合约中可见。</li>
+<li>external：函数仅对外部账户和合约可见。</li>
+</ul>
+<p>以下是一个示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract ModifierExample &#123;</span><br><span class="line">    uint private myNum;</span><br><span class="line"></span><br><span class="line">    function setNum(uint _num) public &#123;</span><br><span class="line">        myNum = _num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getNum() public view returns (uint) &#123;</span><br><span class="line">        return myNum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>六、事件</p>
+<p>事件是合约与外部交互的一种机制，可以记录合约中的状态变化。以下是一个事件示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract EventExample &#123;</span><br><span class="line">    event LogValueChanged(uint oldValue, uint newValue);</span><br><span class="line"></span><br><span class="line">    uint public myNum;</span><br><span class="line"></span><br><span class="line">    function setNum(uint _num) public &#123;</span><br><span class="line">        uint oldValue = myNum;</span><br><span class="line">        myNum = _num;</span><br><span class="line">        emit LogValueChanged(oldValue, myNum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>七、总结</p>
+<p>本文档简要介绍了Solidity的基本语法和概念，包括版本声明、合约、数据类型、函数、修饰符和事件。掌握这些基础知识后，您可以进一步学习Solidity的高级特性，如继承、接口、库等，从而进行更复杂的智能合约开发</p>
+<h1 id="模块三：核心概念与实战"><a href="#模块三：核心概念与实战" class="headerlink" title="模块三：核心概念与实战"></a>模块三：核心概念与实战</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>以太坊单位与地址。</p>
+<p>支付与提现（payable, send, call）。</p>
+<p>错误处理（require, assert, revert）。</p>
+<h1 id="模块四：安全入门（重中之重！）"><a href="#模块四：安全入门（重中之重！）" class="headerlink" title="模块四：安全入门（重中之重！）"></a>模块四：安全入门（重中之重！）</h1><h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>详解重入攻击及防护。</p>
+<p>溢出保护（使用SafeMath库或Solidity 0.8+）。</p>
+<p>权限控制（Ownable, AccessControl）。</p>
+<h2 id="模块五：项目实战"><a href="#模块五：项目实战" class="headerlink" title="模块五：项目实战"></a>模块五：项目实战</h2><p>搭建一个完整的前端&#x2F;后端与合约交互。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site">zhengcookie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site/2025/10/19/Solidity%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">https://www.zhengcookie.site/2025/10/19/Solidity%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.zhengcookie.site" target="_blank">zhengcookie</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E6%B3%95/">区块链智能合约语法</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">广州it工作第九周</div></div><div class="info-2"><div class="info-item-1">一、工作内容与成果本周围绕农场相关系统的优化、功能扩展及上线展开工作，具体内容与成果如下： （一）周一：后台界面优化工作  本地存储数据安全优化：针对后台界面，移除了通过 storage 本地存储模拟操作数据的方式。此优化有效避免了操作数据在本地透明可见的问题，提升了数据传输与存储的安全性，降低了数据被篡改或泄露的风险。  核心业务逻辑调整：重点调整了后台作物管理与日志操作的核心逻辑。优化后，系统能够精准匹配对应地块的种子信息，确保作物数据与地块信息的关联性；同时，日志信息也能与具体操作场景、地块及作物数据准确对应，提升了后台数据管理的准确性与可读性，为后续数据查询与分析奠定基础。   （二）周二：作物日志功能扩展  操作频次管控实现：为规范作物日志记录，新增作物日志每日操作限制规则，设定每种操作每日最多记录两次。该规则有效避免了日志数据冗余，保证了日志信息的简洁性与有效性，同时也符合农场日常运营中对作物操作的合理频次需求。  日志生命周期管理：完善作物日志的生命周期逻辑，实现 “收获后自动删除日志，后续重新操作时添加新日志”...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/07/10/Solidity%E6%B1%87%E7%BC%96/" title="Solidity汇编"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-10</div><div class="info-item-2">Solidity汇编</div></div><div class="info-2"><div class="info-item-1">Solidity汇编Solidity 定义了一种汇编语言，在没有 Solidity 的情况下也可以使用。这种汇编语言也可以嵌入到 Solidity 源代码中当作“内联汇编”使用。 我们从如何使用内联汇编开始，介绍它如何区别于独立汇编语言，然后详细讲述这种汇编语言。 内联汇编为了实现更细粒度的控制，尤其是为了通过编写库来增强语言，可以利用接近虚拟机的语言将内联汇编与 Solidity 语句结合在一起使用。 由于 EVM 是基于栈的虚拟机，因此通常很难准确地定位栈内插槽（存储位置）的地址，并为操作码提供正确的栈内位置来获取参数。 Solidity 的内联汇编试图通过提供以下特性来解决这个问题以及手工编写汇编代码时可能出现的问题：  函数风格操作码： mul(1, add(2, 3)) 而不是 push1 3 push1 2 add push1 1 mul 汇编局部变量： let x := add(2, 3) let y := mload(0x40) x := add(x, y) 可以访问外部变量： function f(uint x) public &#123; assembly...</div></div></div></a><a class="pagination-related" href="/2025/07/06/%E5%8D%95%E4%BD%8D%E4%B8%8E%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" title="单位与全局变量"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-06</div><div class="info-item-2">单位与全局变量</div></div><div class="info-2"><div class="info-item-1">以太币Ether 单位以太币Ether 单位之间的换算就是在数字后边加上 wei ， gwei 或 ether 来实现的，如果后面没有单位，缺省为 wei。 123assert(1 wei == 1);assert(1 gwei == 1e9);assert(1 ether == 1e18);  货币单位后缀的的效果相当于乘以10的幂。 注解 从0.7.0开始 finney 和 szabo 被移除了。 译者注：gwei 在solidity 0.6.11 中添加，因此在0.6.11之前的版本中不可用。 时间单位秒是缺省时间单位，在时间单位之间，数字后面带有 seconds、 minutes、 hours、 days 和 weeks 的可以进行换算，基本换算关系如下：  1 == 1 seconds 1 minutes == 60 seconds 1 hours == 60 minutes 1 days == 24 hours 1 weeks == 7 days  由于闰秒造成的每年不都是 365 天、每天不都是 24 小时 leap...</div></div></div></a><a class="pagination-related" href="/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/" title="合约结构语法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-05</div><div class="info-item-2">合约结构语法</div></div><div class="info-2"><div class="info-item-1">状态变量状态变量是永久地存储在合约存储中的值。 123456pragma solidity &gt;=0.4.0 &lt;0.9.0;contract TinyStorage &#123;    uint storedXlbData; // 状态变量    // ...&#125;  函数函数是代码的可执行单元。函数通常在合约内部定义，但也可以在合约外定义。 12345678910111213// SPDX-License-Identifier: GPL-3.0pragma solidity &gt;=0.7.1 &lt;0.9.0;contract TinyAuction &#123;    function Mybid() public payable &#123; // 定义函数        // ...    &#125;&#125;// Helper function defined outside of a contractfunction helper(uint x) pure returns (uint) &#123;    return x *...</div></div></div></a><a class="pagination-related" href="/2025/07/09/%E5%90%88%E7%BA%A6/" title="合约"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-09</div><div class="info-item-2">合约</div></div><div class="info-2"><div class="info-item-1">合约Solidity 合约类似于面向对象语言中的类。合约中有用于数据持久化的状态变量，和可以修改状态变量的函数。 调用另一个合约实例的函数时，会执行一个 EVM 函数调用，这个操作会切换执行时的上下文，这样，前一个合约的状态变量就不能访问了。 创建合约可以通过以太坊交易“从外部”或从 Solidity 合约内部创建合约。 一些集成开发环境，例如 Remix, 通过使用一些用户界面元素使创建过程更加流畅。 在以太坊上编程创建合约最好使用 JavaScript API web3.js。 现在，我们已经有了一个叫做 web3.eth.Contract 的方法能够更容易的创建合约。 创建合约时，会执行一次构造函数（与合约同名的函数）。构造函数是可选的。只允许有一个构造函数，这意味着不支持重载。 在内部，构造函数参数在合约代码之后通过 ABI 编码 传递，但是如果你使用 web3.js 则不必关心这个问题。 如果一个合约想要创建另一个合约，那么创建者必须知晓被创建合约的源代码(和二进制代码)。...</div></div></div></a><a class="pagination-related" href="/2025/07/11/%E6%9D%82%E9%A1%B9/" title="杂项"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-11</div><div class="info-item-2">杂项</div></div><div class="info-2"><div class="info-item-1">杂项存储storage 中的状态变量储存结构静态大小的变量（除 映射mapping 和动态数组之外的所有类型）都从位置 0 开始连续放置在 存储storage 中。如果可能的话，存储需求少于 32 字节的多个变量会被打包到一个 存储插槽storage slot 中，规则如下：  存储插槽storage slot 的第一项会以低位对齐（即右对齐）的方式储存。 基本类型仅使用存储它们所需的字节。 如果 存储插槽storage slot 中的剩余空间不足以储存一个基本类型，那么它会被移入下一个 存储插槽storage slot 。 结构（struct）和数组数据总是会占用一整个新插槽（但结构或数组中的各项，都会以这些规则进行打包）。  警告 使用小于 32 字节的元素时，你的合约的 gas 使用量可能高于使用 32 字节的元素时。这是因为 以太坊虚拟机Ethereum Virtual Machine(EVM) 每次会操作 32 个字节， 所以如果元素比 32 字节小，以太坊虚拟机Ethereum Virtual Machine(EVM)...</div></div></div></a><a class="pagination-related" href="/2025/07/08/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" title="表达式和控制结构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-08</div><div class="info-item-2">表达式和控制结构</div></div><div class="info-2"><div class="info-item-1">输入参数和输出参数与 Javascript 一样，函数可能需要参数作为输入; 而与 Javascript 和 C 不同的是，它们可能返回任意数量的参数作为输出。 输入参数输入参数的声明方式与变量相同。但是有一个例外，未使用的参数可以省略参数名。 例如，如果我们希望合约接受有两个整数形参的函数的外部调用，我们会像下面这样写 1234567pragma solidity ^0.4.16;contract Simple &#123;    function taker(uint _a, uint _b) public pure &#123;        // 用 _a 和 _b 实现相关功能.    &#125;&#125;  输出参数输出参数的声明方式在关键词 returns 之后，与输入参数的声明方式相同。 例如，如果我们需要返回两个结果：两个给定整数的和与积，我们应该写作 123456789101112pragma solidity ^0.4.16;contract Simple &#123;    function arithmetics(uint _a, uint _b)...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">zhengcookie</div><div class="author-info-description">欢迎来到zhengcookie的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhengcookie"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zhengcookie" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/z2132085753@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E5%AE%89%E6%8E%92"><span class="toc-number">1.</span> <span class="toc-text">课程安排</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%80%EF%BC%9A%E5%90%AF%E7%A8%8B-%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%8E%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">模块一：启程 - 区块链与智能合约概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81-vs-%E4%BB%A5%E5%A4%AA%E5%9D%8A%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%EF%BC%9F"><span class="toc-number">1.1.1.</span> <span class="toc-text">比特币 vs 以太坊：为什么需要智能合约？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFGas%EF%BC%9F%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%A4%E6%98%93%EF%BC%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">什么是Gas？什么是交易？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Gas"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Gas</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E6%98%93"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">交易</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%EF%BC%88FISCO-BCOS-Remix-IDE%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">开发环境搭建（FISCO-BCOS, Remix IDE）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FISCO-BCOS"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">FISCO-BCOS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Remix-IDE"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">Remix IDE</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%BA%8C%EF%BC%9ASolidity%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">模块二：Solidity基础语法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%B8%89%EF%BC%9A%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%9E%E6%88%98"><span class="toc-number">2.</span> <span class="toc-text">模块三：核心概念与实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">2.1.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%9B%9B%EF%BC%9A%E5%AE%89%E5%85%A8%E5%85%A5%E9%97%A8%EF%BC%88%E9%87%8D%E4%B8%AD%E4%B9%8B%E9%87%8D%EF%BC%81%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">模块四：安全入门（重中之重！）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#-1"><span class="toc-number">3.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%BA%94%EF%BC%9A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98"><span class="toc-number">3.2.</span> <span class="toc-text">模块五：项目实战</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/19/Solidity%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity零基础入门">Solidity零基础入门</a><time datetime="2025-10-19T14:17:53.000Z" title="发表于 2025-10-19 22:17:53">2025-10-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周">广州it工作第九周</a><time datetime="2025-09-13T08:16:54.000Z" title="发表于 2025-09-13 16:16:54">2025-09-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/" title="广州it工作第八周">广州it工作第八周</a><time datetime="2025-09-07T12:22:49.000Z" title="发表于 2025-09-07 20:22:49">2025-09-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周">广州it工作第七周</a><time datetime="2025-08-30T11:18:00.000Z" title="发表于 2025-08-30 19:18:00">2025-08-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周">广州it工作第六周</a><time datetime="2025-08-25T15:01:50.000Z" title="发表于 2025-08-25 23:01:50">2025-08-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By zhengcookie</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz',
+      appKey: 'KJPXk2hOqDfll4hbw93yYmUc',
+      avatar: 'https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/微信图片_20250416170645.jpg',
+      serverURLs: 'https://stzbx4mw.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
