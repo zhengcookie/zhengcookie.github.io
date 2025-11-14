@@ -589,33 +589,11 @@
   
   
   <entry>
-    <title>about</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title></title>
     <link href="/"/>
     <url>/</url>
     
     <content type="html"><![CDATA[/* source/css/progress.css */#reading-progress {    position: fixed;    left: 0;    top: 0;    height: 3px;    width: 0;    background: linear-gradient(90deg, #42a5f5, #7e57c2);    z-index: 2147483647;    /* 保证在最上层 */    transition: width .15s ease-out;}body.has-progressbar {    padding-top: 0;}.post-reading-meta {    font-size: .92rem;    color: #666;    margin: 8px 0 14px}.post-reading-meta span {    background: #f6f6f6;    border-radius: 6px;    padding: 4px 8px}]]></content>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>categories</title>
-    <link href="/"/>
-    <url>/</url>
-    
-    <content type="html"><![CDATA[<hr>]]></content>
     
   </entry>
   
@@ -644,7 +622,29 @@
   
   
   <entry>
+    <title>categories</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[<hr>]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>tags</title>
+    <link href="/"/>
+    <url>/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>about</title>
     <link href="/"/>
     <url>/</url>
     
