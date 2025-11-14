@@ -1,697 +1,244 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="zhengcookie">
-  <meta name="keywords" content="zhengcookie,blog,个人博客,技术分享">
-  
-    <meta name="description" content="合约结构在 Solidity 中，合约类似于面向对象编程语言中的类。 每个合约中可以包含 状态变量， 函数， 函数修饰器， 事件， 错误， 结构类型 和 枚举类型 的声明，且合约可以从其他合约继承。 还有一些特殊种类的合约，叫做 库合约 和 接口合约。 在关于 合约 的部分包含比本节更多的细节，它的作用是提供一个快速的概述。 状态变量状态变量是指其值被永久地存储在合约存储中的变量。 open">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>合约结构语法 | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="合约结构在 Solidity 中，合约类似于面向对象编程语言中的类。 每个合约中可以包含 状态变量， 函数， 函数修饰器， 事件， 错误， 结构类型 和 枚举类型 的声明，且合约可以从其他合约继承。 还有一些特殊种类的合约，叫做 库合约 和 接口合约。 在关于 合约 的部分包含比本节更多的细节，它的作用是提供一个快速的概述。 状态变量状态变量是指其值被永久地存储在合约存储中的变量。 open">
 <meta property="og:type" content="article">
 <meta property="og:title" content="合约结构语法">
 <meta property="og:url" content="https://www.zhengcookie.site/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="zhengcookie">
 <meta property="og:description" content="合约结构在 Solidity 中，合约类似于面向对象编程语言中的类。 每个合约中可以包含 状态变量， 函数， 函数修饰器， 事件， 错误， 结构类型 和 枚举类型 的声明，且合约可以从其他合约继承。 还有一些特殊种类的合约，叫做 库合约 和 接口合约。 在关于 合约 的部分包含比本节更多的细节，它的作用是提供一个快速的概述。 状态变量状态变量是指其值被永久地存储在合约存储中的变量。 open">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.zhengcookie.site/img/ReiAyanami.png">
 <meta property="article:published_time" content="2025-07-05T08:10:03.000Z">
 <meta property="article:modified_time" content="2025-11-06T09:09:11.304Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="区块链智能合约语法">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>合约结构语法 - zhengcookie</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.zhengcookie.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.zhengcookie.site/img/ReiAyanami.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "合约结构语法",
+  "url": "https://www.zhengcookie.site/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/",
+  "image": "https://www.zhengcookie.site/img/ReiAyanami.png",
+  "datePublished": "2025-07-05T08:10:03.000Z",
+  "dateModified": "2025-11-06T09:09:11.304Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "zhengcookie",
+      "url": "https://www.zhengcookie.site/"
     }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
-</head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                
-                <span>archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                
-                <span>categories</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                
-                <span>tags</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="合约结构语法"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-07-05 16:10" pubdate>
-          2025年7月5日 下午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          857 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          8 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.zhengcookie.site/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-fVYv9VWvzQ"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
       
-    </div>
-  </div>
-</div>
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-</div>
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-  </header>
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-  <main>
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
     
       
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">合约结构语法</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h1 id="合约结构"><a href="#合约结构" class="headerlink" title="合约结构"></a>合约结构<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#contract-structure"></a></h1><p>在 Solidity 中，合约类似于面向对象编程语言中的类。 每个合约中可以包含 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-state-variables">状态变量</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-functions">函数</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-function-modifiers">函数修饰器</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-events">事件</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-errors">错误</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-struct-types">结构类型</a> 和 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-enum-types">枚举类型</a> 的声明，且合约可以从其他合约继承。</p>
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '合约结构语法',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/ReiAyanami.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">合约结构语法</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">合约结构语法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-05T08:10:03.000Z" title="发表于 2025-07-05 16:10:03">2025-07-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-06T09:09:11.304Z" title="更新于 2025-11-06 17:09:11">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">929</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/" data-flag-title="合约结构语法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span class="leancloud-visitors-count"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="合约结构"><a href="#合约结构" class="headerlink" title="合约结构"></a>合约结构<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#contract-structure"></a></h1><p>在 Solidity 中，合约类似于面向对象编程语言中的类。 每个合约中可以包含 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-state-variables">状态变量</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-functions">函数</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-function-modifiers">函数修饰器</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-events">事件</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-errors">错误</a>， <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-struct-types">结构类型</a> 和 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-enum-types">枚举类型</a> 的声明，且合约可以从其他合约继承。</p>
 <p>还有一些特殊种类的合约，叫做 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#libraries">库合约</a> 和 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#interfaces">接口合约</a>。</p>
 <p>在关于 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#contracts">合约</a> 的部分包含比本节更多的细节，它的作用是提供一个快速的概述。</p>
 <h2 id="状态变量"><a href="#状态变量" class="headerlink" title="状态变量"></a>状态变量<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-state-variables"></a></h2><p>状态变量是指其值被永久地存储在合约存储中的变量。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC40LjAgPDAuOS4wOwoKY29udHJhY3QgU2ltcGxlU3RvcmFnZSB7CiAgICB1aW50IHN0b3JlZERhdGE7IC8vIOeKtuaAgeWPmOmHjwogICAgLy8gLi4uCn0=">open in Remix</a></p>
-<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract SimpleStorage &#123;<br>    <span class="hljs-built_in">uint</span> storedData; <span class="hljs-comment">// 状态变量</span><br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract SimpleStorage &#123;</span><br><span class="line">    uint storedData; // 状态变量</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>有效的状态变量类型请参阅 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/types.html#types">类型</a> 章节， 对状态变量可见性的可能选择请参阅 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#visibility-and-getters">可见性和 getter 函数</a>。</p>
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-functions"></a></h2><p>函数是代码的可执行单位。 通常在合约内定义函数，但它们也可以被定义在合约之外。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC43LjEgPDAuOS4wOwoKY29udHJhY3QgU2ltcGxlQXVjdGlvbiB7CiAgICBmdW5jdGlvbiBiaWQoKSBwdWJsaWMgcGF5YWJsZSB7IC8vIOWHveaVsAogICAgICAgIC8vIC4uLgogICAgfQp9CgovLyDlrprkuYnlnKjlkIjnuqbkuYvlpJbnmoTovoXliqnlh73mlbAKZnVuY3Rpb24gaGVscGVyKHVpbnQgeCkgcHVyZSByZXR1cm5zICh1aW50KSB7CiAgICByZXR1cm4geCAqIDI7Cn0=">open in Remix</a></p>
-<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.7</span><span class="hljs-number">.1</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract SimpleAuction &#123;<br>    <span class="hljs-built_in">function</span> bid() <span class="hljs-keyword">public</span> payable &#123; <span class="hljs-comment">// 函数</span><br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 定义在合约之外的辅助函数</span><br><span class="hljs-built_in">function</span> helper(<span class="hljs-built_in">uint</span> x) <span class="hljs-keyword">pure</span> returns (<span class="hljs-built_in">uint</span>) &#123;<br>    <span class="hljs-keyword">return</span> x * <span class="hljs-number">2</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.7.1 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract SimpleAuction &#123;</span><br><span class="line">    function bid() public payable &#123; // 函数</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 定义在合约之外的辅助函数</span><br><span class="line">function helper(uint x) pure returns (uint) &#123;</span><br><span class="line">    return x * 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#function-calls">函数调用</a> 可以发生在内部或外部， 并且对其他合约有不同程度的 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#visibility-and-getters">可见性</a>。 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#functions">函数</a> 接受参数并返回变量，以便在它们之间传递参数和值。</p>
 <h2 id="函数修饰器"><a href="#函数修饰器" class="headerlink" title="函数修饰器"></a>函数修饰器<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-function-modifiers"></a></h2><p>函数修饰器可以被用来以声明的方式修改函数的语义(见合约部分的 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#modifiers">函数修饰器</a>)。</p>
 <p>重写，也就是具有同一个修饰器的名字但有不同的参数，是不可能的。</p>
 <p>与函数一样，修饰器也可以被 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#modifier-overriding">重写</a>。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC40LjIyIDwwLjkuMDsKCmNvbnRyYWN0IFB1cmNoYXNlIHsKICAgIGFkZHJlc3MgcHVibGljIHNlbGxlcjsKCiAgICBtb2RpZmllciBvbmx5U2VsbGVyKCkgeyAvLyDkv67ppbDlmagKICAgICAgICByZXF1aXJlKAogICAgICAgICAgICBtc2cuc2VuZGVyID09IHNlbGxlciwKICAgICAgICAgICAgIk9ubHkgc2VsbGVyIGNhbiBjYWxsIHRoaXMuIgogICAgICAgICk7CiAgICAgICAgXzsKICAgIH0KCiAgICBmdW5jdGlvbiBhYm9ydCgpIHB1YmxpYyB2aWV3IG9ubHlTZWxsZXIgeyAvLyDkv67ppbDlmajnmoTkvb/nlKgKICAgICAgICAvLyAuLi4KICAgIH0KfQ==">open in Remix</a></p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br>pragma solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.22</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract Purchase &#123;<br>    address <span class="hljs-keyword">public</span> seller;<br><br>    <span class="hljs-function">modifier <span class="hljs-title">onlySeller</span>()</span> &#123; <span class="hljs-comment">// 修饰器</span><br>        require(<br>            msg.sender == seller,<br>            <span class="hljs-string">&quot;Only seller can call this.&quot;</span><br>        );<br>        _;<br>    &#125;<br><br>    <span class="hljs-function">function <span class="hljs-title">abort</span>() <span class="hljs-keyword">public</span> view onlySeller</span> &#123; <span class="hljs-comment">// 修饰器的使用</span><br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract Purchase &#123;</span><br><span class="line">    address public seller;</span><br><span class="line"></span><br><span class="line">    modifier onlySeller() &#123; // 修饰器</span><br><span class="line">        require(</span><br><span class="line">            msg.sender == seller,</span><br><span class="line">            &quot;Only seller can call this.&quot;</span><br><span class="line">        );</span><br><span class="line">        _;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function abort() public view onlySeller &#123; // 修饰器的使用</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-events"></a></h2><p>事件是能方便地调用以太坊虚拟机日志功能的接口。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5IF4wLjguMjI7CgpldmVudCBIaWdoZXN0QmlkSW5jcmVhc2VkKGFkZHJlc3MgYmlkZGVyLCB1aW50IGFtb3VudCk7IC8vIOS6i+S7tgoKY29udHJhY3QgU2ltcGxlQXVjdGlvbiB7CiAgICBmdW5jdGlvbiBiaWQoKSBwdWJsaWMgcGF5YWJsZSB7CiAgICAgICAgLy8gLi4uCiAgICAgICAgZW1pdCBIaWdoZXN0QmlkSW5jcmVhc2VkKG1zZy5zZW5kZXIsIG1zZy52YWx1ZSk7IC8vIOinpuWPkeS6i+S7tgogICAgfQp9">open in Remix</a></p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br>pragma solidity ^<span class="hljs-number">0.8</span><span class="hljs-number">.22</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">event</span> <span class="hljs-title">HighestBidIncreased</span>(<span class="hljs-params">address bidder, <span class="hljs-built_in">uint</span> amount</span>)</span>; <span class="hljs-comment">// 事件</span><br><br>contract SimpleAuction &#123;<br>    <span class="hljs-function">function <span class="hljs-title">bid</span>() <span class="hljs-keyword">public</span> payable</span> &#123;<br>        <span class="hljs-comment">// ...</span><br>        <span class="hljs-function">emit <span class="hljs-title">HighestBidIncreased</span>(<span class="hljs-params">msg.sender, msg.<span class="hljs-keyword">value</span></span>)</span>; <span class="hljs-comment">// 触发事件</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity ^0.8.22;</span><br><span class="line"></span><br><span class="line">event HighestBidIncreased(address bidder, uint amount); // 事件</span><br><span class="line"></span><br><span class="line">contract SimpleAuction &#123;</span><br><span class="line">    function bid() public payable &#123;</span><br><span class="line">        // ...</span><br><span class="line">        emit HighestBidIncreased(msg.sender, msg.value); // 触发事件</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>有关如何声明事件和如何在 dapp 中使用事件的信息，参阅合约章节中的 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#events">事件</a>。</p>
 <h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-errors"></a></h2><p>错误(类型)允许您为失败情况定义描述性的名称和数据。 错误(类型)可以在 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#revert-statement">回滚声明</a> 中使用。 与字符串描述相比，错误(类型)要便宜得多，并允许您对额外的数据进行编码。 您可以使用 NatSpec 格式来向用户描述错误。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5IF4wLjguNDsKCi8vLyDmsqHmnInotrPlpJ/nmoTotYTph5HnlKjkuo7ovazotKbjgILopoHmsYIgYHJlcXVlc3RlZGDjgIIKLy8vIOS9huWPquaciSBgYXZhaWxhYmxlYCDlj6/nlKjjgIIKZXJyb3IgTm90RW5vdWdoRnVuZHModWludCByZXF1ZXN0ZWQsIHVpbnQgYXZhaWxhYmxlKTsKCmNvbnRyYWN0IFRva2VuIHsKICAgIG1hcHBpbmcoYWRkcmVzcyA9PiB1aW50KSBiYWxhbmNlczsKICAgIGZ1bmN0aW9uIHRyYW5zZmVyKGFkZHJlc3MgdG8sIHVpbnQgYW1vdW50KSBwdWJsaWMgewogICAgICAgIHVpbnQgYmFsYW5jZSA9IGJhbGFuY2VzW21zZy5zZW5kZXJdOwogICAgICAgIGlmIChiYWxhbmNlIDwgYW1vdW50KQogICAgICAgICAgICByZXZlcnQgTm90RW5vdWdoRnVuZHMoYW1vdW50LCBiYWxhbmNlKTsKICAgICAgICBiYWxhbmNlc1ttc2cuc2VuZGVyXSAtPSBhbW91bnQ7CiAgICAgICAgYmFsYW5jZXNbdG9dICs9IGFtb3VudDsKICAgICAgICAvLyAuLi4KICAgIH0KfQ==">open in Remix</a></p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br>pragma solidity ^<span class="hljs-number">0.8</span><span class="hljs-number">.4</span>;<br><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 没有足够的资金用于转账。要求 `requested`。</span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 但只有 `available` 可用。</span><br><span class="hljs-function">error <span class="hljs-title">NotEnoughFunds</span>(<span class="hljs-params"><span class="hljs-built_in">uint</span> requested, <span class="hljs-built_in">uint</span> available</span>)</span>;<br><br>contract Token &#123;<br>    mapping(address =&gt; <span class="hljs-built_in">uint</span>) balances;<br>    <span class="hljs-function">function <span class="hljs-title">transfer</span>(<span class="hljs-params">address to, <span class="hljs-built_in">uint</span> amount</span>) <span class="hljs-keyword">public</span></span> &#123;<br>        <span class="hljs-built_in">uint</span> balance = balances[msg.sender];<br>        <span class="hljs-keyword">if</span> (balance &lt; amount)<br>            <span class="hljs-function">revert <span class="hljs-title">NotEnoughFunds</span>(<span class="hljs-params">amount, balance</span>)</span>;<br>        balances[msg.sender] -= amount;<br>        balances[to] += amount;<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">/// 没有足够的资金用于转账。要求 `requested`。</span><br><span class="line">/// 但只有 `available` 可用。</span><br><span class="line">error NotEnoughFunds(uint requested, uint available);</span><br><span class="line"></span><br><span class="line">contract Token &#123;</span><br><span class="line">    mapping(address =&gt; uint) balances;</span><br><span class="line">    function transfer(address to, uint amount) public &#123;</span><br><span class="line">        uint balance = balances[msg.sender];</span><br><span class="line">        if (balance &lt; amount)</span><br><span class="line">            revert NotEnoughFunds(amount, balance);</span><br><span class="line">        balances[msg.sender] -= amount;</span><br><span class="line">        balances[to] += amount;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>更多信息请参阅合约章节中的 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/contracts.html#errors">错误和恢复语句</a>。</p>
 <h2 id="结构类型"><a href="#结构类型" class="headerlink" title="结构类型"></a>结构类型<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-struct-types"></a></h2><p>结构类型是可以将几个变量分组的自定义类型（参阅类型章节中的 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/types.html#structs">结构体</a>）。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC40LjAgPDAuOS4wOwoKY29udHJhY3QgQmFsbG90IHsKICAgIHN0cnVjdCBWb3RlciB7IC8vIOe7k+aehAogICAgICAgIHVpbnQgd2VpZ2h0OwogICAgICAgIGJvb2wgdm90ZWQ7CiAgICAgICAgYWRkcmVzcyBkZWxlZ2F0ZTsKICAgICAgICB1aW50IHZvdGU7CiAgICB9Cn0=">open in Remix</a></p>
-<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract Ballot &#123;<br>    <span class="hljs-keyword">struct</span> Voter &#123; <span class="hljs-comment">// 结构</span><br>        <span class="hljs-built_in">uint</span> weight;<br>        <span class="hljs-built_in">bool</span> voted;<br>        address <span class="hljs-built_in">delegate</span>;<br>        <span class="hljs-built_in">uint</span> vote;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract Ballot &#123;</span><br><span class="line">    struct Voter &#123; // 结构</span><br><span class="line">        uint weight;</span><br><span class="line">        bool voted;</span><br><span class="line">        address delegate;</span><br><span class="line">        uint vote;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/structure-of-a-contract.html#structure-enum-types"></a></h2><p>枚举可用来创建由一定数量的’常量值’构成的自定义类型（参阅类型章节中的 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/types.html#enums">枚举类型</a>）。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC40LjAgPDAuOS4wOwoKY29udHJhY3QgUHVyY2hhc2UgewogICAgZW51bSBTdGF0ZSB7IENyZWF0ZWQsIExvY2tlZCwgSW5hY3RpdmUgfSAvLyDmnprkuL4KfQ==">open in Remix</a></p>
-<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract Purchase &#123;<br>    <span class="hljs-keyword">enum</span> State &#123; Created, Locked, Inactive &#125; <span class="hljs-comment">// 枚举</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="category-chain-item">区块链</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E6%B3%95/" class="print-no-link">#区块链智能合约语法</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>合约结构语法</div>
-      <div>https://www.zhengcookie.site/2025/07/05/合约结构语法/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>zhengcookie</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2025年7月5日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2025/07/06/%E7%B1%BB%E5%9E%8B/" title="类型">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">类型</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/" title="广州科贸区块链智能合约教程-食品溯源">
-                        <span class="hidden-mobile">广州科贸区块链智能合约教程-食品溯源</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-  
-  
-    <article id="comments" lazyload>
-      
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz","appKey":"KJPXk2hOqDfll4hbw93yYmUc","path":"window.location.pathname","placeholder":"请在这里写下你的评论","avatar":"/img/avatar.png","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true,"bg":null,"visitor":false,"option":null},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-    </article>
-  
-
-
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract Purchase &#123;</span><br><span class="line">    enum State &#123; Created, Locked, Inactive &#125; // 枚举</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site">zhengcookie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/">https://www.zhengcookie.site/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.zhengcookie.site" target="_blank">zhengcookie</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E6%B3%95/">区块链智能合约语法</a></div><div class="post-share"><div class="social-share" data-image="/img/ReiAyanami.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/" title="广州科贸区块链智能合约教程-食品溯源"><img class="cover" src="/img/Charlotte.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">广州科贸区块链智能合约教程-食品溯源</div></div><div class="info-2"><div class="info-item-1">源码  Distributor.sol   FoodInfoItem.sol   Producer.sol  Retailer.sol   Roles.sol  Trace.sol  智能合约功能需求文档:  具备合约用户管理功能，包括创建用户以及查询用户信息的功能，与其相关联的需要具备用户权限功能。  具备生产订单管理功能，包括创建与查询订单功能，在创建生产订单功能中限制该功能只能具有生产权限的人员使用，并且加入订单创建时需要与产业链的总订单信息，从而与产业链的其他业务关联。  具备分销订单管理功能，包括创建与查询订单功能，在创建收购订单功能中限制该功能只能具有分销权限的人员使用，并且加入订单   经销商  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748pragma solidity ^0.4.25;import &quot;./Roles.sol&quot;;//经销商contract Distributor &#123;    using...</div></div></div></a><a class="pagination-related" href="/2025/07/06/%E7%B1%BB%E5%9E%8B/" title="类型"><img class="cover" src="/img/Castorice.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">类型</div></div><div class="info-2"><div class="info-item-1">类型Solidity 是一种静态类型语言，这意味着每个变量（状态变量和局部变量）都需要被指定类型。 Solidity 提供了几种基本类型，可以用来组合出复杂类型。 除此之外，各个类型之间可以在包含运算符号的表达式中进行交互。 关于各种运算符的快速参考，可以参考 运算符的优先顺序。 Solidity中不存在“未定义”或“空”值的概念， 但新声明的变量总是有一个取决于其类型的 默认值。 为了处理任何意外的值，您应该使用 revert 函数 来恢复整个事务， 或者返回一个带有第二个 bool 值的元组来表示成功。 值类型以下类型之所以被称为值类型，是因为它们的变量总是通过值传递， 即在用作函数参数或赋值时总是被复制。 布尔类型bool ：可能的取值为常数值 true 和 false。 运算符：  ! (逻辑非) &amp;&amp; (逻辑与, “and”) || (逻辑或, “or”) == (等于) != (不等于)  运算符 || 和 &amp;&amp; 都遵循同样的短路（ short-circuiting ）规则。 就是说在表达式 f(x) || g(y) 中， 如果...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/10/19/Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity智能合约零基础入门"><img class="cover" src="/img/shenhe.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-19</div><div class="info-item-2">Solidity智能合约零基础入门</div></div><div class="info-2"><div class="info-item-1">课程安排模块一：启程 - 区块链与智能合约概念比特币 vs 以太坊：为什么需要智能合约？ 比特币 vs...</div></div></div></a><a class="pagination-related" href="/2025/07/06/%E5%8D%95%E4%BD%8D%E4%B8%8E%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" title="单位与全局变量"><img class="cover" src="/img/Cyrene.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-06</div><div class="info-item-2">单位与全局变量</div></div><div class="info-2"><div class="info-item-1">单位和全局可用变量以太坊（Ether） 单位一个字面常量可以带一个后缀 wei， gwei 或 ether 来指定一个以太币的数量， 其中没有后缀的以太数字被认为单位是wei。 open in Remix 123assert(1 wei == 1);assert(1 gwei == 1e9);assert(1 ether == 1e18); 单位后缀的唯一作用是乘以10的幂次方。 备注 0.7.0 版本中删除了 finney 和 szabo 这两个单位。 时间单位诸如 seconds， minutes， hours， days 和 weeks 等 后缀在字面常量后面，可以用来指定时间单位，其中秒是基本单位，单位的考虑方式很直白：  1 == 1 seconds 1 minutes == 60 seconds 1 hours == 60 minutes 1 days == 24 hours 1 weeks == 7 days  如果您使用这些单位进行日历计算，请注意，由于 闰秒 会造成不是每一年都等于365天，甚至不是每一天都有24小时，而且因为闰秒是无法预测的，...</div></div></div></a><a class="pagination-related" href="/2025/07/09/%E5%90%88%E7%BA%A6/" title="合约"><img class="cover" src="/img/Castorice.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-09</div><div class="info-item-2">合约</div></div><div class="info-2"><div class="info-item-1">合约Solidity中的合约类似于面向对象语言中的类。 它们在状态变量中包含持久的数据，以及可以修改这些变量的函数。 在不同的合约（实例）上调用一个函数将执行一个EVM函数调用， 从而切换上下文，使调用合约中的状态变量无法访问。 任何事情的发生都需要调用合约及其函数。 在以太坊中没有 “定时（cron）” 的概念来在特定事件中自动调用函数。 创建合约可以通过以太坊交易 “从外部” 或从 Solidity 合约内部创建合约。 集成开发环境，如 Remix，使用UI元素使创建过程无缝化。 在以太坊上以编程方式创建合约的一种方法是通过JavaScript API web3.js。 它有一个名为 web3.eth.Contract 的函数， 以方便创建合约。 当一个合约被创建时，它的 构造函数（constructor） （一个用 constructor 关键字声明的函数）被执行一次。 构造函数是可选的。但是只允许有一个构造函数，这意味着不支持重写。 构造函数执行完毕后，合约的最终代码被存储在区块链上。 这段代码包括所有公开和外部函数，以及所有通过函数调用可从那里到达的函数。...</div></div></div></a><a class="pagination-related" href="/2025/07/08/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" title="表达式和控制结构"><img class="cover" src="/img/ningguang.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-08</div><div class="info-item-2">表达式和控制结构</div></div><div class="info-2"><div class="info-item-1">表达式和控制结构控制结构大多数从大括号语言中知道的控制结构都可以在Solidity中使用： 有： if， else， while， do， for， break， continue， return， 这些在 C 或者 JavaScript 中表达相同语义的关键词。 Solidity也支持 try / catch 形式的语句的异常处理， 但只适用于 外部函数调用 和合约创建调用。 可以使用 恢复状态 来创建错误。 条件句 不能 省略括号，但单句体周围可以省略大括号。 请注意，没有像C和JavaScript那样从非布尔类型到布尔类型的类型转换， 所以 if (1) &#123; ... &#125; 在Solidity 不是 有效的。 函数调用内部函数调用当前合约中的函数可以直接（“从内部”）调用，也可以递归调用，就像下边这个荒谬的例子一样： open in Remix 12345678// SPDX-License-Identifier: GPL-3.0pragma solidity &gt;=0.4.22 &lt;0.9.0;// 这会有一个警告contract C...</div></div></div></a><a class="pagination-related" href="/2025/07/06/%E7%B1%BB%E5%9E%8B/" title="类型"><img class="cover" src="/img/Castorice.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-06</div><div class="info-item-2">类型</div></div><div class="info-2"><div class="info-item-1">类型Solidity 是一种静态类型语言，这意味着每个变量（状态变量和局部变量）都需要被指定类型。 Solidity 提供了几种基本类型，可以用来组合出复杂类型。 除此之外，各个类型之间可以在包含运算符号的表达式中进行交互。 关于各种运算符的快速参考，可以参考 运算符的优先顺序。 Solidity中不存在“未定义”或“空”值的概念， 但新声明的变量总是有一个取决于其类型的 默认值。 为了处理任何意外的值，您应该使用 revert 函数 来恢复整个事务， 或者返回一个带有第二个 bool 值的元组来表示成功。 值类型以下类型之所以被称为值类型，是因为它们的变量总是通过值传递， 即在用作函数参数或赋值时总是被复制。 布尔类型bool ：可能的取值为常数值 true 和 false。 运算符：  ! (逻辑非) &amp;&amp; (逻辑与, “and”) || (逻辑或, “or”) == (等于) != (不等于)  运算符 || 和 &amp;&amp; 都遵循同样的短路（ short-circuiting ）规则。 就是说在表达式 f(x) || g(y) 中， 如果...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">zhengcookie</div><div class="author-info-description">欢迎来到zhengcookie的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhengcookie"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zhengcookie" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/z2132085753@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%EF%83%81"><span class="toc-number">1.</span> <span class="toc-text">合约结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F%EF%83%81"><span class="toc-number">1.1.</span> <span class="toc-text">状态变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%EF%83%81"><span class="toc-number">1.2.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%BF%AE%E9%A5%B0%E5%99%A8%EF%83%81"><span class="toc-number">1.3.</span> <span class="toc-text">函数修饰器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%EF%83%81"><span class="toc-number">1.4.</span> <span class="toc-text">事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%EF%83%81"><span class="toc-number">1.5.</span> <span class="toc-text">错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E7%B1%BB%E5%9E%8B%EF%83%81"><span class="toc-number">1.6.</span> <span class="toc-text">结构类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%EF%83%81"><span class="toc-number">1.7.</span> <span class="toc-text">枚举类型</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/19/Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity智能合约零基础入门"><img src="/img/shenhe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Solidity智能合约零基础入门"/></a><div class="content"><a class="title" href="/2025/10/19/Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity智能合约零基础入门">Solidity智能合约零基础入门</a><time datetime="2025-10-19T14:17:53.000Z" title="发表于 2025-10-19 22:17:53">2025-10-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周"><img src="/img/Charlotte.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第九周"/></a><div class="content"><a class="title" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周">广州it工作第九周</a><time datetime="2025-09-13T08:16:54.000Z" title="发表于 2025-09-13 16:16:54">2025-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/" title="广州it工作第八周"><img src="/img/ReiAyanami.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第八周"/></a><div class="content"><a class="title" href="/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/" title="广州it工作第八周">广州it工作第八周</a><time datetime="2025-09-07T12:22:49.000Z" title="发表于 2025-09-07 20:22:49">2025-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周"><img src="/img/Cyrene.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第七周"/></a><div class="content"><a class="title" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周">广州it工作第七周</a><time datetime="2025-08-30T11:18:00.000Z" title="发表于 2025-08-30 19:18:00">2025-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周"><img src="/img/Castorice.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第六周"/></a><div class="content"><a class="title" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周">广州it工作第六周</a><time datetime="2025-08-25T15:01:50.000Z" title="发表于 2025-08-25 23:01:50">2025-08-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By zhengcookie</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
         }
       }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
     }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz',
+      appKey: 'KJPXk2hOqDfll4hbw93yYmUc',
+      avatar: '/img/avatar.jpg',
+      serverURLs: 'https://stzbx4mw.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      visitor: true,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
     }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
     }
-    window.anchors.add(res.join(', '));
+  }
 
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
 
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
