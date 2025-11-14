@@ -83,7 +83,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.zhengcookie.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":true,"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.zhengcookie.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -375,7 +375,7 @@
 <p>一般我们认为数字包括整数和小数，但是在 JavaScript 中只有一种数字类型：Number，它的实现遵循IEEE 754标准，使用64位固定长度来表示，也就是标准的double双精度浮点数。在二进制科学表示法中，双精度浮点数的小数部分最多只能保留52位，再加上前面的1，其实就是保留53位有效数字，剩余的需要舍去，遵从“0舍1入”的原则。</p>
 <p>根据这个原则，0.1和0.2的二进制数相加，再转化为十进制数就是：<code>0.30000000000000004</code>。</p>
 <p>下面看一下<strong>双精度数是如何保存</strong>的：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1603641384908-7958dffa-6d26-4e36-963e-b41c9e3ca8b0.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1603641384908-7958dffa-6d26-4e36-963e-b41c9e3ca8b0.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li>第一部分（蓝色）：用来存储符号位（sign），用来区分正负数，0表示正数，占用1位</li>
 <li>第二部分（绿色）：用来存储指数（exponent），占用11位</li>
@@ -646,18 +646,18 @@
 <p>在解构数组时，以元素的位置为匹配条件来提取想要的数据的：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> [a, b, c] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure>
 <p>最终，a、b、c分别被赋予了数组第0、1、2个索引位的值：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1616076913177-30749c84-8254-4543-a3e7-c2fb488a4228.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1616076913177-30749c84-8254-4543-a3e7-c2fb488a4228.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>数组里的0、1、2索引位的元素值，精准地被映射到了左侧的第0、1、2个变量里去，这就是数组解构的工作模式。还可以通过给左侧变量数组设置空占位的方式，实现对数组中某几个元素的精准提取：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> [a,,c] = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure>
 <p>通过把中间位留空，可以顺利地把数组第一位和最后一位的值赋给 a、c 两个变量：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1616076913186-eb8be693-9b19-48e5-bda5-9dbd7cc77ea6.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1616076913186-eb8be693-9b19-48e5-bda5-9dbd7cc77ea6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>2）对象的解构</strong></p>
 <p>对象解构比数组结构稍微复杂一些，也更显强大。在解构对象时，是以属性的名称为匹配条件，来提取想要的数据的。现在定义一个对象：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> stu = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Bob&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">24</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>假如想要解构它的两个自有属性，可以这样：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; name, age &#125; = stu<br></code></pre></td></tr></table></figure>
 <p>这样就得到了 name 和 age 两个和 stu 平级的变量：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1616076913314-53687a23-07ef-4a01-a78a-a0304f2b2826.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1616076913314-53687a23-07ef-4a01-a78a-a0304f2b2826.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>注意，对象解构严格以属性名作为定位依据，所以就算调换了 name 和 age 的位置，结果也是一样的：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; age, name &#125; = stu<br></code></pre></td></tr></table></figure>
 <h3 id="8-如何提取高度嵌套的对象里的指定属性？"><a href="#8-如何提取高度嵌套的对象里的指定属性？" class="headerlink" title="8. 如何提取高度嵌套的对象里的指定属性？"></a>8. <strong>如何提取高度嵌套的对象里的指定属性？</strong></h3><p>有时会遇到一些嵌套程度非常深的对象：</p>
@@ -715,7 +715,7 @@
 <li><strong>自动重复</strong>：可以使用 repeat 方法来使同一个字符串输出多次（被连续复制多次）：</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> sourceCode = <span class="hljs-string">&#x27;repeat for 3 times;&#x27;</span><br><span class="hljs-keyword">const</span> repeated = sourceCode.<span class="hljs-title function_">repeat</span>(<span class="hljs-number">3</span>) <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(repeated) <span class="hljs-comment">// repeat for 3 times;repeat for 3 times;repeat for 3 times;</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1691053717225-17afa0a8-d891-4458-86d6-0218d38704b5.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1691053717225-17afa0a8-d891-4458-86d6-0218d38704b5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h2 id="三、JavaScript基础"><a href="#三、JavaScript基础" class="headerlink" title="三、JavaScript基础"></a>三、JavaScript基础</h2><h3 id="1-new操作符的实现原理"><a href="#1-new操作符的实现原理" class="headerlink" title="1. new操作符的实现原理"></a>1. new操作符的实现原理</h3><p><strong>new操作符的执行过程：</strong></p>
 <p>（1）首先创建了一个新的空对象</p>
 <p>（2）设置原型，将对象的原型设置为函数的 prototype 对象。</p>
@@ -1081,13 +1081,13 @@
 <h2 id="四、原型与原型链"><a href="#四、原型与原型链" class="headerlink" title="四、原型与原型链"></a>四、原型与原型链</h2><h3 id="1-对原型、原型链的理解"><a href="#1-对原型、原型链的理解" class="headerlink" title="1. 对原型、原型链的理解"></a>1. 对原型、原型链的理解</h3><p>在JavaScript中是使用构造函数来新建一个对象的，每一个构造函数的内部都有一个 prototype 属性，它的属性值是一个对象，这个对象包含了可以由该构造函数的所有实例共享的属性和方法。当使用构造函数新建一个对象后，在这个对象的内部将包含一个指针，这个指针指向构造函数的 prototype 属性对应的值，在 ES5 中这个指针被称为对象的原型。一般来说不应该能够获取到这个值的，但是现在浏览器中都实现了 <strong>proto</strong> 属性来访问这个属性，但是最好不要使用这个属性，因为它不是规范中规定的。ES5 中新增了一个 Object.getPrototypeOf() 方法，可以通过这个方法来获取对象的原型。</p>
 <p>当访问一个对象的属性时，如果这个对象内部不存在这个属性，那么它就会去它的原型对象里找这个属性，这个原型对象又会有自己的原型，于是就这样一直找下去，也就是原型链的概念。原型链的尽头一般来说都是 Object.prototype 所以这就是新建的对象为什么能够使用 toString() 等方法的原因。</p>
 <p><strong>特点：</strong>JavaScript 对象是通过引用来传递的，创建的每个新对象实体中并没有一份属于自己的原型副本。当修改原型时，与之相关的对象也会继承这一改变。</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1615475711487-c474af95-b5e0-4778-a90b-9484208d724d.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1615475711487-c474af95-b5e0-4778-a90b-9484208d724d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="2-原型修改、重写"><a href="#2-原型修改、重写" class="headerlink" title="2. 原型修改、重写"></a>2. 原型修改、重写</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name<br>&#125;<br><span class="hljs-comment">// 修改原型</span><br><span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getName</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;&#125;<br><span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&#x27;hello&#x27;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(p.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>) <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(p.<span class="hljs-property">__proto__</span> === p.<span class="hljs-property">constructor</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>) <span class="hljs-comment">// true</span><br><span class="hljs-comment">// 重写原型</span><br><span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;<br>    <span class="hljs-attr">getName</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;&#125;<br>&#125;<br><span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&#x27;hello&#x27;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(p.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>)        <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(p.<span class="hljs-property">__proto__</span> === p.<span class="hljs-property">constructor</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>) <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
 <p>可以看到修改原型的时候p的构造函数不是指向Person了，因为直接给Person的原型对象直接用对象赋值时，它的构造函数指向的了根构造函数Object，所以这时候<code>p.constructor === Object</code> ，而不是<code>p.constructor === Person</code>。要想成立，就要用constructor指回来：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;<br>    <span class="hljs-attr">getName</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;&#125;<br>&#125;<br><span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&#x27;hello&#x27;</span>)<br>p.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">Person</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(p.<span class="hljs-property">__proto__</span> === <span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>)        <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(p.<span class="hljs-property">__proto__</span> === p.<span class="hljs-property">constructor</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>) <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
 <h3 id="3-原型链指向"><a href="#3-原型链指向" class="headerlink" title="3. 原型链指向"></a>3. 原型链指向</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript">p.<span class="hljs-property">__proto__</span>  <span class="hljs-comment">// Person.prototype</span><br><span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">__proto__</span>  <span class="hljs-comment">// Object.prototype</span><br>p.<span class="hljs-property">__proto__</span>.<span class="hljs-property">__proto__</span> <span class="hljs-comment">//Object.prototype</span><br>p.<span class="hljs-property">__proto__</span>.<span class="hljs-property">constructor</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">__proto__</span> <span class="hljs-comment">// Object.prototype</span><br><span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">__proto__</span> <span class="hljs-comment">// Object.prototype</span><br>p1.<span class="hljs-property">__proto__</span>.<span class="hljs-property">constructor</span> <span class="hljs-comment">// Person</span><br><span class="hljs-title class_">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span>  <span class="hljs-comment">// Person</span><br></code></pre></td></tr></table></figure>
 <h3 id="4-原型链的终点是什么？如何打印出原型链的终点？"><a href="#4-原型链的终点是什么？如何打印出原型链的终点？" class="headerlink" title="4. 原型链的终点是什么？如何打印出原型链的终点？"></a>4. 原型链的终点是什么？如何打印出原型链的终点？</h3><p>由于<code>Object</code>是构造函数，原型链终点是<code>Object.prototype.__proto__</code>，而<code>Object.prototype.__proto__=== null // true</code>，所以，原型链的终点是<code>null</code>。原型链上的所有原型都是对象，所有的对象最终都是由<code>Object</code>构造的，而<code>Object.prototype</code>的下一级是<code>Object.prototype.__proto__</code>。</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1605247722640-5bcb9156-a8b4-4d7c-83d7-9ff80930e1de.jpeg" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1605247722640-5bcb9156-a8b4-4d7c-83d7-9ff80930e1de.jpeg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="5-如何获得对象非原型链上的属性？"><a href="#5-如何获得对象非原型链上的属性？" class="headerlink" title="5. 如何获得对象非原型链上的属性？"></a>5. 如何获得对象非原型链上的属性？</h3><p>使用后<code>hasOwnProperty()</code>方法来判断属性是否属于原型链的属性：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">iterate</span>(<span class="hljs-params">obj</span>)&#123;<br>   <span class="hljs-keyword">var</span> res=[];<br>   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> obj)&#123;<br>        <span class="hljs-keyword">if</span>(obj.<span class="hljs-title function_">hasOwnProperty</span>(key))<br>           res.<span class="hljs-title function_">push</span>(key+<span class="hljs-string">&#x27;: &#x27;</span>+obj[key]);<br>   &#125;<br>   <span class="hljs-keyword">return</span> res;<br>&#125; <br></code></pre></td></tr></table></figure>
 <h2 id="五、执行上下文-作用域链-闭包"><a href="#五、执行上下文-作用域链-闭包" class="headerlink" title="五、执行上下文/作用域链/闭包"></a>五、执行上下文/作用域链/闭包</h2><h3 id="1-对闭包的理解"><a href="#1-对闭包的理解" class="headerlink" title="1. 对闭包的理解"></a>1. 对闭包的理解</h3><p><strong>闭包是指有权访问另一个函数作用域中变量的函数</strong>，创建闭包的最常见的方式就是在一个函数内创建另一个函数，创建的函数可以访问到当前函数的局部变量。</p>
@@ -1172,7 +1172,7 @@
 <li>全局上下文：变量定义，函数声明</li>
 <li>函数上下文：变量定义，函数声明，<code>this</code>，<code>arguments</code></li>
 </ul>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1691053717225-17afa0a8-d891-4458-86d6-0218d38704b5.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1691053717225-17afa0a8-d891-4458-86d6-0218d38704b5.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h2 id="六、this-call-apply-bind"><a href="#六、this-call-apply-bind" class="headerlink" title="六、this/call/apply/bind"></a>六、this/call/apply/bind</h2><h3 id="1-对this对象的理解"><a href="#1-对this对象的理解" class="headerlink" title="1. 对this对象的理解"></a>1. 对this对象的理解</h3><p>this 是执行上下文中的一个属性，它指向最后一次调用这个方法的对象。在实际开发中，this 的指向可以通过四种调用模式来判断。</p>
 <ul>
 <li>第一种是<strong>函数调用模式</strong>，当一个函数不是一个对象的属性时，直接作为函数来调用时，this 指向全局对象。</li>
@@ -1237,7 +1237,7 @@
 <p>async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。</p>
 <p>例如：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">func1</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">func1</span>())<br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1604021075237-8249a8df-3a28-4bca-9f22-02923aba8618.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1604021075237-8249a8df-3a28-4bca-9f22-02923aba8618.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>func1的运行结果其实就是一个Promise对象。因此也可以使用then来处理后续逻辑。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">func1</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res);  <span class="hljs-comment">// 30</span><br>&#125;)<br></code></pre></td></tr></table></figure>
 <p>await的含义为等待，也就是 async 函数需要等待await后的函数执行完成并且有了返回结果（Promise对象）之后，才能继续执行下面的代码。await通过返回一个Promise对象来实现同步的效果。</p>
@@ -1343,7 +1343,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([promise1,<span class="hljs-title function_">timeOutPromise</span>(<span class="hljs-number">5000</span>)]).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span>=&gt;</span>&#123;&#125;)<br></code></pre></td></tr></table></figure>
 <h3 id="7-对async-await-的理解"><a href="#7-对async-await-的理解" class="headerlink" title="7.  对async/await 的理解"></a>7.  对async/await 的理解</h3><p>async/await其实是<code>Generator</code> 的语法糖，它能实现的效果都能用then链来实现，它是为优化then链而开发出来的。从字面上来看，async是“异步”的简写，await则为等待，所以很好理解async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成。当然语法上强制规定await只能出现在asnyc函数中，先来看看async函数返回了什么： </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">testAsy</span>(<span class="hljs-params"></span>)&#123;<br>   <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;hello world&#x27;</span>;<br>&#125;<br><span class="hljs-keyword">let</span> result = <span class="hljs-title function_">testAsy</span>(); <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result)<br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1605099411873-d2eac25a-5d8c-4586-bc36-769bce79010e.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/javascript.assets/1605099411873-d2eac25a-5d8c-4586-bc36-769bce79010e.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>所以，async 函数返回的是一个 Promise 对象。async 函数（包含函数语句、函数表达式、Lambda表达式）会返回一个 Promise 对象，如果在函数中 <code>return</code> 一个直接量，async 会把这个直接量通过 <code>Promise.resolve()</code> 封装成 Promise 对象。</p>
 <p>async 函数返回的是一个 Promise 对象，所以在最外层不能用 await 获取其返回值的情况下，当然应该用原来的方式：<code>then()</code> 链来处理这个 Promise 对象，就像这样：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">testAsy</span>(<span class="hljs-params"></span>)&#123;<br>   <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;hello world&#x27;</span><br>&#125;<br><span class="hljs-keyword">let</span> result = <span class="hljs-title function_">testAsy</span>() <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result)<br>result.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">v</span>=&gt;</span>&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(v)   <span class="hljs-comment">// hello world</span><br>&#125;)<br></code></pre></td></tr></table></figure>
@@ -1535,6 +1535,37 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz","appKey":"KJPXk2hOqDfll4hbw93yYmUc","path":"window.location.pathname","placeholder":"请在这里写下你的评论","avatar":"/img/avatar.png","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true,"bg":null,"visitor":false,"option":null},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -1673,6 +1704,10 @@
 
 
 
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 

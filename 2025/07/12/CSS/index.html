@@ -90,7 +90,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.zhengcookie.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":true,"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"www.zhengcookie.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -530,8 +530,8 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:hover</span> &#123;<span class="hljs-attribute">color</span>: <span class="hljs-number">#FF00FF</span>&#125;<br><span class="hljs-selector-tag">p</span><span class="hljs-selector-pseudo">:first-child</span> &#123;<span class="hljs-attribute">color</span>: red&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>总结：</strong>伪类是通过在元素选择器上加⼊伪类改变元素状态，⽽伪元素通过对元素的操作进⾏对元素的改变。 </p>
 <h3 id="11-对盒模型的理解"><a href="#11-对盒模型的理解" class="headerlink" title="11. 对盒模型的理解"></a>11. 对盒模型的理解</h3><p>CSS3中的盒模型有以下两种：标准盒子模型、IE盒子模型</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603600820746-e10daafa-451a-454e-9705-f8c358769d5b.png" alt="img"></p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603600820555-dc6ed390-d47e-412b-942a-857bbe5f280d.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603600820746-e10daafa-451a-454e-9705-f8c358769d5b.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603600820555-dc6ed390-d47e-412b-942a-857bbe5f280d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>盒模型都是由四个部分组成的，分别是margin、border、padding和content。</p>
 <p>标准盒模型和IE盒模型的区别在于设置width和height时，所对应的范围不同：</p>
 <ul>
@@ -917,7 +917,7 @@
 <li>子元素加入浮动属性或定位</li>
 </ul>
 <p>层叠顺序，英文称作 stacking order，表示元素发生层叠时有着特定的垂直显示顺序。下面是盒模型的层叠规则：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603553952688-ad155942-9d1d-4e4b-86a7-0f7dca46e6d1.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603553952688-ad155942-9d1d-4e4b-86a7-0f7dca46e6d1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>对于上图，由上到下分别是：</p>
 <p>（1）背景和边框：建立当前层叠上下文元素的背景和边框。</p>
 <p>（2）负的z-index：当前层叠上下文中，z-index属性值为负的元素。</p>
@@ -964,16 +964,16 @@
 <ul>
 <li><strong>relative：</strong>元素的定位永远是相对于元素自身位置的，和其他元素没关系，也不会影响其他元素。</li>
 </ul>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603554694939-58dfe7f7-2fc9-45e5-9961-a953f95496a7.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603554694939-58dfe7f7-2fc9-45e5-9961-a953f95496a7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li><strong>fixed：</strong>元素的定位是相对于 window （或者 iframe）边界的，和其他元素没有关系。但是它具有破坏性，会导致其他元素位置的变化。</li>
 </ul>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603554694841-89472ba9-b236-4098-802f-c3c26ff49466.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603554694841-89472ba9-b236-4098-802f-c3c26ff49466.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li><strong>absolute：</strong>元素的定位相对于前两者要复杂许多。如果为 absolute 设置了 top、left，浏览器会根据什么去确定它的纵向和横向的偏移量呢？答案是浏览器会递归查找该元素的所有父元素，如果找到一个设置了<code>position:relative/absolute/fixed</code>的元素，就以该元素为基准定位，如果没找到，就以浏览器边界定位。如下两个图所示：</li>
 </ul>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603554694882-589670e0-cd52-41d4-a3ed-4ebbdfc88f32.png" alt="img"></p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603554694842-2764d9ed-d5fe-45f4-8ede-34a73d237f94.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603554694882-589670e0-cd52-41d4-a3ed-4ebbdfc88f32.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603554694842-2764d9ed-d5fe-45f4-8ede-34a73d237f94.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="7-display、float、position的关系"><a href="#7-display、float、position的关系" class="headerlink" title="7. display、float、position的关系"></a>7. <strong>display、float、position的关系</strong></h3><p>（1）首先判断display属性是否为none，如果为none，则position和float属性的值不影响元素最后的表现。</p>
 <p>（2）然后判断position的值是否为absolute或者fixed，如果是，则float属性失效，并且display的值应该被设置为table或者block，具体转换需要看初始转换值。</p>
 <p>（3）如果position的值不为absolute或者fixed，则判断float属性的值是否为none，如果不是，则display的值则按上面的规则转换。注意，如果position的值为relative并且float属性的值存在，则relative相对于浮动后的最终位置定位。</p>
@@ -983,27 +983,27 @@
 <p>平时在给盒子设置边框时，往往都设置很窄，就可能误以为边框是由矩形组成的。实际上，border属性是右三角形组成的，下面看一个例子：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">100px</span> solid;<br>    <span class="hljs-attribute">border-color</span>: orange blue red green;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>将元素的长宽都设置为0，显示出来的效果是这样的：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245125-d60dca78-0577-4aa1-8809-f1d38594889a.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245125-d60dca78-0577-4aa1-8809-f1d38594889a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>所以可以根据border这个特性来绘制三角形：</p>
 <p><strong>（1）三角1</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-top</span>: <span class="hljs-number">50px</span> solid red;<br>    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">50px</span> solid transparent;<br>    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">50px</span> solid transparent;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245420-28c28277-5074-4725-9386-ffc955cf950a.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245420-28c28277-5074-4725-9386-ffc955cf950a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>（2）三角2</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">50px</span> solid red;<br>    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">50px</span> solid transparent;<br>    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">50px</span> solid transparent;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245172-36f955bd-075b-442a-b88b-6c084c66ed25.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245172-36f955bd-075b-442a-b88b-6c084c66ed25.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>（3）三角3</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">50px</span> solid red;<br>    <span class="hljs-attribute">border-top</span>: <span class="hljs-number">50px</span> solid transparent;<br>    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">50px</span> solid transparent;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245082-84a06746-dfc7-4782-a0d4-27d521aecac7.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245082-84a06746-dfc7-4782-a0d4-27d521aecac7.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>（4）三角4</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">50px</span> solid red;<br>    <span class="hljs-attribute">border-top</span>: <span class="hljs-number">50px</span> solid transparent;<br>    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">50px</span> solid transparent;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245064-ecd01197-99fc-476e-897f-a4165b55792a.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245064-ecd01197-99fc-476e-897f-a4165b55792a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>（5）三角5</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-top</span>: <span class="hljs-number">100px</span> solid red;<br>    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">100px</span> solid transparent;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245095-5b40d585-7e68-4bb0-aaef-6c8fce7d36b8.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636245095-5b40d585-7e68-4bb0-aaef-6c8fce7d36b8.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>还有很多，就不一一实现了，总体的原则就是通过上下左右边框来控制三角形的方向，用边框的宽度比来控制三角形的角度。</p>
 <h3 id="2-实现一个扇形"><a href="#2-实现一个扇形" class="headerlink" title="2. 实现一个扇形"></a>2. 实现一个扇形</h3><p>用CSS实现扇形的思路和三角形基本一致，就是多了一个圆角的样式，实现一个90°的扇形：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">100px</span> solid transparent;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">border-top-color</span>: red;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636444767-26da7bbe-5479-44e2-9088-50c9211d6c0d.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1603636444767-26da7bbe-5479-44e2-9088-50c9211d6c0d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>（1）实现圆：</strong></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;<br>  <span class="hljs-attribute">background-color</span>: red;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>注意：</strong>在使用border-radius时，使用50%和100%都可以得到一个圆，那这两个值到底有什么区别呢：border-radius的值是百分比的话，就相当于盒子的宽度和高度的百分比。如一个50px 150px的方形，如果border-radius设置为100%，则等价于：</p>
@@ -1031,11 +1031,11 @@
 <p>（1）实现一个直角梯形：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.trapezoid</span> &#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">100px</span> solid red;<br>    <span class="hljs-attribute">border-right</span>: <span class="hljs-number">40px</span> solid transparent;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>效果：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1630773730069-a1bf7073-14ba-4665-9e5e-cf0aa0722235.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1630773730069-a1bf7073-14ba-4665-9e5e-cf0aa0722235.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>（2）实现一个等腰梯形</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.trapezoid</span> &#123;<br>  <span class="hljs-attribute">height</span>:<span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">width</span>:<span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">border-width</span>:<span class="hljs-number">0</span> <span class="hljs-number">40px</span> <span class="hljs-number">100px</span> <span class="hljs-number">40px</span>;<br>  <span class="hljs-attribute">border-style</span>:none solid solid;<br>  <span class="hljs-attribute">border-color</span>:transparent transparent red;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>效果：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1630773825580-c1821c13-4513-4462-9a13-73ad4a3ef6e6.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1630773825580-c1821c13-4513-4462-9a13-73ad4a3ef6e6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="5-画一条0-5px的线"><a href="#5-画一条0-5px的线" class="headerlink" title="5. 画一条0.5px的线"></a>5. 画一条0.5px的线</h3><ul>
 <li><strong>采用transform: scale()的方式</strong>，该方法用来定义元素的2D 缩放转换：</li>
 </ul>
@@ -1055,7 +1055,7 @@
 <h3 id="7-如何解决-1px-问题？"><a href="#7-如何解决-1px-问题？" class="headerlink" title="7. 如何解决 1px 问题？"></a>7. 如何解决 1px 问题？</h3><p>1px 问题指的是：在一些 <code>Retina屏幕</code> 的机型上，移动端页面的 1px 会变得很粗，呈现出不止 1px 的效果。原因很简单——CSS 中的 1px 并不能和移动设备上的 1px 划等号。它们之间的比例关系有一个专门的属性来描述：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">window.devicePixelRatio = 设备的物理像素 / CSS像素。<br></code></pre></td></tr></table></figure>
 <p>打开 Chrome 浏览器，启动移动端调试模式，在控制台去输出这个 <code>devicePixelRatio</code> 的值。这里选中 iPhone6/7/8 这系列的机型，输出的结果就是2：</p>
-<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1615998119364-e2b81466-ba5b-4eb8-af5f-61c5621bb0af.png" alt="img"></p>
+<p><img src="https://zhengcookie.github.io/file/前端面试题/CSS.assets/1615998119364-e2b81466-ba5b-4eb8-af5f-61c5621bb0af.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>这就意味着设置的 1px CSS 像素，在这个设备上实际会用 2 个物理像素单元来进行渲染，所以实际看到的一定会比 1px 粗一些。</p>
 <p><strong>解决**</strong>1px 问题的三种思路：**</p>
 <h4 id="思路一：直接写-0-5px"><a href="#思路一：直接写-0-5px" class="headerlink" title="思路一：直接写 0.5px"></a>思路一：直接写 0.5px</h4><p>如果之前 1px 的样式这样写：</p>
@@ -1186,6 +1186,37 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz","appKey":"KJPXk2hOqDfll4hbw93yYmUc","path":"window.location.pathname","placeholder":"请在这里写下你的评论","avatar":"/img/avatar.png","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true,"bg":null,"visitor":false,"option":null},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -1324,6 +1355,10 @@
 
 
 
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
