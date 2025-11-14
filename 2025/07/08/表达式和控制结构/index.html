@@ -1,173 +1,290 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>表达式和控制结构 | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="表达式和控制结构控制结构大多数从大括号语言中知道的控制结构都可以在Solidity中使用： 有： if， else， while， do， for， break， continue， return， 这些在 C 或者 JavaScript 中表达相同语义的关键词。 Solidity也支持 try &#x2F; catch 形式的语句的异常处理， 但只适用于 外部函数调用 和合约创建调用。 可以使用 恢复">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhengcookie">
+  <meta name="keywords" content="zhengcookie,blog,个人博客,技术分享">
+  
+    <meta name="description" content="表达式和控制结构控制结构大多数从大括号语言中知道的控制结构都可以在Solidity中使用： 有： if， else， while， do， for， break， continue， return， 这些在 C 或者 JavaScript 中表达相同语义的关键词。 Solidity也支持 try &#x2F; catch 形式的语句的异常处理， 但只适用于 外部函数调用 和合约创建调用。 可以使用 恢复">
 <meta property="og:type" content="article">
 <meta property="og:title" content="表达式和控制结构">
 <meta property="og:url" content="https://www.zhengcookie.site/2025/07/08/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="zhengcookie">
 <meta property="og:description" content="表达式和控制结构控制结构大多数从大括号语言中知道的控制结构都可以在Solidity中使用： 有： if， else， while， do， for， break， continue， return， 这些在 C 或者 JavaScript 中表达相同语义的关键词。 Solidity也支持 try &#x2F; catch 形式的语句的异常处理， 但只适用于 外部函数调用 和合约创建调用。 可以使用 恢复">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.zhengcookie.site/img/yangyuhuang.jpg">
 <meta property="article:published_time" content="2025-07-08T06:36:03.000Z">
 <meta property="article:modified_time" content="2025-11-06T09:11:50.569Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="区块链智能合约语法">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.zhengcookie.site/img/yangyuhuang.jpg"><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "表达式和控制结构",
-  "url": "https://www.zhengcookie.site/2025/07/08/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/",
-  "image": "https://www.zhengcookie.site/img/yangyuhuang.jpg",
-  "datePublished": "2025-07-08T06:36:03.000Z",
-  "dateModified": "2025-11-06T09:11:50.569Z",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "zhengcookie",
-      "url": "https://www.zhengcookie.site/"
-    }
-  ]
-}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.zhengcookie.site/2025/07/08/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-fVYv9VWvzQ"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
-    (() => {
-      
-    const saveToLocal = {
-      set: (key, value, ttl) => {
-        if (!ttl) return
-        const expiry = Date.now() + ttl * 86400000
-        localStorage.setItem(key, JSON.stringify({ value, expiry }))
-      },
-      get: key => {
-        const itemStr = localStorage.getItem(key)
-        if (!itemStr) return undefined
-        const { value, expiry } = JSON.parse(itemStr)
-        if (Date.now() > expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return value
-      }
-    }
-
-    window.btf = {
-      saveToLocal,
-      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-        script.onload = script.onreadystatechange = () => {
-          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
-        }
-        script.onerror = reject
-        document.head.appendChild(script)
-      }),
-      getCSS: (url, id) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onload = link.onreadystatechange = () => {
-          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
-        }
-        link.onerror = reject
-        document.head.appendChild(link)
-      }),
-      addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
-        const globalFn = parent.globalFn || {}
-        globalFn[key] = globalFn[key] || {}
-        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-        parent.globalFn = globalFn
-      }
-    }
+<meta name="twitter:card" content="summary_large_image">
   
-      
-      const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
+  
+  
+  <title>表达式和控制结构 - zhengcookie</title>
 
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-      const theme = saveToLocal.get('theme')
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.zhengcookie.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
     
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="表达式和控制结构"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-08 14:36" pubdate>
+          2025年7月8日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          61 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
       
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
-      }
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
     
       
-    const detectApple = () => {
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-  
-    })()
-  </script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
-  translate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
-  copy: {
-    success: '复制成功',
-    error: '复制失败',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
-    buttonText: '加载更多'
-  },
-  isPhotoFigcaption: false,
-  islazyloadPlugin: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '表达式和控制结构',
-  isHighlightShrink: false,
-  isToc: true,
-  pageType: 'post'
-}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/yangyuhuang.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">表达式和控制结构</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">表达式和控制结构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-08T06:36:03.000Z" title="发表于 2025-07-08 14:36:03">2025-07-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-06T09:11:50.569Z" title="更新于 2025-11-06 17:11:50">2025-11-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">7.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>26分钟</span></span><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/2025/07/08/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/" data-flag-title="表达式和控制结构"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span class="leancloud-visitors-count"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="表达式和控制结构"><a href="#表达式和控制结构" class="headerlink" title="表达式和控制结构"></a>表达式和控制结构<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#id1"></a></h1><h2 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#index-1"></a></h2><p>大多数从大括号语言中知道的控制结构都可以在Solidity中使用：</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">表达式和控制结构</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="表达式和控制结构"><a href="#表达式和控制结构" class="headerlink" title="表达式和控制结构"></a>表达式和控制结构<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#id1"></a></h1><h2 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#index-1"></a></h2><p>大多数从大括号语言中知道的控制结构都可以在Solidity中使用：</p>
 <p>有： <code>if</code>， <code>else</code>， <code>while</code>， <code>do</code>， <code>for</code>， <code>break</code>， <code>continue</code>， <code>return</code>， 这些在 C 或者 JavaScript 中表达相同语义的关键词。</p>
 <p>Solidity也支持 <code>try</code> / <code>catch</code> 形式的语句的异常处理， 但只适用于 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#external-function-calls">外部函数调用</a> 和合约创建调用。 可以使用 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#revert-statement">恢复状态</a> 来创建错误。</p>
 <p>条件句 <em>不能</em> 省略括号，但单句体周围可以省略大括号。</p>
 <p>请注意，没有像C和JavaScript那样从非布尔类型到布尔类型的类型转换， 所以 <code>if (1) &#123; ... &#125;</code> 在Solidity <em>不是</em> 有效的。</p>
 <h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#function-calls"></a></h2><h3 id="内部函数调用"><a href="#内部函数调用" class="headerlink" title="内部函数调用"></a>内部函数调用<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#internal-function-calls"></a></h3><p>当前合约中的函数可以直接（“从内部”）调用，也可以递归调用，就像下边这个荒谬的例子一样：</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC40LjIyIDwwLjkuMDsKCi8vIOi/meS8muacieS4gOS4quitpuWRigpjb250cmFjdCBDIHsKICAgIGZ1bmN0aW9uIGcodWludCBhKSBwdWJsaWMgcHVyZSByZXR1cm5zICh1aW50IHJldCkgeyByZXR1cm4gYSArIGYoKTsgfQogICAgZnVuY3Rpb24gZigpIGludGVybmFsIHB1cmUgcmV0dXJucyAodWludCByZXQpIHsgcmV0dXJuIGcoNykgKyBmKCk7IH0KfQ==">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">// 这会有一个警告</span><br><span class="line">contract C &#123;</span><br><span class="line">    function g(uint a) public pure returns (uint ret) &#123; return a + f(); &#125;</span><br><span class="line">    function f() internal pure returns (uint ret) &#123; return g(7) + f(); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.22</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br><span class="hljs-comment">// 这会有一个警告</span><br>contract C &#123;<br>    <span class="hljs-built_in">function</span> g(<span class="hljs-built_in">uint</span> a) <span class="hljs-keyword">public</span> <span class="hljs-keyword">pure</span> returns (<span class="hljs-built_in">uint</span> ret) &#123; <span class="hljs-keyword">return</span> a + f(); &#125;<br>    <span class="hljs-built_in">function</span> f() internal <span class="hljs-keyword">pure</span> returns (<span class="hljs-built_in">uint</span> ret) &#123; <span class="hljs-keyword">return</span> g(<span class="hljs-number">7</span>) + f(); &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>这些函数调用在EVM内部被转化为简单的跳转。 这样做的效果是，当前的内存不会被清空，也就是说， 将内存引用传递给内部调用的函数是非常有效的。 但只有同一合约实例的函数可以被内部调用。</p>
 <p>您还是应该避免过度的递归调用，因为每个内部函数的调用都会占用至少一个堆栈槽，而可用的堆栈槽只有1024个。</p>
 <h3 id="外部函数调用"><a href="#外部函数调用" class="headerlink" title="外部函数调用"></a>外部函数调用<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#external-function-calls"></a></h3><p>函数也可以使用 <code>this.g(8);</code> 和 <code>c.g(2);</code> 符号来调用， 其中 <code>c</code> 是一个合约实例， <code>g</code> 是属于 <code>c</code> 的函数。 通过这两种方式调用函数 <code>g</code> 会导致它被 “外部” 调用， 使用消息调用而不是直接通过跳转。 请注意，对 <code>this</code> 的函数调用不能在构造函数中使用，因为实际的合约还没有被创建。</p>
@@ -176,7 +293,7 @@
 <p>从一个合约到另一个合约的函数调用并不创建自己的交易，它是作为整个交易的一部分的消息调用。</p>
 <p>当调用其他合约的函数时，您可以用特殊的选项 <code>&#123;value: 10, gas: 10000&#125;</code> 指定随调用发送的wei或燃料（gas）数量。 请注意，不鼓励明确指定燃料值，因为操作码的燃料成本可能在未来发生变化。 您发送给合约的任何Wei都会被添加到该合约的总余额中：</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC42LjIgPDAuOS4wOwoKY29udHJhY3QgSW5mb0ZlZWQgewogICAgZnVuY3Rpb24gaW5mbygpIHB1YmxpYyBwYXlhYmxlIHJldHVybnMgKHVpbnQgcmV0KSB7IHJldHVybiA0MjsgfQp9Cgpjb250cmFjdCBDb25zdW1lciB7CiAgICBJbmZvRmVlZCBmZWVkOwogICAgZnVuY3Rpb24gc2V0RmVlZChJbmZvRmVlZCBhZGRyKSBwdWJsaWMgeyBmZWVkID0gYWRkcjsgfQogICAgZnVuY3Rpb24gY2FsbEZlZWQoKSBwdWJsaWMgeyBmZWVkLmluZm97dmFsdWU6IDEwLCBnYXM6IDgwMH0oKTsgfQp9">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.6.2 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract InfoFeed &#123;</span><br><span class="line">    function info() public payable returns (uint ret) &#123; return 42; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Consumer &#123;</span><br><span class="line">    InfoFeed feed;</span><br><span class="line">    function setFeed(InfoFeed addr) public &#123; feed = addr; &#125;</span><br><span class="line">    function callFeed() public &#123; feed.info&#123;value: 10, gas: 800&#125;(); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs ada">// SPDX-License-Identifier: GPL-<span class="hljs-number">3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.6</span>.<span class="hljs-number">2</span> &lt;<span class="hljs-number">0.9</span>.<span class="hljs-number">0</span>;<br><br>contract InfoFeed &#123;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title">info</span>() public payable returns (uint ret) &#123; <span class="hljs-keyword">return</span> <span class="hljs-type">42</span>; &#125;<br>&#125;<br><br>contract Consumer &#123;<br>    InfoFeed feed;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title">setFeed</span>(InfoFeed addr) public &#123; feed = addr; &#125;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title">callFeed</span>() public &#123; feed.info&#123;value: 10, gas: 800&#125;(); &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>您需要对 <code>info</code> 函数使用修饰符 <code>payable</code>， 因为不这样的话， <code>value</code> 选项则不可用。</p>
 <p>警告</p>
 <p>注意 <code>feed.info&#123;value: 10, gas: 800&#125;</code> 只在本地设置 <code>value</code> 和随函数调用发送的 <code>gas</code> 数量， 最后的括号执行实际调用。所以 <code>feed.info&#123;value: 10, gas: 800&#125;</code> 不会调用函数， <code>value</code> 和 <code>gas</code> 的设置也会丢失， 只有 <code>feed.info&#123;value: 10, gas: 800&#125;()</code> 执行了函数调用。</p>
@@ -191,13 +308,13 @@
 <p>在 Solidity 0.6.2 之前，指定以太值和燃料值的推荐方法是 使用 <code>f.value(x).gas(g)()</code>。这在Solidity 0.6.2中被废弃， 并且从Solidity 0.7.0开始不再支持。</p>
 <h3 id="带命名参数的函数调用"><a href="#带命名参数的函数调用" class="headerlink" title="带命名参数的函数调用"></a>带命名参数的函数调用<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#id6"></a></h3><p>函数调用参数可以用名字来表示，如果用 <code>&#123; &#125;</code> 括起来的话， 可以用任何顺序，如下面的例子所示。 参数列表在名称上必须与函数声明中的参数列表相一致，但可以有任意的顺序。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC40LjAgPDAuOS4wOwoKY29udHJhY3QgQyB7CiAgICBtYXBwaW5nKHVpbnQgPT4gdWludCkgZGF0YTsKCiAgICBmdW5jdGlvbiBmKCkgcHVibGljIHsKICAgICAgICBzZXQoe3ZhbHVlOiAyLCBrZXk6IDN9KTsKICAgIH0KCiAgICBmdW5jdGlvbiBzZXQodWludCBrZXksIHVpbnQgdmFsdWUpIHB1YmxpYyB7CiAgICAgICAgZGF0YVtrZXldID0gdmFsdWU7CiAgICB9Cn0=">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract C &#123;</span><br><span class="line">    mapping(uint =&gt; uint) data;</span><br><span class="line"></span><br><span class="line">    function f() public &#123;</span><br><span class="line">        set(&#123;value: 2, key: 3&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function set(uint key, uint value) public &#123;</span><br><span class="line">        data[key] = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br>pragma solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract C &#123;<br>    mapping(<span class="hljs-built_in">uint</span> =&gt; <span class="hljs-built_in">uint</span>) data;<br><br>    <span class="hljs-function">function <span class="hljs-title">f</span>() <span class="hljs-keyword">public</span></span> &#123;<br>        <span class="hljs-keyword">set</span>(&#123;<span class="hljs-keyword">value</span>: <span class="hljs-number">2</span>, key: <span class="hljs-number">3</span>&#125;);<br>    &#125;<br><br>    <span class="hljs-function">function <span class="hljs-title">set</span>(<span class="hljs-params"><span class="hljs-built_in">uint</span> key, <span class="hljs-built_in">uint</span> <span class="hljs-keyword">value</span></span>) <span class="hljs-keyword">public</span></span> &#123;<br>        data[key] = <span class="hljs-keyword">value</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h3 id="函数定义中省略的名称"><a href="#函数定义中省略的名称" class="headerlink" title="函数定义中省略的名称"></a>函数定义中省略的名称<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#id7"></a></h3><p>函数声明中的参数和返回值的名称可以省略。 那些名字被省略的参数仍然会出现在堆栈中，但是无法通过名字访问。 省略的返回值名称仍然可以通过使用 <code>return</code> 语句向调用者返回一个值。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC40LjIyIDwwLjkuMDsKCmNvbnRyYWN0IEMgewogICAgLy8g55yB55Wl5Y+C5pWw5ZCN56ewCiAgICBmdW5jdGlvbiBmdW5jKHVpbnQgaywgdWludCkgcHVibGljIHB1cmUgcmV0dXJucyh1aW50KSB7CiAgICAgICAgcmV0dXJuIGs7CiAgICB9Cn0=">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract C &#123;</span><br><span class="line">    // 省略参数名称</span><br><span class="line">    function func(uint k, uint) public pure returns(uint) &#123;</span><br><span class="line">        return k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.22</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract C &#123;<br>    <span class="hljs-comment">// 省略参数名称</span><br>    <span class="hljs-built_in">function</span> func(<span class="hljs-built_in">uint</span> k, <span class="hljs-built_in">uint</span>) <span class="hljs-keyword">public</span> <span class="hljs-keyword">pure</span> returns(<span class="hljs-built_in">uint</span>) &#123;<br>        <span class="hljs-keyword">return</span> k;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="通过-new-创建合约"><a href="#通过-new-创建合约" class="headerlink" title="通过 new 创建合约"></a>通过 <code>new</code> 创建合约<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#new"></a></h2><p>一个合约可以使用 <code>new</code> 关键字创建其他合约。 待创建合约的完整代码必须在创建的合约被编译时知道， 所以递归的创建依赖是不可能的。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC43LjAgPDAuOS4wOwpjb250cmFjdCBEIHsKICAgIHVpbnQgcHVibGljIHg7CiAgICBjb25zdHJ1Y3Rvcih1aW50IGEpIHBheWFibGUgewogICAgICAgIHggPSBhOwogICAgfQp9Cgpjb250cmFjdCBDIHsKICAgIEQgZCA9IG5ldyBEKDQpOyAvLyDlsIbkvZzkuLrlkIjnuqYgQyDmnoTpgKDlh73mlbDnmoTkuIDpg6jliIbmiafooYwKCiAgICBmdW5jdGlvbiBjcmVhdGVEKHVpbnQgYXJnKSBwdWJsaWMgewogICAgICAgIEQgbmV3RCA9IG5ldyBEKGFyZyk7CiAgICAgICAgbmV3RC54KCk7CiAgICB9CgogICAgZnVuY3Rpb24gY3JlYXRlQW5kRW5kb3dEKHVpbnQgYXJnLCB1aW50IGFtb3VudCkgcHVibGljIHBheWFibGUgewogICAgICAgIC8vIOmaj+WQiOe6pueahOWIm+W7uuWPkemAgSBldGhlcgogICAgICAgIEQgbmV3RCA9IG5ldyBEe3ZhbHVlOiBhbW91bnR9KGFyZyk7CiAgICAgICAgbmV3RC54KCk7CiAgICB9Cn0=">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.7.0 &lt;0.9.0;</span><br><span class="line">contract D &#123;</span><br><span class="line">    uint public x;</span><br><span class="line">    constructor(uint a) payable &#123;</span><br><span class="line">        x = a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract C &#123;</span><br><span class="line">    D d = new D(4); // 将作为合约 C 构造函数的一部分执行</span><br><span class="line"></span><br><span class="line">    function createD(uint arg) public &#123;</span><br><span class="line">        D newD = new D(arg);</span><br><span class="line">        newD.x();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function createAndEndowD(uint arg, uint amount) public payable &#123;</span><br><span class="line">        // 随合约的创建发送 ether</span><br><span class="line">        D newD = new D&#123;value: amount&#125;(arg);</span><br><span class="line">        newD.x();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.7</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br>contract D &#123;<br>    <span class="hljs-built_in">uint</span> <span class="hljs-keyword">public</span> x;<br>    constructor(<span class="hljs-built_in">uint</span> a) payable &#123;<br>        x = a;<br>    &#125;<br>&#125;<br><br>contract C &#123;<br>    D d = <span class="hljs-keyword">new</span> D(<span class="hljs-number">4</span>); <span class="hljs-comment">// 将作为合约 C 构造函数的一部分执行</span><br><br>    <span class="hljs-built_in">function</span> createD(<span class="hljs-built_in">uint</span> arg) <span class="hljs-keyword">public</span> &#123;<br>        D newD = <span class="hljs-keyword">new</span> D(arg);<br>        newD.x();<br>    &#125;<br><br>    <span class="hljs-built_in">function</span> createAndEndowD(<span class="hljs-built_in">uint</span> arg, <span class="hljs-built_in">uint</span> amount) <span class="hljs-keyword">public</span> payable &#123;<br>        <span class="hljs-comment">// 随合约的创建发送 ether</span><br>        D newD = <span class="hljs-keyword">new</span> D&#123;value: amount&#125;(arg);<br>        newD.x();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>正如在例子中所看到的，在使用 <code>value</code> 选项创建 <code>D</code> 的实例时， 可以发送以太，但不可能限制燃料的数量。 如果创建失败（由于堆栈耗尽，没有足够的余额或其他问题），会抛出一个异常。</p>
 <h3 id="加盐合约创建-create2"><a href="#加盐合约创建-create2" class="headerlink" title="加盐合约创建 / create2"></a>加盐合约创建 / create2<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#create2"></a></h3><p>当创建一个合约时，合约的地址是由创建合约的地址和一个计数器计算出来的， 这个计数器在每次创建合约时都会增加。</p>
 <p>如果您指定了选项 <code>salt</code> （一个32字节的值）， 那么合约的创建将使用一种不同的机制来得出新合约的地址。</p>
@@ -205,14 +322,14 @@
 <p>特别的是，计数器（“nonce”）没有被使用。这使得创建合约时有更多的灵活性。 您能够在新合约创建之前得出它的地址。此外，在创建合约的同时创建其他合约的情况下， 您也可以依赖这个地址。</p>
 <p>这里的主要用例是做为链外互动的评判的合约， 只有在有争议的时候才需要创建。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC43LjAgPDAuOS4wOwpjb250cmFjdCBEIHsKICAgIHVpbnQgcHVibGljIHg7CiAgICBjb25zdHJ1Y3Rvcih1aW50IGEpIHsKICAgICAgICB4ID0gYTsKICAgIH0KfQoKY29udHJhY3QgQyB7CiAgICBmdW5jdGlvbiBjcmVhdGVEU2FsdGVkKGJ5dGVzMzIgc2FsdCwgdWludCBhcmcpIHB1YmxpYyB7CiAgICAgICAgLy8g6L+Z5Liq5aSN5p2C55qE6KGo6L6+5byP5Y+q5piv5ZGK6K+J5oKo5aaC5L2V6aKE5YWI6K6h566X5Ye65Zyw5Z2A44CCCiAgICAgICAgLy8g5a6D5Y+q5piv55So5LqO6K+05piO6Zeu6aKY44CCCiAgICAgICAgLy8g5a6e6ZmF5LiK5oKo5Y+q6ZyA6KaBIGBgbmV3IER7c2FsdDogc2FsdH0oYXJnKWBg44CCCiAgICAgICAgYWRkcmVzcyBwcmVkaWN0ZWRBZGRyZXNzID0gYWRkcmVzcyh1aW50MTYwKHVpbnQoa2VjY2FrMjU2KGFiaS5lbmNvZGVQYWNrZWQoCiAgICAgICAgICAgIGJ5dGVzMSgweGZmKSwKICAgICAgICAgICAgYWRkcmVzcyh0aGlzKSwKICAgICAgICAgICAgc2FsdCwKICAgICAgICAgICAga2VjY2FrMjU2KGFiaS5lbmNvZGVQYWNrZWQoCiAgICAgICAgICAgICAgICB0eXBlKEQpLmNyZWF0aW9uQ29kZSwKICAgICAgICAgICAgICAgIGFiaS5lbmNvZGUoYXJnKQogICAgICAgICAgICApKQogICAgICAgICkpKSkpOwoKICAgICAgICBEIGQgPSBuZXcgRHtzYWx0OiBzYWx0fShhcmcpOwogICAgICAgIHJlcXVpcmUoYWRkcmVzcyhkKSA9PSBwcmVkaWN0ZWRBZGRyZXNzKTsKICAgIH0KfQ==">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.7.0 &lt;0.9.0;</span><br><span class="line">contract D &#123;</span><br><span class="line">    uint public x;</span><br><span class="line">    constructor(uint a) &#123;</span><br><span class="line">        x = a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract C &#123;</span><br><span class="line">    function createDSalted(bytes32 salt, uint arg) public &#123;</span><br><span class="line">        // 这个复杂的表达式只是告诉您如何预先计算出地址。</span><br><span class="line">        // 它只是用于说明问题。</span><br><span class="line">        // 实际上您只需要 ``new D&#123;salt: salt&#125;(arg)``。</span><br><span class="line">        address predictedAddress = address(uint160(uint(keccak256(abi.encodePacked(</span><br><span class="line">            bytes1(0xff),</span><br><span class="line">            address(this),</span><br><span class="line">            salt,</span><br><span class="line">            keccak256(abi.encodePacked(</span><br><span class="line">                type(D).creationCode,</span><br><span class="line">                abi.encode(arg)</span><br><span class="line">            ))</span><br><span class="line">        )))));</span><br><span class="line"></span><br><span class="line">        D d = new D&#123;salt: salt&#125;(arg);</span><br><span class="line">        require(address(d) == predictedAddress);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.7</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br>contract D &#123;<br>    <span class="hljs-built_in">uint</span> <span class="hljs-keyword">public</span> x;<br>    constructor(<span class="hljs-built_in">uint</span> a) &#123;<br>        x = a;<br>    &#125;<br>&#125;<br><br>contract C &#123;<br>    <span class="hljs-built_in">function</span> createDSalted(bytes32 salt, <span class="hljs-built_in">uint</span> arg) <span class="hljs-keyword">public</span> &#123;<br>        <span class="hljs-comment">// 这个复杂的表达式只是告诉您如何预先计算出地址。</span><br>        <span class="hljs-comment">// 它只是用于说明问题。</span><br>        <span class="hljs-comment">// 实际上您只需要 ``new D&#123;salt: salt&#125;(arg)``。</span><br>        address predictedAddress = address(uint160(<span class="hljs-built_in">uint</span>(keccak256(abi.encodePacked(<br>            bytes1(<span class="hljs-number">0</span>xff),<br>            address(<span class="hljs-keyword">this</span>),<br>            salt,<br>            keccak256(abi.encodePacked(<br>                type(D).creationCode,<br>                abi.encode(arg)<br>            ))<br>        )))));<br><br>        D d = <span class="hljs-keyword">new</span> D&#123;salt: salt&#125;(arg);<br>        require(address(d) == predictedAddress);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>警告</p>
 <p>在用加盐方式创建合约时，有一些特殊性。一个合约可以在被销毁后在同一地址重新创建。 然而，新创建的合约有可能具有不同的部署字节码， 即使创建字节码是相同的（这是一个要求，否则地址会改变）。 这是由于构造函数可以查询在两次创建之间可能发生变化的外部状态， 并在存储之前将其纳入部署字节码。</p>
 <h2 id="表达式计算顺序"><a href="#表达式计算顺序" class="headerlink" title="表达式计算顺序"></a>表达式计算顺序<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#id8"></a></h2><p>表达式的计算顺序不是特定的（更准确地说， 表达式树中某节点的子节点间的计算顺序不是特定的，但它们的结算肯定会在节点自己的结算之前）。 该规则只能保证语句按顺序执行，并对布尔表达式进行短路处理。</p>
 <h2 id="赋值"><a href="#赋值" class="headerlink" title="赋值"></a>赋值<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#index-4"></a></h2><h3 id="解构赋值和返回多个值"><a href="#解构赋值和返回多个值" class="headerlink" title="解构赋值和返回多个值"></a>解构赋值和返回多个值<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#index-5"></a></h3><p>Solidity 内部允许元组 (tuple) 类型，也就是一个在编译时元素数量固定的对象列表， 列表中的元素可以是不同类型的对象。这些元组可以用来同时返回多个数值， 也可以用它们来同时赋值给多个新声明的变量或者既存的变量（或通常的 LValues）：</p>
 <p>在Solidity中，元组不是适当的类型，它们只能被用来构建表达式的语法分组。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC41LjAgPDAuOS4wOwoKY29udHJhY3QgQyB7CiAgICB1aW50IGluZGV4OwoKICAgIGZ1bmN0aW9uIGYoKSBwdWJsaWMgcHVyZSByZXR1cm5zICh1aW50LCBib29sLCB1aW50KSB7CiAgICAgICAgcmV0dXJuICg3LCB0cnVlLCAyKTsKICAgIH0KCiAgICBmdW5jdGlvbiBnKCkgcHVibGljIHsKICAgICAgICAvLyDnlKjnsbvlnovlo7DmmI7nmoTlj5jph4/vvIzlubbku47ov5Tlm57nmoTlhYPnu4TkuK3liIbphY3vvIwKICAgICAgICAvLyDkuI3mmK/miYDmnInnmoTlhYPntKDpg73lv4XpobvooqvmjIflrprvvIjkvYbmlbDph4/lv4XpobvljLnphY3vvInjgIIKICAgICAgICAodWludCB4LCAsIHVpbnQgeSkgPSBmKCk7CiAgICAgICAgLy8g5Lqk5o2i5pWw5YC855qE5bi46KeB5oqA5benIC0tIOWvuemdnuaVsOWAvOWtmOWCqOexu+Wei+S4jei1t+S9nOeUqOOAggogICAgICAgICh4LCB5KSA9ICh5LCB4KTsKICAgICAgICAvLyDlhYPntKDlj6/ku6XkuI3kvb/nlKjvvIjkuZ/pgILnlKjkuo7lj5jph4/lo7DmmI7vvInjgIIKICAgICAgICAoaW5kZXgsICwgKSA9IGYoKTsgLy8g5bCGaW5kZXjorr7nva7kuLogNwogICAgfQp9">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.5.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract C &#123;</span><br><span class="line">    uint index;</span><br><span class="line"></span><br><span class="line">    function f() public pure returns (uint, bool, uint) &#123;</span><br><span class="line">        return (7, true, 2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function g() public &#123;</span><br><span class="line">        // 用类型声明的变量，并从返回的元组中分配，</span><br><span class="line">        // 不是所有的元素都必须被指定（但数量必须匹配）。</span><br><span class="line">        (uint x, , uint y) = f();</span><br><span class="line">        // 交换数值的常见技巧 -- 对非数值存储类型不起作用。</span><br><span class="line">        (x, y) = (y, x);</span><br><span class="line">        // 元素可以不使用（也适用于变量声明）。</span><br><span class="line">        (index, , ) = f(); // 将index设置为 7</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br>pragma solidity &gt;=<span class="hljs-number">0.5</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract C &#123;<br>    <span class="hljs-built_in">uint</span> index;<br><br>    <span class="hljs-function">function <span class="hljs-title">f</span>() <span class="hljs-keyword">public</span> pure <span class="hljs-title">returns</span> (<span class="hljs-params"><span class="hljs-built_in">uint</span>, <span class="hljs-built_in">bool</span>, <span class="hljs-built_in">uint</span></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-number">7</span>, <span class="hljs-literal">true</span>, <span class="hljs-number">2</span>);<br>    &#125;<br><br>    <span class="hljs-function">function <span class="hljs-title">g</span>() <span class="hljs-keyword">public</span></span> &#123;<br>        <span class="hljs-comment">// 用类型声明的变量，并从返回的元组中分配，</span><br>        <span class="hljs-comment">// 不是所有的元素都必须被指定（但数量必须匹配）。</span><br>        (<span class="hljs-built_in">uint</span> x, , <span class="hljs-built_in">uint</span> y) = f();<br>        <span class="hljs-comment">// 交换数值的常见技巧 -- 对非数值存储类型不起作用。</span><br>        (x, y) = (y, x);<br>        <span class="hljs-comment">// 元素可以不使用（也适用于变量声明）。</span><br>        (index, , ) = f(); <span class="hljs-comment">// 将index设置为 7</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>不可能混合使用声明和非声明变量赋值。 例如，下面的方法是无效的。 <code>(x, uint y) = (1, 2);</code>。</p>
 <p>备注</p>
 <p>在0.5.0版本之前，给具有更少元素数的元组赋值都是可能的， 要么在左边填充，要么在右边填充（无论哪个是空的）。 现在这是不允许的，所以两边必须有相同数量的元素。</p>
@@ -221,34 +338,34 @@
 <h3 id="数组和结构体的复杂情况"><a href="#数组和结构体的复杂情况" class="headerlink" title="数组和结构体的复杂情况"></a>数组和结构体的复杂情况<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#id11"></a></h3><p>对于像数组和结构体这样的非值类型，包括 <code>bytes</code> 和 <code>string</code>，赋值的语义更为复杂， 详见 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/types.html#data-location-assignment">数据位置和赋值行为</a>。</p>
 <p>在下面的例子中，调用 <code>g(x)</code> 对 <code>x</code> 没有影响， 因为它在内存中创建了一个独立的存储值的副本。然而， <code>h(x)</code> 成功地修改了 <code>x</code>， 因为传递了一个引用而不是一个拷贝。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC40LjIyIDwwLjkuMDsKCmNvbnRyYWN0IEMgewogICAgdWludFsyMF0geDsKCiAgICBmdW5jdGlvbiBmKCkgcHVibGljIHsKICAgICAgICBnKHgpOwogICAgICAgIGgoeCk7CiAgICB9CgogICAgZnVuY3Rpb24gZyh1aW50WzIwXSBtZW1vcnkgeSkgaW50ZXJuYWwgcHVyZSB7CiAgICAgICAgeVsyXSA9IDM7CiAgICB9CgogICAgZnVuY3Rpb24gaCh1aW50WzIwXSBzdG9yYWdlIHkpIGludGVybmFsIHsKICAgICAgICB5WzNdID0gNDsKICAgIH0KfQ==">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.22 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract C &#123;</span><br><span class="line">    uint[20] x;</span><br><span class="line"></span><br><span class="line">    function f() public &#123;</span><br><span class="line">        g(x);</span><br><span class="line">        h(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function g(uint[20] memory y) internal pure &#123;</span><br><span class="line">        y[2] = 3;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function h(uint[20] storage y) internal &#123;</span><br><span class="line">        y[3] = 4;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br>pragma solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.22</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract C &#123;<br>    <span class="hljs-built_in">uint</span>[<span class="hljs-number">20</span>] x;<br><br>    <span class="hljs-function">function <span class="hljs-title">f</span>() <span class="hljs-keyword">public</span></span> &#123;<br>        g(x);<br>        h(x);<br>    &#125;<br><br>    <span class="hljs-function">function <span class="hljs-title">g</span>(<span class="hljs-params"><span class="hljs-built_in">uint</span>[<span class="hljs-number">20</span>] memory y</span>) <span class="hljs-keyword">internal</span> pure</span> &#123;<br>        y[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;<br>    &#125;<br><br>    <span class="hljs-function">function <span class="hljs-title">h</span>(<span class="hljs-params"><span class="hljs-built_in">uint</span>[<span class="hljs-number">20</span>] storage y</span>) <span class="hljs-keyword">internal</span></span> &#123;<br>        y[<span class="hljs-number">3</span>] = <span class="hljs-number">4</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="作用域和声明"><a href="#作用域和声明" class="headerlink" title="作用域和声明"></a>作用域和声明<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#default-value"></a></h2><p>一个被声明的变量将有一个初始默认值，其字节表示为所有的零。 变量的 “默认值” 是任何类型的典型 “零状态”。 例如， <code>bool</code> 的默认值是 <code>false</code>。 <code>uint</code> 或 <code>int</code> 类型的默认值是 <code>0</code>。 对于静态大小的数组和 <code>bytes1</code> 到 <code>bytes32</code>， 每个单独的元素将被初始化为与其类型相应的默认值。 对于动态大小的数组， <code>bytes</code> 和 <code>string</code>，默认值是一个空数组或字符串。 对于 <code>enum</code> 类型，默认值是其第一个成员。</p>
 <p>Solidity 中的作用域规则遵循了 C99（与其他很多语言一样）： 变量将会从它们被声明之后可见，直到一对 <code>&#123; &#125;</code> 块的结束。 这一规则有个例外，在 for 循环语句中初始化的变量，其可见性仅维持到 for 循环的结束。</p>
 <p>类似于参数的变量（函数参数、修改器参数、捕获（catch）参数……） 在后面的代码块中是可见的–对于函数和修改器参数，在函数/修改器的主体中， 对于捕获参数，在捕获块中。</p>
 <p>在代码块之外声明的变量，例如函数、合约、用户定义的类型等， 甚至在声明之前就已经可见。 这意味着您可以在声明之前使用状态变量，并递归地调用函数。</p>
 <p>因此，下面的例子在编译时不会出现警告，因为这两个变量的名字虽然相同，但作用域不同。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC41LjAgPDAuOS4wOwpjb250cmFjdCBDIHsKICAgIGZ1bmN0aW9uIG1pbmltYWxTY29waW5nKCkgcHVyZSBwdWJsaWMgewogICAgICAgIHsKICAgICAgICAgICAgdWludCBzYW1lOwogICAgICAgICAgICBzYW1lID0gMTsKICAgICAgICB9CgogICAgICAgIHsKICAgICAgICAgICAgdWludCBzYW1lOwogICAgICAgICAgICBzYW1lID0gMzsKICAgICAgICB9CiAgICB9Cn0=">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.5.0 &lt;0.9.0;</span><br><span class="line">contract C &#123;</span><br><span class="line">    function minimalScoping() pure public &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            uint same;</span><br><span class="line">            same = 1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line">            uint same;</span><br><span class="line">            same = 3;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.5</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br>contract C &#123;<br>    <span class="hljs-built_in">function</span> minimalScoping() <span class="hljs-keyword">pure</span> <span class="hljs-keyword">public</span> &#123;<br>        &#123;<br>            <span class="hljs-built_in">uint</span> same;<br>            same = <span class="hljs-number">1</span>;<br>        &#125;<br><br>        &#123;<br>            <span class="hljs-built_in">uint</span> same;<br>            same = <span class="hljs-number">3</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>作为 C99 作用域规则的特例，请注意在下边的例子里， 第一次对 <code>x</code> 的赋值实际上将赋给外层变量而不是内层变量。 在任何情况下，您都会得到一个关于外部变量被影射（译者注：就是说被在内部作用域中由一个同名变量所替代）的警告。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC41LjAgPDAuOS4wOwovLyDov5nlsIbmiqXlkYrkuIDkuKrorablkYrkv6Hmga8KY29udHJhY3QgQyB7CiAgICBmdW5jdGlvbiBmKCkgcHVyZSBwdWJsaWMgcmV0dXJucyAodWludCkgewogICAgICAgIHVpbnQgeCA9IDE7CiAgICAgICAgewogICAgICAgICAgICB4ID0gMjsgLy8gdGhpcyB3aWxsIGFzc2lnbiB0byB0aGUgb3V0ZXIgdmFyaWFibGUKICAgICAgICAgICAgdWludCB4OwogICAgICAgIH0KICAgICAgICByZXR1cm4geDsgLy8geCBoYXMgdmFsdWUgMgogICAgfQp9">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.5.0 &lt;0.9.0;</span><br><span class="line">// 这将报告一个警告信息</span><br><span class="line">contract C &#123;</span><br><span class="line">    function f() pure public returns (uint) &#123;</span><br><span class="line">        uint x = 1;</span><br><span class="line">        &#123;</span><br><span class="line">            x = 2; // this will assign to the outer variable</span><br><span class="line">            uint x;</span><br><span class="line">        &#125;</span><br><span class="line">        return x; // x has value 2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.5</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><span class="hljs-comment">// 这将报告一个警告信息</span><br>contract C &#123;<br>    <span class="hljs-built_in">function</span> f() <span class="hljs-keyword">pure</span> <span class="hljs-keyword">public</span> returns (<span class="hljs-built_in">uint</span>) &#123;<br>        <span class="hljs-built_in">uint</span> x = <span class="hljs-number">1</span>;<br>        &#123;<br>            x = <span class="hljs-number">2</span>; <span class="hljs-comment">// this will assign to the outer variable</span><br>            <span class="hljs-built_in">uint</span> x;<br>        &#125;<br>        <span class="hljs-keyword">return</span> x; <span class="hljs-comment">// x has value 2</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>警告</p>
 <p>在0.5.0版本之前，Solidity遵循与JavaScript相同的作用域规则， 也就是说，在一个函数中的任何地方声明的变量都会在整个函数的作用域中，不管它是在哪里声明。 下面的例子显示了一个曾经可以编译的代码片段，但从0.5.0版本开始导致了一个错误。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC41LjAgPDAuOS4wOwovLyDov5nlsIbml6Dms5XnvJbor5EKY29udHJhY3QgQyB7CiAgICBmdW5jdGlvbiBmKCkgcHVyZSBwdWJsaWMgcmV0dXJucyAodWludCkgewogICAgICAgIHggPSAyOwogICAgICAgIHVpbnQgeDsKICAgICAgICByZXR1cm4geDsKICAgIH0KfQ==">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.5.0 &lt;0.9.0;</span><br><span class="line">// 这将无法编译</span><br><span class="line">contract C &#123;</span><br><span class="line">    function f() pure public returns (uint) &#123;</span><br><span class="line">        x = 2;</span><br><span class="line">        uint x;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.5</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><span class="hljs-comment">// 这将无法编译</span><br>contract C &#123;<br>    <span class="hljs-built_in">function</span> f() <span class="hljs-keyword">pure</span> <span class="hljs-keyword">public</span> returns (<span class="hljs-built_in">uint</span>) &#123;<br>        x = <span class="hljs-number">2</span>;<br>        <span class="hljs-built_in">uint</span> x;<br>        <span class="hljs-keyword">return</span> x;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="检查或不检查的算术"><a href="#检查或不检查的算术" class="headerlink" title="检查或不检查的算术"></a>检查或不检查的算术<a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#unchecked"></a></h2><p>上溢或下溢是指算术运算的结果值，当对一个不受限制的整数执行时，超出了结果类型的范围。</p>
 <p>在Solidity 0.8.0之前，算术运算总是在下溢或上溢的情况下被包起来， 这导致广泛使用引入额外检查的库。</p>
 <p>从Solidity 0.8.0开始，在默认情况下所有的算术运算都会在上溢和下溢时还原， 从而使这些库的使用变得没有必要。</p>
 <p>为了获得以前的行为，可以使用一个 <code>unchecked</code> 区块：</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5IF4wLjguMDsKY29udHJhY3QgQyB7CiAgICBmdW5jdGlvbiBmKHVpbnQgYSwgdWludCBiKSBwdXJlIHB1YmxpYyByZXR1cm5zICh1aW50KSB7CiAgICAgICAgLy8g6L+Z5Liq5YeP5rOV5bCG5Zyo5LiL5rqi5pe26KKr5YyF6LW35p2l44CCCiAgICAgICAgdW5jaGVja2VkIHsgcmV0dXJuIGEgLSBiOyB9CiAgICB9CiAgICBmdW5jdGlvbiBnKHVpbnQgYSwgdWludCBiKSBwdXJlIHB1YmxpYyByZXR1cm5zICh1aW50KSB7CiAgICAgICAgLy8g6L+Z5Liq5YeP5rOV5Zyo5LiL5rqi5pe25bCG6KKr6L+Y5Y6f44CCCiAgICAgICAgcmV0dXJuIGEgLSBiOwogICAgfQp9">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line">contract C &#123;</span><br><span class="line">    function f(uint a, uint b) pure public returns (uint) &#123;</span><br><span class="line">        // 这个减法将在下溢时被包起来。</span><br><span class="line">        unchecked &#123; return a - b; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function g(uint a, uint b) pure public returns (uint) &#123;</span><br><span class="line">        // 这个减法在下溢时将被还原。</span><br><span class="line">        return a - b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity ^<span class="hljs-number">0.8</span><span class="hljs-number">.0</span>;<br>contract C &#123;<br>    <span class="hljs-built_in">function</span> f(<span class="hljs-built_in">uint</span> a, <span class="hljs-built_in">uint</span> b) <span class="hljs-keyword">pure</span> <span class="hljs-keyword">public</span> returns (<span class="hljs-built_in">uint</span>) &#123;<br>        <span class="hljs-comment">// 这个减法将在下溢时被包起来。</span><br>        unchecked &#123; <span class="hljs-keyword">return</span> a - b; &#125;<br>    &#125;<br>    <span class="hljs-built_in">function</span> g(<span class="hljs-built_in">uint</span> a, <span class="hljs-built_in">uint</span> b) <span class="hljs-keyword">pure</span> <span class="hljs-keyword">public</span> returns (<span class="hljs-built_in">uint</span>) &#123;<br>        <span class="hljs-comment">// 这个减法在下溢时将被还原。</span><br>        <span class="hljs-keyword">return</span> a - b;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>调用 <code>f(2, 3)</code> 将返回 <code>2**256-1</code>，而 <code>g(2, 3)</code> 将导致一个失败的断言。</p>
 <p><code>unchecked</code> 代码块可以在代码块内的任何地方使用，但不能替代代码块。 它也不能被嵌套。</p>
 <p>该设置只影响到在语法上位于代码块内的语句。 从 <code>unchecked</code> 代码块内调用的函数不继承该属性。</p>
 <p>备注</p>
 <p>为了避免歧义，您不能在一个 <code>unchecked</code> 代码块内使用 <code>_;</code>。</p>
 <p>以下运算符在上溢或下溢时将导致一个失败的断言， 如果在一个未检查的代码块内使用，将被包裹而不会出现错误。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">++`， `--`， `+`， 二进制 `-`， 单进制 `-`， `*`， `/`， `%`， `**</span><br><span class="line">+=`， `-=`， `*=`， `/=`， `%=</span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">++`， `--`， `+`， 二进制 `-`， 单进制 `-`， `*`， `/`， `%`， `**<br>+=`， `-=`， `*=`， `/=`， `%=<br></code></pre></td></tr></table></figure>
 <p>警告</p>
 <p>不能使用 <code>unchecked</code> 代码块来禁止检查除以0或对0取余数。</p>
 <p>备注</p>
@@ -299,7 +416,7 @@
 <p>如果您没有给 <code>require</code> 提供一个字符串参数，它将以空的错误数据进行还原， 甚至不包括错误选择器。</p>
 <p>下面的例子显示了如何使用 <code>require</code> 来检查输入的条件 和 <code>assert</code> 进行内部错误检查。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC41LjAgPDAuOS4wOwoKY29udHJhY3QgU2hhcmVyIHsKICAgIGZ1bmN0aW9uIHNlbmRIYWxmKGFkZHJlc3MgcGF5YWJsZSBhZGRyKSBwdWJsaWMgcGF5YWJsZSByZXR1cm5zICh1aW50IGJhbGFuY2UpIHsKICAgICAgICByZXF1aXJlKG1zZy52YWx1ZSAlIDIgPT0gMCwgIkV2ZW4gdmFsdWUgcmVxdWlyZWQuIik7CiAgICAgICAgdWludCBiYWxhbmNlQmVmb3JlVHJhbnNmZXIgPSBhZGRyZXNzKHRoaXMpLmJhbGFuY2U7CiAgICAgICAgYWRkci50cmFuc2Zlcihtc2cudmFsdWUgLyAyKTsKICAgICAgICAvLyDnlLHkuo7ovazotKblpLHotKXlkI7mipvlh7rlvILluLjlubbkuJTkuI3og73lnKjov5nph4zlm57osIPvvIwKICAgICAgICAvLyDlm6DmraTmiJHku6zlupTor6XmsqHmnInlip7ms5Xku43nhLbmnInkuIDljYrnmoTku6XlpKrlnYrjgIIKICAgICAgICBhc3NlcnQoYWRkcmVzcyh0aGlzKS5iYWxhbmNlID09IGJhbGFuY2VCZWZvcmVUcmFuc2ZlciAtIG1zZy52YWx1ZSAvIDIpOwogICAgICAgIHJldHVybiBhZGRyZXNzKHRoaXMpLmJhbGFuY2U7CiAgICB9Cn0=">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.5.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract Sharer &#123;</span><br><span class="line">    function sendHalf(address payable addr) public payable returns (uint balance) &#123;</span><br><span class="line">        require(msg.value % 2 == 0, &quot;Even value required.&quot;);</span><br><span class="line">        uint balanceBeforeTransfer = address(this).balance;</span><br><span class="line">        addr.transfer(msg.value / 2);</span><br><span class="line">        // 由于转账失败后抛出异常并且不能在这里回调，</span><br><span class="line">        // 因此我们应该没有办法仍然有一半的以太坊。</span><br><span class="line">        assert(address(this).balance == balanceBeforeTransfer - msg.value / 2);</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs d"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br><span class="hljs-keyword">pragma</span> solidity &gt;=<span class="hljs-number">0.5</span><span class="hljs-number">.0</span> &lt;<span class="hljs-number">0.9</span><span class="hljs-number">.0</span>;<br><br>contract Sharer &#123;<br>    <span class="hljs-built_in">function</span> sendHalf(address payable addr) <span class="hljs-keyword">public</span> payable returns (<span class="hljs-built_in">uint</span> balance) &#123;<br>        require(msg.value % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Even value required.&quot;</span>);<br>        <span class="hljs-built_in">uint</span> balanceBeforeTransfer = address(<span class="hljs-keyword">this</span>).balance;<br>        addr.transfer(msg.value / <span class="hljs-number">2</span>);<br>        <span class="hljs-comment">// 由于转账失败后抛出异常并且不能在这里回调，</span><br>        <span class="hljs-comment">// 因此我们应该没有办法仍然有一半的以太坊。</span><br>        <span class="hljs-keyword">assert</span>(address(<span class="hljs-keyword">this</span>).balance == balanceBeforeTransfer - msg.value / <span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">return</span> address(<span class="hljs-keyword">this</span>).balance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>在内部， Solidity 会执行恢复操作（指令 <code>0xfd</code> ）。 这会导致 EVM 恢复对状态所做的所有更改。恢复的原因是不能继续安全地执行， 因为没有实现预期的效果，还因为我们想保留交易的原子性， 所以最安全的做法是恢复所有更改并使整个交易（或至少是调用）不产生效果。</p>
 <p>在这两种情况下，调用者可以使用 <code>try</code>/ <code>catch</code> 对这种失败做出处理， 但被调用者的变化将总是被恢复。</p>
 <p>备注</p>
@@ -317,19 +434,19 @@
 <p>使用一个自定义的错误实例通常会比字符串描述便宜得多， 因为您可以使用错误的名称来描述它，它的编码只有四个字节。 可以通过NatSpec提供更长的描述，这不会产生任何费用。</p>
 <p>下面的例子显示了如何将一个错误字符串和一个自定义的错误实例 与 <code>revert</code> 和相应的 <code>require</code> 一起使用。</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5IF4wLjguNDsKCmNvbnRyYWN0IFZlbmRpbmdNYWNoaW5lIHsKICAgIGFkZHJlc3Mgb3duZXI7CiAgICBlcnJvciBVbmF1dGhvcml6ZWQoKTsKICAgIGZ1bmN0aW9uIGJ1eSh1aW50IGFtb3VudCkgcHVibGljIHBheWFibGUgewogICAgICAgIGlmIChhbW91bnQgPiBtc2cudmFsdWUgLyAyIGV0aGVyKQogICAgICAgICAgICByZXZlcnQoIk5vdCBlbm91Z2ggRXRoZXIgcHJvdmlkZWQuIik7CiAgICAgICAgLy8g5Y+m5LiA56eN5pa55rOV77yaCiAgICAgICAgcmVxdWlyZSgKICAgICAgICAgICAgYW1vdW50IDw9IG1zZy52YWx1ZSAvIDIgZXRoZXIsCiAgICAgICAgICAgICJOb3QgZW5vdWdoIEV0aGVyIHByb3ZpZGVkLiIKICAgICAgICApOwogICAgICAgIC8vIOaJp+ihjOi0reS5sOOAggogICAgfQogICAgZnVuY3Rpb24gd2l0aGRyYXcoKSBwdWJsaWMgewogICAgICAgIGlmIChtc2cuc2VuZGVyICE9IG93bmVyKQogICAgICAgICAgICByZXZlcnQgVW5hdXRob3JpemVkKCk7CgogICAgICAgIHBheWFibGUobXNnLnNlbmRlcikudHJhbnNmZXIoYWRkcmVzcyh0aGlzKS5iYWxhbmNlKTsKICAgIH0KfQ==">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">contract VendingMachine &#123;</span><br><span class="line">    address owner;</span><br><span class="line">    error Unauthorized();</span><br><span class="line">    function buy(uint amount) public payable &#123;</span><br><span class="line">        if (amount &gt; msg.value / 2 ether)</span><br><span class="line">            revert(&quot;Not enough Ether provided.&quot;);</span><br><span class="line">        // 另一种方法：</span><br><span class="line">        require(</span><br><span class="line">            amount &lt;= msg.value / 2 ether,</span><br><span class="line">            &quot;Not enough Ether provided.&quot;</span><br><span class="line">        );</span><br><span class="line">        // 执行购买。</span><br><span class="line">    &#125;</span><br><span class="line">    function withdraw() public &#123;</span><br><span class="line">        if (msg.sender != owner)</span><br><span class="line">            revert Unauthorized();</span><br><span class="line"></span><br><span class="line">        payable(msg.sender).transfer(address(this).balance);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br>pragma solidity ^<span class="hljs-number">0.8</span><span class="hljs-selector-class">.4</span>;<br><br>contract VendingMachine &#123;<br>    <span class="hljs-selector-tag">address</span> owner;<br>    error <span class="hljs-built_in">Unauthorized</span>();<br>    function <span class="hljs-built_in">buy</span>(uint amount) public payable &#123;<br>        if (amount &gt; msg.value / <span class="hljs-number">2</span> ether)<br>            <span class="hljs-built_in">revert</span>(&quot;Not enough Ether provided.&quot;);<br>        <span class="hljs-comment">// 另一种方法：</span><br>        <span class="hljs-built_in">require</span>(<br>            amount &lt;= msg.value / <span class="hljs-number">2</span> ether,<br>            &quot;Not enough Ether provided.&quot;<br>        );<br>        <span class="hljs-comment">// 执行购买。</span><br>    &#125;<br>    function <span class="hljs-built_in">withdraw</span>() public &#123;<br>        if (msg.sender != owner)<br>            revert <span class="hljs-built_in">Unauthorized</span>();<br><br>        <span class="hljs-built_in">payable</span>(msg.sender)<span class="hljs-selector-class">.transfer</span>(address(this)<span class="hljs-selector-class">.balance</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><code>if (!condition) revert(...);</code> 和 <code>require(condition, ...);</code> 这两种方式是等价的， 只要 <code>revert</code> 和 <code>require</code> 的参数没有副作用，比如说它们只是字符串。</p>
 <p>备注</p>
 <p><code>require</code> 函数和其他函数一样。这意味着在执行函数本身之前，所有参数都会被评估。 特别是，在 <code>require(condition, f())</code> 中，即使 <code>condition</code> 为真， 函数 <code>f</code> 也被执行。</p>
 <p>提供的字符串是 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/abi-spec.html#abi">ABI编码</a> 之后的，就像调用一个函数 <code>Error(string)</code> 一样。 在上面的例子中， <code>revert(&quot;Not enough Ether provided.&quot;);</code> 返回以下十六进制作为错误返回数据：</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=MHgwOGMzNzlhMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC8vIEVycm9yKHN0cmluZykg55qE5Ye95pWw6YCJ5oup5ZmoCjB4MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAyMCAvLyDmlbDmja7nmoTlgY/np7vph4/vvIgzMu+8iQoweDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMWEgLy8g5a2X56ym5Liy6ZW/5bqm77yIMjbvvIkKMHg0ZTZmNzQyMDY1NmU2Zjc1Njc2ODIwNDU3NDY4NjU3MjIwNzA3MjZmNzY2OTY0NjU2NDJlMDAwMDAwMDAwMDAwIC8vIOWtl+espuS4suaVsOaNru+8iCJOb3QgZW5vdWdoIEV0aGVyIHByb3ZpZGVkLiIg55qEIEFTQ0lJIOe8luegge+8jDI25a2X6IqC77yJ">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0x08c379a0                                                         // Error(string) 的函数选择器</span><br><span class="line">0x0000000000000000000000000000000000000000000000000000000000000020 // 数据的偏移量（32）</span><br><span class="line">0x000000000000000000000000000000000000000000000000000000000000001a // 字符串长度（26）</span><br><span class="line">0x4e6f7420656e6f7567682045746865722070726f76696465642e000000000000 // 字符串数据（&quot;Not enough Ether provided.&quot; 的 ASCII 编码，26字节）</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-number">0</span>x08c379a0                                                         <span class="hljs-regexp">//</span> Error(string) 的函数选择器<br><span class="hljs-number">0</span>x0000000000000000000000000000000000000000000000000000000000000020 <span class="hljs-regexp">//</span> 数据的偏移量（<span class="hljs-number">32</span>）<br><span class="hljs-number">0</span>x000000000000000000000000000000000000000000000000000000000000001a <span class="hljs-regexp">//</span> 字符串长度（<span class="hljs-number">26</span>）<br><span class="hljs-number">0</span>x4e6f7420656e6f7567682045746865722070726f76696465642e000000000000 <span class="hljs-regexp">//</span> 字符串数据（<span class="hljs-string">&quot;Not enough Ether provided.&quot;</span> 的 ASCII 编码，<span class="hljs-number">26</span>字节）<br></code></pre></td></tr></table></figure>
 <p>调用者可以使用 <code>try</code> / <code>catch</code> 检索所提供的消息，如下所示。</p>
 <p>备注</p>
 <p>以前有一个叫 <code>throw</code> 的关键字，其语义与 <code>revert()</code> 相同， 在0.4.13版本中被弃用，在0.5.0版本中被删除。</p>
 <h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try / catch"></a><code>try</code> / <code>catch</code><a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#try-catch"></a></h3><p>外部调用的失败可以用 try/catch 语句来捕获，如下所示：</p>
 <p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/?#language=solidity&amp;version=0.8.24&amp;code=Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0zLjAKcHJhZ21hIHNvbGlkaXR5ID49MC44LjE7CgppbnRlcmZhY2UgRGF0YUZlZWQgeyBmdW5jdGlvbiBnZXREYXRhKGFkZHJlc3MgdG9rZW4pIGV4dGVybmFsIHJldHVybnMgKHVpbnQgdmFsdWUpOyB9Cgpjb250cmFjdCBGZWVkQ29uc3VtZXIgewogICAgRGF0YUZlZWQgZmVlZDsKICAgIHVpbnQgZXJyb3JDb3VudDsKICAgIGZ1bmN0aW9uIHJhdGUoYWRkcmVzcyB0b2tlbikgcHVibGljIHJldHVybnMgKHVpbnQgdmFsdWUsIGJvb2wgc3VjY2VzcykgewogICAgICAgIC8vIOWmguaenOaciTEw5Liq5Lul5LiK55qE6ZSZ6K+v77yM5bCx5rC45LmF5YGc55So6K+l5py65Yi244CCCiAgICAgICAgcmVxdWlyZShlcnJvckNvdW50IDwgMTApOwogICAgICAgIHRyeSBmZWVkLmdldERhdGEodG9rZW4pIHJldHVybnMgKHVpbnQgdikgewogICAgICAgICAgICByZXR1cm4gKHYsIHRydWUpOwogICAgICAgIH0gY2F0Y2ggRXJyb3Ioc3RyaW5nIG1lbW9yeSAvKnJlYXNvbiovKSB7CiAgICAgICAgICAgIC8vIOWmguaenOWcqGdldERhdGHkuK3osIPnlKhyZXZlcnTvvIwKICAgICAgICAgICAgLy8g5bm25LiU5o+Q5L6b5LqG5LiA5Liq5Y6f5Zug5a2X56ym5Liy77yMCiAgICAgICAgICAgIC8vIOWImeaJp+ihjOivpeWRveS7pOOAggogICAgICAgICAgICBlcnJvckNvdW50Kys7CiAgICAgICAgICAgIHJldHVybiAoMCwgZmFsc2UpOwogICAgICAgIH0gY2F0Y2ggUGFuaWModWludCAvKmVycm9yQ29kZSovKSB7CiAgICAgICAgICAgIC8vIOWcqOWPkeeUn1Bhbmlj5byC5bi455qE5oOF5Ya15LiL5omn6KGM77yMCiAgICAgICAgICAgIC8vIOWNs+WHuueOsOS4pemHjeeahOmUmeivr++8jOWmgumZpOS7pembtuaIlua6ouWHuuOAggogICAgICAgICAgICAvLyDplJnor6/ku6PnoIHlj6/ku6XnlKjmnaXnoa7lrprplJnor6/nmoTnp43nsbvjgIIKICAgICAgICAgICAgZXJyb3JDb3VudCsrOwogICAgICAgICAgICByZXR1cm4gKDAsIGZhbHNlKTsKICAgICAgICB9IGNhdGNoIChieXRlcyBtZW1vcnkgLypsb3dMZXZlbERhdGEqLykgewogICAgICAgICAgICAvLyDlnKjkvb/nlKhyZXZlcnQoKeeahOaDheWGteS4i++8jOS8muaJp+ihjOi/meS4quWRveS7pOOAggogICAgICAgICAgICBlcnJvckNvdW50Kys7CiAgICAgICAgICAgIHJldHVybiAoMCwgZmFsc2UpOwogICAgICAgIH0KICAgIH0KfQ==">open in Remix</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.8.1;</span><br><span class="line"></span><br><span class="line">interface DataFeed &#123; function getData(address token) external returns (uint value); &#125;</span><br><span class="line"></span><br><span class="line">contract FeedConsumer &#123;</span><br><span class="line">    DataFeed feed;</span><br><span class="line">    uint errorCount;</span><br><span class="line">    function rate(address token) public returns (uint value, bool success) &#123;</span><br><span class="line">        // 如果有10个以上的错误，就永久停用该机制。</span><br><span class="line">        require(errorCount &lt; 10);</span><br><span class="line">        try feed.getData(token) returns (uint v) &#123;</span><br><span class="line">            return (v, true);</span><br><span class="line">        &#125; catch Error(string memory /*reason*/) &#123;</span><br><span class="line">            // 如果在getData中调用revert，</span><br><span class="line">            // 并且提供了一个原因字符串，</span><br><span class="line">            // 则执行该命令。</span><br><span class="line">            errorCount++;</span><br><span class="line">            return (0, false);</span><br><span class="line">        &#125; catch Panic(uint /*errorCode*/) &#123;</span><br><span class="line">            // 在发生Panic异常的情况下执行，</span><br><span class="line">            // 即出现严重的错误，如除以零或溢出。</span><br><span class="line">            // 错误代码可以用来确定错误的种类。</span><br><span class="line">            errorCount++;</span><br><span class="line">            return (0, false);</span><br><span class="line">        &#125; catch (bytes memory /*lowLevelData*/) &#123;</span><br><span class="line">            // 在使用revert()的情况下，会执行这个命令。</span><br><span class="line">            errorCount++;</span><br><span class="line">            return (0, false);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs zephir"><span class="hljs-comment">// SPDX-License-Identifier: GPL-3.0</span><br>pragma solidity &gt;=<span class="hljs-number">0.8</span><span class="hljs-number">.1</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">DataFeed</span> </span>&#123; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span><span class="hljs-params">(address token)</span> <span class="hljs-title">external</span> <span class="hljs-title">returns</span> <span class="hljs-params">(<span class="hljs-keyword">uint</span> value)</span></span>; &#125;<br><br>contract FeedConsumer &#123;<br>    DataFeed feed;<br>    <span class="hljs-keyword">uint</span> errorCount;<br>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rate</span><span class="hljs-params">(address token)</span> <span class="hljs-title">public</span> <span class="hljs-title">returns</span> <span class="hljs-params">(<span class="hljs-keyword">uint</span> value, <span class="hljs-keyword">bool</span> success)</span> </span>&#123;<br>        <span class="hljs-comment">// 如果有10个以上的错误，就永久停用该机制。</span><br>        <span class="hljs-keyword">require</span>(errorCount &lt; <span class="hljs-number">10</span>);<br>        <span class="hljs-keyword">try</span> feed.getData(token) returns (<span class="hljs-keyword">uint</span> v) &#123;<br>            <span class="hljs-keyword">return</span> (v, <span class="hljs-keyword">true</span>);<br>        &#125; <span class="hljs-keyword">catch</span> Error(<span class="hljs-keyword">string</span> memory <span class="hljs-comment">/*reason*/</span>) &#123;<br>            <span class="hljs-comment">// 如果在getData中调用revert，</span><br>            <span class="hljs-comment">// 并且提供了一个原因字符串，</span><br>            <span class="hljs-comment">// 则执行该命令。</span><br>            errorCount++;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>, <span class="hljs-keyword">false</span>);<br>        &#125; <span class="hljs-keyword">catch</span> Panic(<span class="hljs-keyword">uint</span> <span class="hljs-comment">/*errorCode*/</span>) &#123;<br>            <span class="hljs-comment">// 在发生Panic异常的情况下执行，</span><br>            <span class="hljs-comment">// 即出现严重的错误，如除以零或溢出。</span><br>            <span class="hljs-comment">// 错误代码可以用来确定错误的种类。</span><br>            errorCount++;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>, <span class="hljs-keyword">false</span>);<br>        &#125; <span class="hljs-keyword">catch</span> (bytes memory <span class="hljs-comment">/*lowLevelData*/</span>) &#123;<br>            <span class="hljs-comment">// 在使用revert()的情况下，会执行这个命令。</span><br>            errorCount++;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>, <span class="hljs-keyword">false</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><code>try</code> 关键字后面必须有一个表达式，代表外部函数调用或合约建（ <code>new ContractName()</code> ）。 表达式中的错误不会被捕获（例如，如果它是一个复杂的表达式，也涉及到内部函数调用）， 只有外部调用本身发生恢复。 接下来的 <code>returns</code> 部分（是可选的）声明了与外部调用返回的类型相匹配的返回变量。 如果没有错误，这些变量将被分配，合约执行将在第一个成功代码块内继续。 如果到达成功代码块的末端，则在 <code>catch</code> 块之后继续执行。</p>
 <p>Solidity 根据错误的类型，支持不同种类的捕获块：</p>
 <ul>
@@ -347,55 +464,372 @@
 <p>如果执行到一个catch代码块，那么外部调用的状态改变效果已经被恢复。 如果执行到了成功代码块，那么这些影响就没有被还原。 如果影响已经被还原，那么执行要么在catch代码块中继续， 要么try/catch语句的执行本身被还原（例如由于上面提到的解码失败或者由于没有提供低级别的catch子句）。</p>
 <p>备注</p>
 <p>调用失败背后的原因可能是多方面的。不要认为错误信息是直接来自被调用的合约： 错误可能发生在调用链的更深处，被调用的合约只是转发了它。 另外，这可能是由于消耗完燃料值的情况，而不是故意的错误状况。 调用方总是保留调用中至少1/64的燃料值， 因此，即使被调用合约没有燃料了，调用方仍然有一些燃料。</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site">zhengcookie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site/2025/07/08/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/">https://www.zhengcookie.site/2025/07/08/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.zhengcookie.site" target="_blank">zhengcookie</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E6%B3%95/">区块链智能合约语法</a></div><div class="post-share"><div class="social-share" data-image="/img/yangyuhuang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/07/06/%E5%8D%95%E4%BD%8D%E4%B8%8E%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" title="单位与全局变量"><img class="cover" src="/img/yoimiya.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">单位与全局变量</div></div><div class="info-2"><div class="info-item-1">单位和全局可用变量以太坊（Ether） 单位一个字面常量可以带一个后缀 wei， gwei 或 ether 来指定一个以太币的数量， 其中没有后缀的以太数字被认为单位是wei。 open in Remix 123assert(1 wei == 1);assert(1 gwei == 1e9);assert(1 ether == 1e18); 单位后缀的唯一作用是乘以10的幂次方。 备注 0.7.0 版本中删除了 finney 和 szabo 这两个单位。 时间单位诸如 seconds， minutes， hours， days 和 weeks 等 后缀在字面常量后面，可以用来指定时间单位，其中秒是基本单位，单位的考虑方式很直白：  1 == 1 seconds 1 minutes == 60 seconds 1 hours == 60 minutes 1 days == 24 hours 1 weeks == 7 days  如果您使用这些单位进行日历计算，请注意，由于 闰秒 会造成不是每一年都等于365天，甚至不是每一天都有24小时，而且因为闰秒是无法预测的，...</div></div></div></a><a class="pagination-related" href="/2025/07/08/vue/" title="vue"><img class="cover" src="/img/violet.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">vue</div></div><div class="info-2"><div class="info-item-1"> 一、Vue 基础1. Vue的基本原理当一个Vue实例创建时，Vue会遍历data中的属性，用 Object.defineProperty（vue3.0使用proxy ）将它们转为 getter/setter，并且在内部追踪相关依赖，在属性被访问和修改时通知变化。 每个组件实例都有相应的 watcher 程序实例，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的setter被调用时，会通知watcher重新计算，从而致使它关联的组件得以更新。  2. 双向数据绑定的原理Vue.js...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/10/19/Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity智能合约零基础入门"><img class="cover" src="/img/eula.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-19</div><div class="info-item-2">Solidity智能合约零基础入门</div></div><div class="info-2"><div class="info-item-1">课程安排模块一：启程 - 区块链与智能合约概念比特币 vs 以太坊：为什么需要智能合约？ 比特币 vs...</div></div></div></a><a class="pagination-related" href="/2025/07/06/%E5%8D%95%E4%BD%8D%E4%B8%8E%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" title="单位与全局变量"><img class="cover" src="/img/yoimiya.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-06</div><div class="info-item-2">单位与全局变量</div></div><div class="info-2"><div class="info-item-1">单位和全局可用变量以太坊（Ether） 单位一个字面常量可以带一个后缀 wei， gwei 或 ether 来指定一个以太币的数量， 其中没有后缀的以太数字被认为单位是wei。 open in Remix 123assert(1 wei == 1);assert(1 gwei == 1e9);assert(1 ether == 1e18); 单位后缀的唯一作用是乘以10的幂次方。 备注 0.7.0 版本中删除了 finney 和 szabo 这两个单位。 时间单位诸如 seconds， minutes， hours， days 和 weeks 等 后缀在字面常量后面，可以用来指定时间单位，其中秒是基本单位，单位的考虑方式很直白：  1 == 1 seconds 1 minutes == 60 seconds 1 hours == 60 minutes 1 days == 24 hours 1 weeks == 7 days  如果您使用这些单位进行日历计算，请注意，由于 闰秒 会造成不是每一年都等于365天，甚至不是每一天都有24小时，而且因为闰秒是无法预测的，...</div></div></div></a><a class="pagination-related" href="/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/" title="合约结构语法"><img class="cover" src="/img/violet.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-05</div><div class="info-item-2">合约结构语法</div></div><div class="info-2"><div class="info-item-1">合约结构在 Solidity 中，合约类似于面向对象编程语言中的类。 每个合约中可以包含 状态变量， 函数， 函数修饰器， 事件， 错误， 结构类型 和 枚举类型 的声明，且合约可以从其他合约继承。 还有一些特殊种类的合约，叫做 库合约 和 接口合约。 在关于 合约 的部分包含比本节更多的细节，它的作用是提供一个快速的概述。 状态变量状态变量是指其值被永久地存储在合约存储中的变量。 open in Remix 1234567// SPDX-License-Identifier: GPL-3.0pragma solidity &gt;=0.4.0 &lt;0.9.0;contract SimpleStorage &#123;    uint storedData; // 状态变量    // ...&#125; 有效的状态变量类型请参阅 类型 章节， 对状态变量可见性的可能选择请参阅 可见性和 getter 函数。 函数函数是代码的可执行单位。 通常在合约内定义函数，但它们也可以被定义在合约之外。 open in Remix 12345678910111213//...</div></div></div></a><a class="pagination-related" href="/2025/07/09/%E5%90%88%E7%BA%A6/" title="合约"><img class="cover" src="/img/Castorice.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-09</div><div class="info-item-2">合约</div></div><div class="info-2"><div class="info-item-1">合约Solidity中的合约类似于面向对象语言中的类。 它们在状态变量中包含持久的数据，以及可以修改这些变量的函数。 在不同的合约（实例）上调用一个函数将执行一个EVM函数调用， 从而切换上下文，使调用合约中的状态变量无法访问。 任何事情的发生都需要调用合约及其函数。 在以太坊中没有 “定时（cron）” 的概念来在特定事件中自动调用函数。 创建合约可以通过以太坊交易 “从外部” 或从 Solidity 合约内部创建合约。 集成开发环境，如 Remix，使用UI元素使创建过程无缝化。 在以太坊上以编程方式创建合约的一种方法是通过JavaScript API web3.js。 它有一个名为 web3.eth.Contract 的函数， 以方便创建合约。 当一个合约被创建时，它的 构造函数（constructor） （一个用 constructor 关键字声明的函数）被执行一次。 构造函数是可选的。但是只允许有一个构造函数，这意味着不支持重写。 构造函数执行完毕后，合约的最终代码被存储在区块链上。 这段代码包括所有公开和外部函数，以及所有通过函数调用可从那里到达的函数。...</div></div></div></a><a class="pagination-related" href="/2025/07/06/%E7%B1%BB%E5%9E%8B/" title="类型"><img class="cover" src="/img/Cyrene.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-06</div><div class="info-item-2">类型</div></div><div class="info-2"><div class="info-item-1">类型Solidity 是一种静态类型语言，这意味着每个变量（状态变量和局部变量）都需要被指定类型。 Solidity 提供了几种基本类型，可以用来组合出复杂类型。 除此之外，各个类型之间可以在包含运算符号的表达式中进行交互。 关于各种运算符的快速参考，可以参考 运算符的优先顺序。 Solidity中不存在“未定义”或“空”值的概念， 但新声明的变量总是有一个取决于其类型的 默认值。 为了处理任何意外的值，您应该使用 revert 函数 来恢复整个事务， 或者返回一个带有第二个 bool 值的元组来表示成功。 值类型以下类型之所以被称为值类型，是因为它们的变量总是通过值传递， 即在用作函数参数或赋值时总是被复制。 布尔类型bool ：可能的取值为常数值 true 和 false。 运算符：  ! (逻辑非) &amp;&amp; (逻辑与, “and”) || (逻辑或, “or”) == (等于) != (不等于)  运算符 || 和 &amp;&amp; 都遵循同样的短路（ short-circuiting ）规则。 就是说在表达式 f(x) || g(y) 中， 如果...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">zhengcookie</div><div class="author-info-description">欢迎来到zhengcookie的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhengcookie"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zhengcookie" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/z2132085753@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84%EF%83%81"><span class="toc-number">1.</span> <span class="toc-text">表达式和控制结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84%EF%83%81"><span class="toc-number">1.1.</span> <span class="toc-text">控制结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%EF%83%81"><span class="toc-number">1.2.</span> <span class="toc-text">函数调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%EF%83%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">内部函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%EF%83%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">外部函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E5%91%BD%E5%90%8D%E5%8F%82%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%EF%83%81"><span class="toc-number">1.2.3.</span> <span class="toc-text">带命名参数的函数调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%AD%E7%9C%81%E7%95%A5%E7%9A%84%E5%90%8D%E7%A7%B0%EF%83%81"><span class="toc-number">1.2.4.</span> <span class="toc-text">函数定义中省略的名称</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-new-%E5%88%9B%E5%BB%BA%E5%90%88%E7%BA%A6%EF%83%81"><span class="toc-number">1.3.</span> <span class="toc-text">通过 new 创建合约</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E7%9B%90%E5%90%88%E7%BA%A6%E5%88%9B%E5%BB%BA-create2%EF%83%81"><span class="toc-number">1.3.1.</span> <span class="toc-text">加盐合约创建 &#x2F; create2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F%EF%83%81"><span class="toc-number">1.4.</span> <span class="toc-text">表达式计算顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%EF%83%81"><span class="toc-number">1.5.</span> <span class="toc-text">赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC%E5%92%8C%E8%BF%94%E5%9B%9E%E5%A4%9A%E4%B8%AA%E5%80%BC%EF%83%81"><span class="toc-number">1.5.1.</span> <span class="toc-text">解构赋值和返回多个值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%92%8C%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%A4%8D%E6%9D%82%E6%83%85%E5%86%B5%EF%83%81"><span class="toc-number">1.5.2.</span> <span class="toc-text">数组和结构体的复杂情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E5%A3%B0%E6%98%8E%EF%83%81"><span class="toc-number">1.6.</span> <span class="toc-text">作用域和声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%88%96%E4%B8%8D%E6%A3%80%E6%9F%A5%E7%9A%84%E7%AE%97%E6%9C%AF%EF%83%81"><span class="toc-number">1.7.</span> <span class="toc-text">检查或不检查的算术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%EF%BC%9AAssert-Require-Revert-%E5%92%8C%E5%85%B6%E4%BD%99%E5%BC%82%E5%B8%B8%EF%83%81"><span class="toc-number">1.8.</span> <span class="toc-text">错误处理：Assert, Require, Revert 和其余异常</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-assert-%E5%BC%95%E8%B5%B7Panic%E5%BC%82%E5%B8%B8%E5%92%8C%E9%80%9A%E8%BF%87-require-%E5%BC%95%E8%B5%B7Error%E5%BC%82%E5%B8%B8%EF%83%81"><span class="toc-number">1.8.1.</span> <span class="toc-text">通过 assert 引起Panic异常和通过 require 引起Error异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#revert%EF%83%81"><span class="toc-number">1.8.2.</span> <span class="toc-text">revert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try-catch%EF%83%81"><span class="toc-number">1.8.3.</span> <span class="toc-text">try &#x2F; catch</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/19/Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity智能合约零基础入门"><img src="/img/eula.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Solidity智能合约零基础入门"/></a><div class="content"><a class="title" href="/2025/10/19/Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity智能合约零基础入门">Solidity智能合约零基础入门</a><time datetime="2025-10-19T14:17:53.000Z" title="发表于 2025-10-19 22:17:53">2025-10-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周"><img src="/img/Cyrene.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第九周"/></a><div class="content"><a class="title" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周">广州it工作第九周</a><time datetime="2025-09-13T08:16:54.000Z" title="发表于 2025-09-13 16:16:54">2025-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/" title="广州it工作第八周"><img src="/img/violet.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第八周"/></a><div class="content"><a class="title" href="/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/" title="广州it工作第八周">广州it工作第八周</a><time datetime="2025-09-07T12:22:49.000Z" title="发表于 2025-09-07 20:22:49">2025-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周"><img src="/img/ningguang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第七周"/></a><div class="content"><a class="title" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周">广州it工作第七周</a><time datetime="2025-08-30T11:18:00.000Z" title="发表于 2025-08-30 19:18:00">2025-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周"><img src="/img/Charlotte.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第六周"/></a><div class="content"><a class="title" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周">广州it工作第六周</a><time datetime="2025-08-25T15:01:50.000Z" title="发表于 2025-08-25 23:01:50">2025-08-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By zhengcookie</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
-  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
-  const option = null
 
-  const initValine = (el, path) => {
-    if (isShuoshuo) {
-      window.shuoshuoComment.destroyValine = () => {
-        if (el.children.length) {
-          el.innerHTML = ''
-          el.classList.add('no-comment')
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="category-chain-item">区块链</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E6%B3%95/" class="print-no-link">#区块链智能合约语法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>表达式和控制结构</div>
+      <div>https://www.zhengcookie.site/2025/07/08/表达式和控制结构/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhengcookie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/08/vue/" title="vue">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/06/%E5%8D%95%E4%BD%8D%E4%B8%8E%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" title="单位与全局变量">
+                        <span class="hidden-mobile">单位与全局变量</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
         }
       }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
     }
-
-    const valineConfig = {
-      el: '#vcomment',
-      appId: 'sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz',
-      appKey: 'KJPXk2hOqDfll4hbw93yYmUc',
-      avatar: '/img/avatar.jpg',
-      serverURLs: 'https://stzbx4mw.lc-cn-n1-shared.com',
-      emojiMaps: "",
-      visitor: true,
-      ...option,
-      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
     }
-
-    new Valine(valineConfig)
-  }
-
-  const loadValine = async (el, path) => {
-    if (typeof Valine === 'function') {
-      initValine(el, path)
-    } else {
-      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
-      initValine(el, path)
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
     }
-  }
+    window.anchors.add(res.join(', '));
 
-  if (isShuoshuo) {
-    'Valine' === 'Valine'
-      ? window.shuoshuoComment = { loadComment: loadValine }
-      : window.loadOtherComment = loadValine
-    return
-  }
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
 
-  if ('Valine' === 'Valine' || !false) {
-    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
-    else setTimeout(loadValine, 0)
-  } else {
-    window.loadOtherComment = loadValine
-  }
-})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
