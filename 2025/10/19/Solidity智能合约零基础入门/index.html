@@ -27,7 +27,7 @@
 <meta property="og:description" content="课程安排模块一：启程 - 区块链与智能合约概念比特币 vs 以太坊：为什么需要智能合约？ 比特币 vs 以太坊：为什么需要智能合约？比特币作为区块链技术的第一个成功应用，开创了去中心化数字货币的先河。它的核心功能是提供一种安全、透明且不可篡改的价值转移方式。然而，比特币的设计初衷是专注于支付和存储价值，其脚本语言（Script）虽然具有一定的可编程性，但功能较为有限，无法支持复杂的逻辑操作。相比之">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-19T14:17:53.000Z">
-<meta property="article:modified_time" content="2025-11-10T12:26:53.120Z">
+<meta property="article:modified_time" content="2025-11-14T10:26:59.537Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="区块链智能合约语法">
 <meta name="twitter:card" content="summary_large_image">
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.9k 字
+          5.2k 字
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          42 分钟
+          44 分钟
         
       </span>
     
@@ -480,31 +480,38 @@
 <p><strong>固定长度数组</strong>:<code>uint[5]</code>,<code>uint[2][5]</code> …</p>
 <p><strong>动态数组</strong>:<code>uint[]</code>,<code>uint[][5]</code> …</p>
 <p><code>示例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs solidity">uint[5] a = [1,2,3,4,5]; // 5 element array<br>uint[5] b;<br>uint[] c;<br>uint[] d = [1,2,3,4,5];<br></code></pre></td></tr></table></figure>
 <p><strong>索引</strong>: 对元素中的一个数据进行定位，数组索引从0开始，访问一个数组中的其中一个元素，访问时的下标顺序与声明时相反。访问一个超过它的末端的数组会导致一个失败的断言。 </p>
 <p><code>示例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function returnOne() public view returns (uint)&#123;<br>    return d[0];	//返回第一个元素<br>&#125;    <br>function returntwo() public view returns (uint)&#123;<br>    return d[1];	//返回第二个元素<br>&#125;    <br></code></pre></td></tr></table></figure>
 <p><strong>数组成员</strong>:</p>
 <ul>
 <li><p><strong>length</strong>:</p>
 <p>数组有 <code>length</code> 成员变量表示当前数组的长度。一经创建， 内存memory数组的大小就是固定的（但却是动态的，也就是说，它依赖于运行时数组的参数）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function returnLength() public view returns (uint)&#123;<br>    return d.length;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p><strong>push()</strong>:</p>
 <p>动态存储数组和 <code>bytes</code> （不是 <code>string</code> ）有一个叫 <code>push()</code> 的成员函数， 您可以用它在数组的末尾追加一个零初始化的元素。它返回一个元素的引用， 因此可以像 <code>x.push().t = 2</code> 或 <code>x.push() = b</code> 那样使用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function add(uint x) public&#123;<br>     c.push();<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p><strong>push(x)</strong>:</p>
 <p>动态存储数组和 <code>bytes</code> （不是 <code>string</code> ）有一个叫 <code>push(x)</code> 的成员函数， 您可以用它在数组的末端追加一个指定的元素。该函数不返回任何东西。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function add(uint x) public&#123;<br>	d.push(x);<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 <li><p><strong>pop()</strong>:</p>
 <p>动态存储数组和 <code>bytes</code> （不是 <code>string</code> ）有一个叫 <code>pop()</code> 的成员函数， 您可以用它来从数组的末端移除一个元素。 这也隐含地在被删除的元素上调用 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/types.html#delete">delete</a>。该函数不返回任何东西。</p>
 </li>
 </ul>
-<p><code>示例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function del() public&#123;<br>    d.pop(); //删除末尾<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>创建内存数组</strong>:具有动态长度的内存数组可以使用 <code>new</code> 操作符创建。 与存储数组不同的是，<strong>不可能</strong> 调整内存数组的大小（例如， <code>.push</code> 成员函数不可用）。 您必须事先计算出所需的大小，或者创建一个新的内存数组并复制每个元素。</p>
 <p>正如Solidity中的所有变量一样，新分配的数组元素总是以 <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/control-structures.html#default-value">默认值</a> 进行初始化。</p>
 <p><code>示例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function createMemoryArray(uint len) public view returns (uint[] memory)&#123;<br>       uint[] memory arr = new uint[](len); //创建长度为len的内存数组<br>       arr[0] = 1;<br>       arr[1] = 2;<br>       return arr;<br>   &#125;<br></code></pre></td></tr></table></figure>
 <p><strong>数组切片</strong>: <code>x[start:end]</code></p>
 <p>数组切片是对一个数组的连续部分的预览。 它们被写成 <code>x[start:end]</code>，其中 <code>start</code> 和 <code>end</code> 是表达式， 结果是uint256类型（或隐含的可转换类型）。分片的第一个元素是 <code>x[start]</code>， 最后一个元素是 <code>x[end - 1]</code>。</p>
 <p>如果 <code>start</code> 大于 <code>end</code>，或者 <code>end</code> 大于数组的长度， 就会出现异常。</p>
 <p><code>start</code> 和 <code>end</code> 都是可选的： <code>start</code> 默认为 <code>0</code>， <code>end</code> 默认为数组的长度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function get(uint[] calldata arr) public view returns (uint[] calldata)&#123;<br>      return arr[:6];<br>  &#125;<br></code></pre></td></tr></table></figure>
 <p><strong>数组元素</strong>：数组元素可以是任何类型，包括映射或结构体。 并适用于类型的一般限制，映射只能存储在 <code>storage</code> 数据位置,下面是一些特殊的数组。</p>
 <p><strong>bytes</strong></p>
 <p><code>bytes</code> 类似于 <code>bytes1[]</code>， 但它在 calldata 中会被“紧打包”（译者注：将元素连续地存在一起，不会按每 32 字节一单元的方式来存放）。</p>
@@ -512,14 +519,17 @@
 <p>函数:  <code>bytes.concat</code></p>
 <p><code>bytes.concat</code> 函数可以连接任意数量的 <code>bytes</code> 或 <code>bytes1 ... bytes32</code> 值。 该函数返回一个单一的 <code>bytes memory</code> 数组，其中包含没有填充的参数内容。 如果您想使用字符串参数或其他不能隐式转换为 <code>bytes</code> 的类型， 您需要先将它们转换为 <code>bytes</code> 或 <code>bytes1</code> /…/ <code>bytes32</code>。</p>
 <p><code>示例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs solidity">// SPDX-License-Identifier: MIT<br>pragma solidity ^0.8.0;<br>contract C&#123;<br>    bytes public Bytes = &quot;abc&quot;;<br>    bytes public Bytes2 = &quot;efg&quot;;<br>    string public s = &quot;Storage&quot;;<br>    string public d = &quot;Memory&quot;;<br>    bool public keccak = <br>    keccak256(abi.encodePacked(s)) == keccak256(abi.encodePacked(d));<br>    string public stringConcat = string.concat(s,d,string(Bytes),string(Bytes2));<br>    bytes public concatBytes = bytes.concat(Bytes,Bytes2,bytes(s),bytes(d));<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>string</strong></p>
 <p><code>string</code> 与 <code>bytes</code> 相同，但不允许用长度或索引来访问。</p>
 <p>Solidity没有字符串操作函数，但有第三方的字符串库。 可以用 <code>keccak256(abi.encodePacked(s1)) == keccak256(abi.encodePacked(s2))</code> 来比较两个字符串的keccak256-hash，用 <code>string.concat(s1, s2)</code> 来连接两个字符串。</p>
 <p>函数: <code>string.concat</code></p>
 <p>可以使用 <code>string.concat</code> 连接任意数量的 <code>string</code> 值。 该函数返回一个单一的 <code>string memory</code> 数组，其中包含没有填充的参数内容。 如果您想使用不能隐式转换为 <code>string</code> 的其他类型的参数，您需要先将它们转换为 <code>string</code>。</p>
 <p><code>示例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs solidity">// SPDX-License-Identifier: MIT<br>pragma solidity ^0.8.0;<br>contract C&#123;<br>    bytes public Bytes = &quot;abc&quot;;<br>    bytes public Bytes2 = &quot;efg&quot;;<br>    string public s = &quot;Storage&quot;;<br>    string public d = &quot;Memory&quot;;<br>    bool public keccak = <br>    keccak256(abi.encodePacked(s)) == keccak256(abi.encodePacked(d));<br>    string public stringConcat = string.concat(s,d,string(Bytes),string(Bytes2));<br>    bytes public concatBytes = bytes.concat(Bytes,Bytes2,bytes(s),bytes(d));<br>&#125;<br></code></pre></td></tr></table></figure>
 <h5 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h5><p>Solidity 支持通过结构体定义新类型。</p>
 <p><code>示例</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs solidity">// SPDX-License-Identifier: MIT<br>pragma solidity ^0.8.0;<br>contract Struct&#123;<br>    struct user&#123;<br>        string name;<br>        uint age;<br>        string email;<br>    &#125;<br>    // function add(string memory name, uint age, string memory email)<br>    // public view returns (user memory)&#123;<br>    //     user memory newUser = user(name, age, email);<br>    //     return newUser;<br>    // &#125;<br>    user user1;<br>    function add(string memory name, uint age, string memory email)<br>    external&#123;<br>        user storage newUser = user1;<br>        newUser.name =&quot;hello&quot;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h6 id="结构体的赋值和访问"><a href="#结构体的赋值和访问" class="headerlink" title="结构体的赋值和访问"></a>结构体的赋值和访问</h6><ul>
 <li><strong>存储结构体</strong>：当结构体赋值给局部变量时，并不会复制数据，而是传递引用。</li>
 <li><strong>成员访问</strong>：可以直接访问结构体的成员，例如 <code>campaigns[campaignID].amount = 0;</code>。</li>
