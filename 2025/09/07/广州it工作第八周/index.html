@@ -1,166 +1,271 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>广州it工作第八周 | zhengcookie</title><meta name="author" content="zhengcookie"><meta name="copyright" content="zhengcookie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本周核心目标： 实现从购买、种植、管理到收获的完整农场业务闭环，并完善后台管理功能。整体进展： ✅ 核心闭环成功打通！ 用户可完成购买服务 -&gt; 播种 -&gt; 日常管理（浇水） -&gt; 生成日志 -&gt; 收获 -&gt; 下单配送的全流程。后台管理功能得到显著增强。  一、 每日开发详情    日期 核心工作 关键产出与细节     周一 后端服务开发 ✅ 下单服务：完成接收、处">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhengcookie">
+  <meta name="keywords" content="zhengcookie,blog,个人博客,技术分享">
+  
+    <meta name="description" content="本周核心目标： 实现从购买、种植、管理到收获的完整农场业务闭环，并完善后台管理功能。整体进展： ✅ 核心闭环成功打通！ 用户可完成购买服务 -&gt; 播种 -&gt; 日常管理（浇水） -&gt; 生成日志 -&gt; 收获 -&gt; 下单配送的全流程。后台管理功能得到显著增强。  一、 每日开发详情    日期 核心工作 关键产出与细节     周一 后端服务开发 ✅ 下单服务：完成接收、处">
 <meta property="og:type" content="article">
 <meta property="og:title" content="广州it工作第八周">
 <meta property="og:url" content="https://www.zhengcookie.site/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/index.html">
 <meta property="og:site_name" content="zhengcookie">
 <meta property="og:description" content="本周核心目标： 实现从购买、种植、管理到收获的完整农场业务闭环，并完善后台管理功能。整体进展： ✅ 核心闭环成功打通！ 用户可完成购买服务 -&gt; 播种 -&gt; 日常管理（浇水） -&gt; 生成日志 -&gt; 收获 -&gt; 下单配送的全流程。后台管理功能得到显著增强。  一、 每日开发详情    日期 核心工作 关键产出与细节     周一 后端服务开发 ✅ 下单服务：完成接收、处">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.zhengcookie.site/img/ReiAyanami.png">
 <meta property="article:published_time" content="2025-09-07T12:22:49.000Z">
 <meta property="article:modified_time" content="2025-10-01T04:54:48.543Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="工作">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.zhengcookie.site/img/ReiAyanami.png"><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "广州it工作第八周",
-  "url": "https://www.zhengcookie.site/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/",
-  "image": "https://www.zhengcookie.site/img/ReiAyanami.png",
-  "datePublished": "2025-09-07T12:22:49.000Z",
-  "dateModified": "2025-10-01T04:54:48.543Z",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "zhengcookie",
-      "url": "https://www.zhengcookie.site/"
-    }
-  ]
-}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.zhengcookie.site/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="codeva-fVYv9VWvzQ"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
-    (() => {
-      
-    const saveToLocal = {
-      set: (key, value, ttl) => {
-        if (!ttl) return
-        const expiry = Date.now() + ttl * 86400000
-        localStorage.setItem(key, JSON.stringify({ value, expiry }))
-      },
-      get: key => {
-        const itemStr = localStorage.getItem(key)
-        if (!itemStr) return undefined
-        const { value, expiry } = JSON.parse(itemStr)
-        if (Date.now() > expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return value
-      }
-    }
-
-    window.btf = {
-      saveToLocal,
-      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-        script.onload = script.onreadystatechange = () => {
-          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
-        }
-        script.onerror = reject
-        document.head.appendChild(script)
-      }),
-      getCSS: (url, id) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onload = link.onreadystatechange = () => {
-          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
-        }
-        link.onerror = reject
-        document.head.appendChild(link)
-      }),
-      addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
-        const globalFn = parent.globalFn || {}
-        globalFn[key] = globalFn[key] || {}
-        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-        parent.globalFn = globalFn
-      }
-    }
+<meta name="twitter:card" content="summary_large_image">
   
-      
-      const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
+  
+  
+  <title>广州it工作第八周 - zhengcookie</title>
 
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-      const theme = saveToLocal.get('theme')
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.zhengcookie.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
     
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                
+                <span>archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                
+                <span>categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                
+                <span>tags</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="广州it工作第八周"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-07 20:22" pubdate>
+          2025年9月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
       
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
-      }
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
     
       
-    const detectApple = () => {
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-  
-    })()
-  </script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
-  translate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
-  copy: {
-    success: '复制成功',
-    error: '复制失败',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
-    buttonText: '加载更多'
-  },
-  isPhotoFigcaption: false,
-  islazyloadPlugin: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '广州it工作第八周',
-  isHighlightShrink: false,
-  isToc: true,
-  pageType: 'post'
-}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/ReiAyanami.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">zhengcookie</span></a><a class="nav-page-title" href="/"><span class="site-name">广州it工作第八周</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">广州it工作第八周</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-07T12:22:49.000Z" title="发表于 2025-09-07 20:22:49">2025-09-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-10-01T04:54:48.543Z" title="更新于 2025-10-01 12:54:48">2025-10-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/">工作心得</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>本周核心目标：</strong> 实现从购买、种植、管理到收获的完整农场业务闭环，并完善后台管理功能。<br><strong>整体进展：</strong> ✅ <strong>核心闭环成功打通！</strong> 用户可完成<code>购买服务</code> -&gt; <code>播种</code> -&gt; <code>日常管理（浇水）</code> -&gt; <code>生成日志</code> -&gt; <code>收获</code> -&gt; <code>下单配送</code>的全流程。后台管理功能得到显著增强。</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">广州it工作第八周</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><strong>本周核心目标：</strong> 实现从购买、种植、管理到收获的完整农场业务闭环，并完善后台管理功能。<br><strong>整体进展：</strong> ✅ <strong>核心闭环成功打通！</strong> 用户可完成<code>购买服务</code> -&gt; <code>播种</code> -&gt; <code>日常管理（浇水）</code> -&gt; <code>生成日志</code> -&gt; <code>收获</code> -&gt; <code>下单配送</code>的全流程。后台管理功能得到显著增强。</p>
 <hr>
 <h3 id="一、-每日开发详情"><a href="#一、-每日开发详情" class="headerlink" title="一、 每日开发详情"></a>一、 每日开发详情</h3><div class="table-container">
 <table>
@@ -285,4 +390,373 @@
 </ul>
 </li>
 </ol>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site">zhengcookie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://www.zhengcookie.site/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/">https://www.zhengcookie.site/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://www.zhengcookie.site" target="_blank">zhengcookie</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B7%A5%E4%BD%9C/">工作</a></div><div class="post-share"><div class="social-share" data-image="/img/ReiAyanami.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周"><img class="cover" src="/img/Cyrene.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">广州it工作第七周</div></div><div class="info-2"><div class="info-item-1">周一：农场服务前端界面实现完成工作：    实现托管服务操作流程：点击托管→选择种植物→确认收获→判断收获方式。   搭建基础农场前端界面，完成用户交互逻辑。    遇到的问题：    收获方式判断逻辑需与后端土地状态同步（未实时更新）。    解决方式：    添加前端定时查询地块状态，确保数据一致性。     周二：订单生成与支付界面优化完成工作：    对接托管服务订单接口（/orders/service），生成订单并关联用户与地块数据。   优化支付界面样式，使其更简洁清晰，支持后续扩展托管服务类型。   实现土地及托管服务数据存储，支持详细查询。    遇到的问题：    支付界面在不同设备上显示错位（移动端适配问题）。    解决方式：    使用响应式布局（CSS Flexbox+Media Query）快速修复。     周三：扩展购买与播种功能完成工作：    扩展托管服务购买功能（接口：/farm/service/package/purchase）。   实现种子播种功能（接口：/farm/plant）并关联地块数据（接口：/farm/plots）。 ...</div></div></div></a><a class="pagination-related" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周"><img class="cover" src="/img/Charlotte.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">广州it工作第九周</div></div><div class="info-2"><div class="info-item-1">一、工作内容与成果本周围绕农场相关系统的优化、功能扩展及上线展开工作，具体内容与成果如下： （一）周一：后台界面优化工作  本地存储数据安全优化：针对后台界面，移除了通过 storage 本地存储模拟操作数据的方式。此优化有效避免了操作数据在本地透明可见的问题，提升了数据传输与存储的安全性，降低了数据被篡改或泄露的风险。  核心业务逻辑调整：重点调整了后台作物管理与日志操作的核心逻辑。优化后，系统能够精准匹配对应地块的种子信息，确保作物数据与地块信息的关联性；同时，日志信息也能与具体操作场景、地块及作物数据准确对应，提升了后台数据管理的准确性与可读性，为后续数据查询与分析奠定基础。   （二）周二：作物日志功能扩展  操作频次管控实现：为规范作物日志记录，新增作物日志每日操作限制规则，设定每种操作每日最多记录两次。该规则有效避免了日志数据冗余，保证了日志信息的简洁性与有效性，同时也符合农场日常运营中对作物操作的合理频次需求。  日志生命周期管理：完善作物日志的生命周期逻辑，实现 “收获后自动删除日志，后续重新操作时添加新日志”...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周"><img class="cover" src="/img/Cyrene.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-30</div><div class="info-item-2">广州it工作第七周</div></div><div class="info-2"><div class="info-item-1">周一：农场服务前端界面实现完成工作：    实现托管服务操作流程：点击托管→选择种植物→确认收获→判断收获方式。   搭建基础农场前端界面，完成用户交互逻辑。    遇到的问题：    收获方式判断逻辑需与后端土地状态同步（未实时更新）。    解决方式：    添加前端定时查询地块状态，确保数据一致性。     周二：订单生成与支付界面优化完成工作：    对接托管服务订单接口（/orders/service），生成订单并关联用户与地块数据。   优化支付界面样式，使其更简洁清晰，支持后续扩展托管服务类型。   实现土地及托管服务数据存储，支持详细查询。    遇到的问题：    支付界面在不同设备上显示错位（移动端适配问题）。    解决方式：    使用响应式布局（CSS Flexbox+Media Query）快速修复。     周三：扩展购买与播种功能完成工作：    扩展托管服务购买功能（接口：/farm/service/package/purchase）。   实现种子播种功能（接口：/farm/plant）并关联地块数据（接口：/farm/plots）。 ...</div></div></div></a><a class="pagination-related" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周"><img class="cover" src="/img/Charlotte.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-13</div><div class="info-item-2">广州it工作第九周</div></div><div class="info-2"><div class="info-item-1">一、工作内容与成果本周围绕农场相关系统的优化、功能扩展及上线展开工作，具体内容与成果如下： （一）周一：后台界面优化工作  本地存储数据安全优化：针对后台界面，移除了通过 storage 本地存储模拟操作数据的方式。此优化有效避免了操作数据在本地透明可见的问题，提升了数据传输与存储的安全性，降低了数据被篡改或泄露的风险。  核心业务逻辑调整：重点调整了后台作物管理与日志操作的核心逻辑。优化后，系统能够精准匹配对应地块的种子信息，确保作物数据与地块信息的关联性；同时，日志信息也能与具体操作场景、地块及作物数据准确对应，提升了后台数据管理的准确性与可读性，为后续数据查询与分析奠定基础。   （二）周二：作物日志功能扩展  操作频次管控实现：为规范作物日志记录，新增作物日志每日操作限制规则，设定每种操作每日最多记录两次。该规则有效避免了日志数据冗余，保证了日志信息的简洁性与有效性，同时也符合农场日常运营中对作物操作的合理频次需求。  日志生命周期管理：完善作物日志的生命周期逻辑，实现 “收获后自动删除日志，后续重新操作时添加新日志”...</div></div></div></a><a class="pagination-related" href="/2025/08/17/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%BA%94%E5%91%A8/" title="广州it工作第五周"><img class="cover" src="/img/yangyuhuang.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-17</div><div class="info-item-2">广州it工作第五周</div></div><div class="info-2"><div class="info-item-1">     日期 核心工作 关键产出     周一 后台系统技术选型与架构设计 ✅ 选定 若依框架 搭建后台管理系统✅ 完成 功能模块划分 及技术文档输出   周二 用户管理模块开发 ✅ 实现用户信息 增删改查（CRUD） 全功能   周三 核心业务模块开发 ✅ 完成 订单管理 业务流程设计✅ 落地 土地管理 CRUD 核心逻辑   周四 技术方案优化与问题修复 ✅ 验证 微信云开发 替代方案可行性✅ 修复 图片上传异常 Bug（改用云存储+路径映射）   周五 混合架构设计与规划 ✅ 制定 MySQL + 云数据库混合方案✅ 参与 后续原型扩展 技术讨论      关键亮点说明： 技术选型：    选择 若依框架 → 节省60%基础模块开发时间   放弃纯云开发 → 因 MySQL业务兼容性 不足     架构突破：   12345graph LRA[微信小程序] --&gt; B&#123;云存储&#125;A --&gt; C[自建服务器]B --&gt; D[图片/文件]C --&gt; E[MySQL业务库] 混合架构价值：静态资源云化减压，核心数据自主可控 ...</div></div></div></a><a class="pagination-related" href="/2025/08/10/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%9B%9B%E5%91%A8/" title="广州it工作第四周"><img class="cover" src="/img/violet.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-10</div><div class="info-item-2">广州it工作第四周</div></div><div class="info-2"><div class="info-item-1">周一：    完成租地功能：设计租赁信息表，JWT鉴权后创建租赁记录。   注意点： 补充了状态字段设计。  周二：    构建订单系统：创建订单主表及详情表，实现：   JWT用户订单查询   多状态分类（待支付/待发货等）   PageHelper分页（&gt;10自动分页，加载页面缓存进度）     遗留问题： 订单号长度仅20位（需32位）。  周三：    订单详情增强：调用土地接口展示租赁地块信息。   前端隐患：this.orderInfo.items[0] 强耦合数据绑定。    周四：    订单状态管理：实现增删改查及状态流转（如取消订单同步释放土地）。   优化： 采用状态模式替代if-else链。    周五：    支付功能受阻：   致命问题： 后端未配置HTTPS（微信支付强制要求）   设计缺陷： 订单号长度不符支付接口规范（20位≠32位）     转向： 启动手机号验证方案研究。    周六：    微信验证困局：   手机号快速验证失败（需企业认证）   getUserProfile仅获取基础信息（头像/昵称） ...</div></div></div></a><a class="pagination-related" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周"><img class="cover" src="/img/Castorice.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-25</div><div class="info-item-2">广州it工作第六周</div></div><div class="info-2"><div class="info-item-1">本周核心目标： 实现小程序核心交易与农场种植闭环（支付功能 + 农场后端服务）整体进展： ✅ 成功打通HTTPS部署 -&gt; 微信支付 -&gt; 农场种植全链路，项目进入可演示阶段。  一、 每日工作记录    日期 核心工作 关键产出与细节     周一 HTTPS服务配置 ✅ 前端：使用Nginx配置SSL证书，实现小程序前端页面的HTTPS安全访问。✅ 后端：在SpringBoot中配置SSL证书，使后端API支持HTTPS请求，为微信支付等安全接口打下基础。   周二 微信支付集成 ✅ 集成微信支付V2版，完成下单、回调等核心流程开发。✅ 使用内网穿透工具模拟支付环境，初步测试通过。⚠️ 待办：退款功能暂未实现。   周三 问题修复与设计 ✅ 修复支付Bug：深入分析并解决了官方文档中提及的“订单重复”问题，优化为首次统一下单、后续调用jsapi的稳定流程。✅ 数据库设计：为农场托管功能设计了farms（田地）、crops（种子）、farmManagers（农场管家）三张核心表，明确通过JWT鉴权来隔离用户数据。   周四 农场服务开发 ✅...</div></div></div></a><a class="pagination-related" href="/2025/08/02/%E5%B9%BF%E6%BC%82%E7%A0%81%E5%86%9C%E7%AC%AC%E4%B8%89%E5%91%A8/" title="广漂码农第三周"><img class="cover" src="/img/ningguang.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-02</div><div class="info-item-2">广漂码农第三周</div></div><div class="info-2"><div class="info-item-1">核心目标： 独立搭建农场小程序的订单系统（包括后台接口、前端页面和数据库）。 本周主要进展：  项目启动与基础搭建 (周一)：  用开发工具创建了小程序项目框架。 首页： 实现了图片热区点击跳转（用绝对定位精确定位点击区域，uni.switchTab跳转底部菜单页）。 公告栏： 暂时留空。 我的农场： 开始设计核心玩法（比如种植收获逻辑）。 个人中心： 画好了页面布局。 图片上传到图床，减小小程序安装包体积。   界面优化与农场互动 (周二)：  首页： 用媒体查询让页面在不同尺寸手机上都好看（响应式布局）。 我的农场： 用Grid网格布局做了9块整齐的地块。点击地块能弹出操作图片（比如选择种子）。 个人中心： 本想做微信一键登录（获取手机号），但个人小程序权限不够。改用方案：用户授权获取微信头像和昵称绑定账号，登录成功后服务器返回一个token（身份令牌）存起来，代表用户已登录。   新增功能模块 (周三)：  首页： 加了“马克农场”入口，点击后跳转新页面（用uni.navigateTo页面跳转）。 个人中心： 增加了“设置”页面，可以修改个人信息。   核心登录功能实现...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">zhengcookie</div><div class="author-info-description">欢迎来到zhengcookie的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zhengcookie"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/zhengcookie" target="_blank" title="Github"><i class="fab fa-github" style="color: #hdhfbb;"></i></a><a class="social-icon" href="/z2132085753@outlook.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%AF%8F%E6%97%A5%E5%BC%80%E5%8F%91%E8%AF%A6%E6%83%85"><span class="toc-number">1.</span> <span class="toc-text">一、 每日开发详情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%A0%B8%E5%BF%83%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E4%B8%8E%E9%80%BB%E8%BE%91-%E6%9C%AC%E5%91%A8%E9%87%8D%E5%A4%A7%E8%BF%9B%E5%B1%95"><span class="toc-number">2.</span> <span class="toc-text">二、 核心业务流程与逻辑 (本周重大进展)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E5%BE%85%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E4%B8%8B%E5%91%A8%E8%AE%A1%E5%88%92"><span class="toc-number">3.</span> <span class="toc-text">三、 待解决的问题与下周计划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E6%9C%AC%E5%91%A8%E5%B7%A5%E4%BD%9C%E5%9B%9E%E9%A1%BE%EF%BC%9A%E6%A0%B8%E5%BF%83%E4%B8%9A%E5%8A%A1%E9%97%AD%E7%8E%AF%E5%85%A8%E9%9D%A2%E6%89%93%E9%80%9A"><span class="toc-number">4.</span> <span class="toc-text">四、 本周工作回顾：核心业务闭环全面打通</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E9%97%AE%E9%A2%98%E4%B8%8E%E5%8F%8D%E6%80%9D%EF%BC%9A%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E4%B8%8E%E7%BB%86%E8%8A%82%E5%A4%84%E7%90%86%E9%9C%80%E6%8C%81%E7%BB%AD%E6%89%93%E7%A3%A8"><span class="toc-number">5.</span> <span class="toc-text">五、 问题与反思：技术方案与细节处理需持续打磨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E4%B8%8B%E5%91%A8%E8%AE%A1%E5%88%92%EF%BC%9A%E8%A7%A3%E5%86%B3%E9%81%97%E7%95%99%E9%97%AE%E9%A2%98%EF%BC%8C%E6%8E%A8%E8%BF%9B%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E4%B8%8E%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text">六、 下周计划：解决遗留问题，推进系统集成与优化</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/10/19/Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity智能合约零基础入门"><img src="/img/shenhe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Solidity智能合约零基础入门"/></a><div class="content"><a class="title" href="/2025/10/19/Solidity%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" title="Solidity智能合约零基础入门">Solidity智能合约零基础入门</a><time datetime="2025-10-19T14:17:53.000Z" title="发表于 2025-10-19 22:17:53">2025-10-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周"><img src="/img/Charlotte.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第九周"/></a><div class="content"><a class="title" href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周">广州it工作第九周</a><time datetime="2025-09-13T08:16:54.000Z" title="发表于 2025-09-13 16:16:54">2025-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/" title="广州it工作第八周"><img src="/img/ReiAyanami.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第八周"/></a><div class="content"><a class="title" href="/2025/09/07/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AB%E5%91%A8/" title="广州it工作第八周">广州it工作第八周</a><time datetime="2025-09-07T12:22:49.000Z" title="发表于 2025-09-07 20:22:49">2025-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周"><img src="/img/Cyrene.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第七周"/></a><div class="content"><a class="title" href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周">广州it工作第七周</a><time datetime="2025-08-30T11:18:00.000Z" title="发表于 2025-08-30 19:18:00">2025-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周"><img src="/img/Castorice.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="广州it工作第六周"/></a><div class="content"><a class="title" href="/2025/08/25/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E5%85%AD%E5%91%A8/" title="广州it工作第六周">广州it工作第六周</a><time datetime="2025-08-25T15:01:50.000Z" title="发表于 2025-08-25 23:01:50">2025-08-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By zhengcookie</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E4%BD%9C%E5%BF%83%E5%BE%97/" class="category-chain-item">工作心得</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B7%A5%E4%BD%9C/" class="print-no-link">#工作</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>广州it工作第八周</div>
+      <div>https://www.zhengcookie.site/2025/09/07/广州it工作第八周/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhengcookie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/13/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B9%9D%E5%91%A8/" title="广州it工作第九周">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">广州it工作第九周</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/30/%E5%B9%BF%E5%B7%9Eit%E5%B7%A5%E4%BD%9C%E7%AC%AC%E4%B8%83%E5%91%A8/" title="广州it工作第七周">
+                        <span class="hidden-mobile">广州it工作第七周</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
