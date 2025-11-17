@@ -633,22 +633,22 @@
   
   
   <entry>
-    <title>tags</title>
+    <title>link</title>
     <link href="/"/>
     <url>/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<hr>]]></content>
     
   </entry>
   
   
   
   <entry>
-    <title>link</title>
+    <title>tags</title>
     <link href="/"/>
     <url>/</url>
     
-    <content type="html"><![CDATA[<hr>]]></content>
+    <content type="html"><![CDATA[]]></content>
     
   </entry>
   
