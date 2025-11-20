@@ -27,7 +27,7 @@
 <meta property="og:description" content="课程安排模块一：启程 - 区块链与智能合约概念比特币 vs 以太坊：为什么需要智能合约？ 比特币 vs 以太坊：为什么需要智能合约？比特币作为区块链技术的第一个成功应用，开创了去中心化数字货币的先河。它的核心功能是提供一种安全、透明且不可篡改的价值转移方式。然而，比特币的设计初衷是专注于支付和存储价值，其脚本语言（Script）虽然具有一定的可编程性，但功能较为有限，无法支持复杂的逻辑操作。相比之">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-19T14:17:53.000Z">
-<meta property="article:modified_time" content="2025-11-14T10:26:59.537Z">
+<meta property="article:modified_time" content="2025-11-20T10:04:54.950Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="区块链智能合约语法">
 <meta name="twitter:card" content="summary_large_image">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.2k 字
+          5.6k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          44 分钟
+          47 分钟
         
       </span>
     
@@ -536,8 +536,27 @@
 <li><strong>存储结构体</strong>：当结构体赋值给局部变量时，并不会复制数据，而是传递引用。</li>
 <li><strong>成员访问</strong>：可以直接访问结构体的成员，例如 <code>campaigns[campaignID].amount = 0;</code>。</li>
 </ul>
-<hr>
-<p>通过理解数据位置、数组和结构体的使用，可以在 Solidity 编程中更有效地管理内存和存储，从而提高合约的性能和安全性。</p>
+<h4 id="映射类型"><a href="#映射类型" class="headerlink" title="映射类型"></a>映射类型</h4><p>在映射中，人们可以通过键（<code>Key</code>）来查询对应的值（<code>Value</code>），比如：通过一个人的<code>id</code>来查询他的钱包地址。</p>
+<p>声明映射的格式为<code>mapping(_KeyType =&gt; _ValueType)</code>，其中<code>_KeyType</code>和<code>_ValueType</code>分别是<code>Key</code>和<code>Value</code>的变量类型。例子：</p>
+<h5 id="映射的规则"><a href="#映射的规则" class="headerlink" title="映射的规则"></a>映射的规则</h5><p><strong>规则1</strong>：映射的<code>_KeyType</code>只能选择Solidity内置的值类型，比如<code>uint</code>，<code>address</code>等，不能用自定义的结构体。而<code>_ValueType</code>可以使用自定义的类型。下面这个例子会报错，因为<code>_KeyType</code>使用了我们自定义的结构体：</p>
+<p><strong>规则2</strong>：映射的存储位置必须是<code>storage</code>，因此可以用于合约的状态变量，函数中的<code>storage</code>变量和library函数的参数（见<a target="_blank" rel="noopener" href="https://github.com/ethereum/solidity/issues/4635">例子</a>）。不能用于<code>public</code>函数的参数或返回结果中，因为<code>mapping</code>记录的是一种关系 (key - value pair)。</p>
+<p><strong>规则3</strong>：如果映射声明为<code>public</code>，那么Solidity会自动给你创建一个<code>getter</code>函数，可以通过<code>Key</code>来查询对应的<code>Value</code>。</p>
+<p><strong>规则4</strong>：给映射新增的键值对的语法为<code>_Var[_Key] = _Value</code>，其中<code>_Var</code>是映射变量名，<code>_Key</code>和<code>_Value</code>对应新增的键值对。例子：</p>
+<h5 id="映射的原理"><a href="#映射的原理" class="headerlink" title="映射的原理"></a>映射的原理</h5><p><strong>原理1</strong>: 映射不储存任何键（<code>Key</code>）的资讯，也没有length的资讯。</p>
+<p><strong>原理2</strong>: 对于映射使用<code>keccak256(h(key) . slot)</code>计算存取value的位置。<a target="_blank" rel="noopener" href="https://github.com/WTFAcademy/WTF-Solidity-Internals/tree/master/tutorials/02_MappingStorage">https://github.com/WTFAcademy/WTF-Solidity-Internals/tree/master/tutorials/02_MappingStorage</a>)</p>
+<p><strong>原理3</strong>: 因为Ethereum会定义所有未使用的空间为0，所以未赋值（<code>Value</code>）的键（<code>Key</code>）初始值都是各个type的默认值，如uint的默认值是0。</p>
+<h5 id="在Remix上验证-以-Mapping-sol为例"><a href="#在Remix上验证-以-Mapping-sol为例" class="headerlink" title="在Remix上验证 (以 Mapping.sol为例)"></a>在Remix上验证 (以 <code>Mapping.sol</code>为例)</h5><ul>
+<li><p>映射示例 1 部署</p>
+</li>
+</ul>
+<ul>
+<li><p>映射示例 2 初始值</p>
+</li>
+</ul>
+<ul>
+<li><p>映射示例 3 key-value pair</p>
+</li>
+</ul>
 <h1 id="模块三：核心概念与实战"><a href="#模块三：核心概念与实战" class="headerlink" title="模块三：核心概念与实战"></a>模块三：核心概念与实战</h1><h2 id=""><a href="#" class="headerlink" title=" "></a> </h2><p>以太坊单位与地址。</p>
 <p>支付与提现（payable, send, call）。</p>
 <p>错误处理（require, assert, revert）。</p>
