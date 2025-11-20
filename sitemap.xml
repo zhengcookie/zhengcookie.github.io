@@ -254,13 +254,6 @@
 
   
   <url>
-    <loc>https://www.zhengcookie.site/tags/css/</loc>
-    <lastmod>2025-11-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.zhengcookie.site/tags/html/</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -275,7 +268,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/tags/vue/</loc>
+    <loc>https://www.zhengcookie.site/tags/css/</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -297,6 +290,13 @@
   
   <url>
     <loc>https://www.zhengcookie.site/tags/javascript/</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zhengcookie.site/tags/vue/</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
