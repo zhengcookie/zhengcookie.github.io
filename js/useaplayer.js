@@ -12,6 +12,25 @@ function initPlayer() {
                     url: 'http://music.163.com/song/media/outer/url?id=2719626532.mp3',
                     cover: 'https://p2.music.126.net/HfwxTYIDNxgZNa-w4r6fmg==/109951170835101706.jpg?param=90y90',
                 },
+                {
+                    name: "Heal The World",
+                    artist: "Michael Jackson",
+                    url: "http://music.163.com/song/media/outer/url?id=21177655.mp3",
+                    cover: "https://p1.music.126.net/R9da4JvRAhwM3JWfNegySg==/632219185982051.jpg?param=90y90",
+
+                },
+                {
+                    name:"The Lady in My Life",
+                    artist:"Michael Jackson",
+                    url:"http://music.163.com/song/media/outer/url?id=21178265.mp3",
+                    cover:"https://p2.music.126.net/U7pqYhbbgxjPx1NYUGOGQQ==/109951165958551789.jpg?param=90y90",
+                },
+                {
+                    name:"you are not alone",
+                    artist:"Michael Jackson",
+                    url:"http://music.163.com/song/media/outer/url?id=27674443.mp3",
+                    cover:"https://p2.music.126.net/1d4ohVbbsL6sPLBVNF8xtA==/6636652185905875.jpg?param=90y90",
+                }
             ]
         });
     }
