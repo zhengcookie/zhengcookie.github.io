@@ -44,7 +44,7 @@ function initPlayer() {
                     cover:"https://p2.music.126.net/PpasATnY_8tvtkHAjNQMcg==/109951163016449902.jpg?param=90y90",
                 },
                 {
-                    name:"Merry Christmas Mr. Lawrence",
+                    name:"Merry Christmas Mr.Lawrence",
                     artist:"坂本龙一",
                     url:"http://music.163.com/song/media/outer/url?id=4899152.mp3",
                     cover:"https://p2.music.126.net/woiqainQI-orV_RuUuOVRw==/716881581353216.jpg?param=90y90",
