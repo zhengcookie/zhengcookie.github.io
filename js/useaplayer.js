@@ -36,13 +36,25 @@ function initPlayer() {
                     artist:"Michael Jackson",
                     url:"http://music.163.com/song/media/outer/url?id=27505451.mp3",
                     cover:"https://p2.music.126.net/nGFJF1DBUNUSvGHLkub8YQ==/2535473814012575.jpg?param=90y90",
-                }
+                },
                 {
                     name:"Man In The Mirror",
                     artist:"Michael Jackson",
                     url:"http://music.163.com/song/media/outer/url?id=1699483.mp3",
                     cover:"https://p2.music.126.net/PpasATnY_8tvtkHAjNQMcg==/109951163016449902.jpg?param=90y90",
+                },
+                {
+                    name:"Merry Christmas Mr. Lawrence",
+                    artist:"坂本龙一",
+                    url:"http://music.163.com/song/media/outer/url?id=4899152.mp3",
+                    cover:"https://p2.music.126.net/woiqainQI-orV_RuUuOVRw==/716881581353216.jpg?param=90y90",
+                },
+                {
+                    name:"起风了",
+                    url:"http://music.163.com/song/media/outer/url?id=2636494144.mp3",
+                    cover:"https://p2.music.126.net/f7wiHSPvn1__HRyi4cM1eg==/109951167976855462.jpg?param=90y90",
                 }
+
             ]
         });
     }
