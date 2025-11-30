@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/1763632090332-1f40dddf-c031-4692-8317-b15bc0d2d49e.jpeg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/1763632088903-2bf9034a-c080-4d04-a18e-5cef2ce4ae1d.jpeg">
 <meta property="article:published_time" content="2025-11-30T09:26:22.000Z">
-<meta property="article:modified_time" content="2025-11-30T09:40:06.275Z">
+<meta property="article:modified_time" content="2025-11-30T10:22:13.579Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="区块链智能合约语法">
 <meta name="twitter:card" content="summary_large_image">
@@ -242,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.2k 字
+          5k 字
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
         
-          35 分钟
+          42 分钟
         
       </span>
     
@@ -482,6 +482,163 @@
 <p><img src="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/1763632090332-1f40dddf-c031-4692-8317-b15bc0d2d49e.jpeg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>映射示例 3 key-value pair</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/1763632088903-2bf9034a-c080-4d04-a18e-5cef2ce4ae1d.jpeg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p>在Solidity智能合约中，以下是一些常见运算符的简要说明和示例：</p>
+<h5 id="三元运算符："><a href="#三元运算符：" class="headerlink" title="三元运算符："></a><strong>三元运算符</strong>：</h5><p>允许根据条件表达式选择执行两个表达式之一。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">uint a = 10; <br>uint b = 20; <br>uint max = (a &gt; b) ? a : b; // max 等于 a 和 b 中的较大者<br></code></pre></td></tr></table></figure>
+<h5 id="复合赋值运算符："><a href="#复合赋值运算符：" class="headerlink" title="复合赋值运算符："></a><strong>复合赋值运算符</strong>：</h5><p>用于简洁地对变量进行更新。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs solidity">uint x = 10; <br>x += 5; // 等同于 x = x + 5;<br></code></pre></td></tr></table></figure>
+<h5 id="增量-减量运算符："><a href="#增量-减量运算符：" class="headerlink" title="增量/减量运算符："></a><strong>增量/减量运算符</strong>：</h5><p>用于快速增加或减少变量的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">uint i = 5; <br>i++; // i 现在是 6<br>++i; // i 现在是 7<br></code></pre></td></tr></table></figure>
+<h5 id="删除运算符"><a href="#删除运算符" class="headerlink" title="删除运算符"></a>删除运算符</h5><p>在Solidity中是存在 <code>delete</code> 运算符的。使用 <code>delete</code> 可以将变量设置为其类型的默认值。对于简单类型，如 <code>uint</code> 或 <code>int</code>，默认值是 <code>0</code>；对于数组，<code>delete</code> 会使数组的所有元素被置为默认值；对于结构体，它将重置结构体中的所有成员变量为它们的默认值。<br>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs solidity">pragma solidity ^0.8.0;<br>contract DeleteExample &#123;<br>    uint public x;<br>    uint[] public array;<br>    struct S &#123; uint a; uint[] b; &#125;<br>    S public s;<br>    function f() public &#123;<br>        x = 5;<br>        delete x; // 将 x 设置为 0<br>        assert(x == 0);<br>        array.push(1);<br>        array.push(2);<br>        delete array[1]; // 将 array[1] 设置为 0，但 array 的长度仍然是 2<br>        assert(array.length == 2);<br>        assert(array[0] == 1);<br>        assert(array[1] == 0);<br>        // delete 也可以用来重置结构体<br>        s.a = 5;<br>        s.b.push(1);<br>        delete s; // 将 s 设置为 S 的默认值，即 s.a 为 0 和 s.b 为空数组<br>        assert(s.a == 0);<br>        assert(s.b.length == 0);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>请注意，<code>delete</code> 对于动态数组只会将特定索引处的元素重置为默认值，并不会改变数组的长度。而对于静态数组，<code>delete</code> 将会重置整个数组为默认值。对于映射（mapping），<code>delete</code> 会使特定的键对应的值被移除。对于复杂类型的数组或映射，<code>delete</code> 不会递归删除内部元素，只会将它们设置为默认值。</p>
+<h5 id="运算符优先顺序："><a href="#运算符优先顺序：" class="headerlink" title="运算符优先顺序："></a><strong>运算符优先顺序</strong>：</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>描述</th>
+<th>操作符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>1</em></td>
+<td>后置自增和自减</td>
+<td><code>++</code>， <code>--</code></td>
+</tr>
+<tr>
+<td></td>
+<td>创建类型实例</td>
+<td><code>new &lt;类型名&gt;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>数组元素</td>
+<td><code>&lt;数组&gt;[&lt;索引&gt;]</code></td>
+</tr>
+<tr>
+<td></td>
+<td>访问成员</td>
+<td><code>&lt;对象&gt;.&lt;成员名&gt;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>函数调用</td>
+<td><code>&lt;函数&gt;(&lt;参数...&gt;)</code></td>
+</tr>
+<tr>
+<td></td>
+<td>小括号</td>
+<td><code>(&lt;表达式&gt;)</code></td>
+</tr>
+<tr>
+<td><em>2</em></td>
+<td>前置自增和自减</td>
+<td><code>++</code>， <code>--</code></td>
+</tr>
+<tr>
+<td></td>
+<td>一元运算减</td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td></td>
+<td>一元操作符</td>
+<td><code>delete</code></td>
+</tr>
+<tr>
+<td></td>
+<td>逻辑非</td>
+<td><code>!</code></td>
+</tr>
+<tr>
+<td></td>
+<td>按位非</td>
+<td><code>~</code></td>
+</tr>
+<tr>
+<td><em>3</em></td>
+<td>乘方</td>
+<td><code>**</code></td>
+</tr>
+<tr>
+<td><em>4</em></td>
+<td>乘、除和模运算</td>
+<td><code>*</code>， <code>/</code>， <code>%</code></td>
+</tr>
+<tr>
+<td><em>5</em></td>
+<td>算术加和减</td>
+<td><code>+</code>， <code>-</code></td>
+</tr>
+<tr>
+<td><em>6</em></td>
+<td>移位操作符</td>
+<td><code>&lt;&lt;</code>， <code>&gt;&gt;</code></td>
+</tr>
+<tr>
+<td><em>7</em></td>
+<td>按位与</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td><em>8</em></td>
+<td>按位异或</td>
+<td><code>^</code></td>
+</tr>
+<tr>
+<td><em>9</em></td>
+<td>按位或</td>
+<td>`</td>
+<td>`</td>
+</tr>
+<tr>
+<td><em>10</em></td>
+<td>非等操作符</td>
+<td><code>&lt;</code>， <code>&gt;</code>， <code>&lt;=</code>， <code>&gt;=</code></td>
+</tr>
+<tr>
+<td><em>11</em></td>
+<td>等于操作符</td>
+<td><code>==</code>， <code>!=</code></td>
+</tr>
+<tr>
+<td><em>12</em></td>
+<td>逻辑与</td>
+<td><code>&amp;&amp;</code></td>
+</tr>
+<tr>
+<td><em>13</em></td>
+<td>逻辑或</td>
+<td><code>==</code></td>
+</tr>
+<tr>
+<td><em>14</em></td>
+<td>三元操作符</td>
+<td><code>&lt;判断条件&gt; ? &lt;如果为真时执行的表达式&gt; : &lt;如果为假时执行的表达式&gt;</code></td>
+</tr>
+<tr>
+<td></td>
+<td>赋值操作符</td>
+<td><code>=</code>， `</td>
+<td>=<code>，</code>^=<code>，</code>&amp;=<code>，</code>&lt;&lt;=<code>，</code>&gt;&gt;=<code>，</code>+=<code>，</code>-=<code>，</code>*=<code>，</code>/=<code>，</code>%=`</td>
+</tr>
+<tr>
+<td><em>15</em></td>
+<td>逗号</td>
+<td><code>,</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>运算符按照特定的优先级进行求值，例如：</p>
+<ul>
+<li><code>*</code>、<code>/</code>、<code>%</code>（乘、除、取余）具有高于<code>+</code>、<code>-</code>（加、减）的优先级。</li>
+<li><code>&amp;&amp;</code>（逻辑与）的优先级高于<code>||</code>（逻辑或）。</li>
+<li>使用括号<code>()</code>可以改变默认的优先级。<br>下面是一个运算符优先级的例子：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs solidity">uint a = 2; <br>uint b = 3; <br>uint c = 4; <br>uint result = a + b * c; // 结果是 14，因为乘法先于加法执行<br></code></pre></td></tr></table></figure>
 <p>参考资料 :</p>
 <p> <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/index.html">Solidity — Solidity 0.8.24 文档</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.wtf.academy/zh/course/solidity101">WTF Solidity课程</a></p>
