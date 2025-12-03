@@ -7,6 +7,12 @@ function initPlayer() {
             lrcType: 0,  // 禁用字幕
             audio: [
                 {
+                    name:"Say You Want Me",
+                    artist:"Augustana",
+                    url:"http://music.163.com/song/media/outer/url?id=28444363.mp3",
+                    cover:"https://p2.music.126.net/tz5ys2EzLiXP-XUdgLvuPg==/109951165544856142.jpg?param=90y90",
+                },
+                {
                     name: 'Deadman（爱坤版）',
                     artist: '木子轩 / 七七丫',
                     url: 'http://music.163.com/song/media/outer/url?id=2719626532.mp3',
