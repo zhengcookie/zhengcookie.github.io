@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/1763632090332-1f40dddf-c031-4692-8317-b15bc0d2d49e.jpeg">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhengcookie/tuchuang@main/img/1763632088903-2bf9034a-c080-4d04-a18e-5cef2ce4ae1d.jpeg">
 <meta property="article:published_time" content="2025-11-30T09:26:22.000Z">
-<meta property="article:modified_time" content="2025-11-30T12:38:58.827Z">
+<meta property="article:modified_time" content="2025-12-03T20:55:21.469Z">
 <meta property="article:author" content="zhengcookie">
 <meta property="article:tag" content="区块链智能合约语法">
 <meta name="twitter:card" content="summary_large_image">
@@ -242,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k 字
+          5.2k 字
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
         
-          41 分钟
+          43 分钟
         
       </span>
     
@@ -485,12 +485,19 @@
 <h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p>在Solidity智能合约中，以下是一些常见运算符的简要说明和示例：</p>
 <h5 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a><strong>三元运算符</strong></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">条件表达式</span>&gt;</span> ? <span class="hljs-tag">&lt;<span class="hljs-name">true条件表达式</span>&gt;</span> : <span class="hljs-tag">&lt;<span class="hljs-name">false条件表达式</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>允许根据条件表达式选择执行两个表达式之一。</p>
-<h5 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a><strong>复合赋值运算符</strong></h5><p> <code>-=</code>， <code>*=</code>， <code>/=</code>， <code>%=</code>， <code>|=</code>， <code>&amp;=</code>， <code>^=</code>， <code>&lt;&lt;=</code> 和 <code>&gt;&gt;=</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs solidity">uint public a = 10;<br>uint b = 20;<br>uint public x;<br>uint public max = a &gt; b ? a : b;<br>uint public min = a &lt; b ? a : b;<br></code></pre></td></tr></table></figure>
+<h5 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a><strong>复合赋值运算符</strong></h5><p> <code>-=</code>，<code>+=</code>, <code>*=</code>， <code>/=</code>， <code>%=</code>， <code>|=</code>， <code>&amp;=</code>， <code>^=</code>， <code>&lt;&lt;=</code> 和 <code>&gt;&gt;=</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function jian(uint y) public &#123;<br>        // a = a - y;<br>        a -= y;<br>    &#125;<br>    function add(uint y) public &#123;<br>        // a = a + y;<br>        a += y;<br>    &#125;<br>    function divide(uint y) public &#123;<br>        // a = a / y;<br>        a /= y;<br>    &#125;<br>    function multiply(uint y) public &#123;<br>        // a = a * y;<br>        a *= y;<br>    &#125;<br>    function test(uint y) public &#123;<br>        // a %= y;  // a = 10 % 2 = 0  <br>        // a |= y;  // a = a | y ;  10 | 2  1 0 1 0 | 0 0 1 0  = 1 0 1 0<br>        // a &amp;= y; // a = a &amp; y;  10 &amp; 2  1 0 1 0 | 0 0 1 0  = 0 0 1 0<br>        // a ^= y;  // a = a ^ y  10 ^ 2  1 0 1 0 | 0 0 1 0 = 1 0 0 0<br>        // a &lt;&lt;= y;  // a = a &lt;&lt; y  10 &lt;&lt; 2  0 0 0 0 1 0 1 0  &lt;&lt; 2 =  0 0 1 0 1 0 0 0 40<br>        a &gt;&gt;= y;  // a = a &gt;&gt; y  10 &gt;&gt; 2  0 0 0 0 1 0 1 0 &gt;&gt; 2   = 0 0 0 0 0 0 1 0 <br>    &#125;<br></code></pre></td></tr></table></figure>
 <p>用于简洁地对变量进行更新。</p>
 <h5 id="增量-减量运算符："><a href="#增量-减量运算符：" class="headerlink" title="增量/减量运算符："></a><strong>增量/减量运算符</strong>：</h5><p> a++<code>和</code>a—  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function add1() public &#123;<br>       a++<br>   &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function divide1() public &#123;<br>   x = a--;<br>  &#125;<br></code></pre></td></tr></table></figure>
 <p>—a<code>和</code>++a</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function add1() public &#123;<br>        x = ++a; <br>    &#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs solidity">function divide1() public &#123;<br>     x = --a;<br> &#125;<br></code></pre></td></tr></table></figure>
 <p>用于快速增加或减少变量的值。</p>
 <h5 id="删除运算符"><a href="#删除运算符" class="headerlink" title="删除运算符"></a>删除运算符</h5><p>在Solidity中是存在 <code>delete</code> 运算符的。使用 <code>delete</code> 可以将变量设置为其类型的默认值。对于简单类型，如 <code>uint</code> 或 <code>int</code>，默认值是 <code>0</code>；对于数组，<code>delete</code> 会使数组的所有元素被置为默认值；对于结构体，它将重置结构体中的所有成员变量为它们的默认值。<br>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs solidity">// SPDX-License-Identifier: MIT<br>pragma solidity ^0.8.0;<br>contract test2&#123;<br>    uint public x = 2;<br>    uint[]  array = [1,2,3,4];<br>    struct S &#123; uint a; uint b;&#125;<br>    S public s;<br>    function test() public returns(S memory)&#123;<br>        delete x;<br>        delete array[1];<br>        s.a = 5;<br>        s.b = 2;<br>        delete s;<br>        // delete s[0];<br>        return s;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>请注意，<code>delete</code> 对于动态数组只会将特定索引处的元素重置为默认值，并不会改变数组的长度。而对于静态数组，<code>delete</code> 将会重置整个数组为默认值。对于映射（mapping），<code>delete</code> 会使特定的键对应的值被移除。对于复杂类型的数组或映射，<code>delete</code> 不会递归删除内部元素，只会将它们设置为默认值。</p>
 <h5 id="运算符优先顺序："><a href="#运算符优先顺序：" class="headerlink" title="运算符优先顺序："></a><strong>运算符优先顺序</strong>：</h5><div class="table-container">
 <table>
@@ -638,7 +645,10 @@
 <li><code>&amp;&amp;</code>（逻辑与）的优先级高于<code>||</code>（逻辑或）。</li>
 <li>使用括号<code>()</code>可以改变默认的优先级。<br>下面是一个运算符优先级的例子：</li>
 </ul>
-<p>参考资料 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs solidity">// SPDX-License-Identifier: MIT<br>pragma solidity ^0.8.0;<br>contract test3&#123;<br>//     *、/、%（乘、除、取余）具有高于+、-（加、减）的优先级。<br>// &amp;&amp;（逻辑与）的优先级高于||（逻辑或）。<br>// 使用括号()可以改变默认的优先级。<br>    uint a = 2; uint b =3; uint c=4;<br>    // uint public result = a + b * c;<br>    // bool public result = true &amp;&amp; false || false;<br>    uint public result = (a + b) * c;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="基本类型之间的转换"><a href="#基本类型之间的转换" class="headerlink" title="基本类型之间的转换"></a>基本类型之间的转换</h4><h5 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h5><p>uint8 =&gt; uint16, int128=&gt;int256, int8 !=&gt; uint256【!=-1】</p>
+<h5 id="显式转换"><a href="#显式转换" class="headerlink" title="显式转换"></a>显式转换</h5><p>int y=&gt; uint(y)</p>
+<h4 id="字面常数和基本类型之间的转换"><a href="#字面常数和基本类型之间的转换" class="headerlink" title="字面常数和基本类型之间的转换"></a>字面常数和基本类型之间的转换</h4><h5 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h5><h5 id="固定大小的字节数组"><a href="#固定大小的字节数组" class="headerlink" title="固定大小的字节数组"></a>固定大小的字节数组</h5><h5 id="地址类型-1"><a href="#地址类型-1" class="headerlink" title="地址类型"></a>地址类型</h5><p>参考资料 : </p>
 <p> <a target="_blank" rel="noopener" href="https://docs.soliditylang.org/zh-cn/latest/index.html">Solidity — Solidity 0.8.24 文档</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.wtf.academy/zh/course/solidity101">WTF Solidity课程</a></p>
 
