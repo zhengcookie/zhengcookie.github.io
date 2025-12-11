@@ -1,0 +1,1014 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="baidu-site-verification" content="codeva-OCQ7ylLcn1">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhengcookie">
+  <meta name="keywords" content="zhengcookie,blog,个人博客,技术分享">
+  
+    <meta name="description" content="源码  Distributor.sol   FoodInfoItem.sol   Producer.sol  Retailer.sol   Roles.sol  Trace.sol  智能合约功能需求文档:  具备合约用户管理功能，包括创建用户以及查询用户信息的功能，与其相关联的需要具备用户权限功能。  具备生产订单管理功能，包括创建与查询订单功能，在创建生产订单功能中限制该功能只能具有生产权限的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="广州科贸区块链智能合约教程-食品溯源">
+<meta property="og:url" content="https://www.zhengcookie.site/2025/07/03/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/index.html">
+<meta property="og:site_name" content="zhengcookie">
+<meta property="og:description" content="源码  Distributor.sol   FoodInfoItem.sol   Producer.sol  Retailer.sol   Roles.sol  Trace.sol  智能合约功能需求文档:  具备合约用户管理功能，包括创建用户以及查询用户信息的功能，与其相关联的需要具备用户权限功能。  具备生产订单管理功能，包括创建与查询订单功能，在创建生产订单功能中限制该功能只能具有生产权限的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-03T10:23:43.000Z">
+<meta property="article:modified_time" content="2025-10-01T04:54:48.551Z">
+<meta property="article:author" content="zhengcookie">
+<meta property="article:tag" content="区块链赛题智能合约">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>广州科贸区块链智能合约教程-食品溯源 - zhengcookie</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.zhengcookie.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"b3138381047e1b607c5ad90e1710ecdc","google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz","app_key":"KJPXk2hOqDfll4hbw93yYmUc","server_url":"https://stzbx4mw.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"woyaola":null,"cnzz":null},"search_path":"/search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?b3138381047e1b607c5ad90e1710ecdc";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>zhengcookie</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="广州科贸区块链智能合约教程-食品溯源"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-03 18:23" pubdate>
+          星期四, 七月 3日 2025, 6:23 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          30 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">广州科贸区块链智能合约教程-食品溯源</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>源码</p>
+<p> <a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/区块链/智能合约/FoodTrace/Distributor.sol">Distributor.sol</a> </p>
+<p> <a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/区块链/智能合约/FoodTrace/FoodInfoItem.sol">FoodInfoItem.sol</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://zhengcookie.github.io//file/区块链/智能合约/FoodTrace/Producer.sol">Producer.sol</a> </p>
+<p><a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/区块链/智能合约/FoodTrace/Retailer.sol">Retailer.sol</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/区块链/智能合约/FoodTrace/Roles.sol">Roles.sol</a> </p>
+<p><a target="_blank" rel="noopener" href="https://zhengcookie.github.io/file/区块链/智能合约/FoodTrace/Trace.sol">Trace.sol</a> </p>
+<p>智能合约功能需求文档:</p>
+<ol>
+<li><p>具备合约用户管理功能，包括创建用户以及查询用户信息的功能，与其相关联的需要具备用户权限功能。</p>
+</li>
+<li><p>具备生产订单管理功能，包括创建与查询订单功能，在创建生产订单功能中限制该功能只能具有生产权限的人员使用，并且加入订单创建时需要与产业链的总订单信息，从而与产业链的其他业务关联。</p>
+</li>
+<li><p>具备分销订单管理功能，包括创建与查询订单功能，在创建收购订单功能中限制该功能只能具有分销权限的人员使用，并且加入订单</p>
+</li>
+</ol>
+<h1 id="BsYGX">经销商</h1>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs java">pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.25</span>;<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./Roles.sol&quot;</span>;<br><br><span class="hljs-comment">//经销商</span><br><br>contract Distributor &#123;<br>    using Roles <span class="hljs-keyword">for</span> Roles.Role;<br><br>    event <span class="hljs-title function_">DistributorAdded</span><span class="hljs-params">(address indexed account)</span>;<br>    event <span class="hljs-title function_">DistributorRemoved</span><span class="hljs-params">(address indexed account)</span>;<br><br>    Roles.Role <span class="hljs-keyword">private</span> _distributors;<br><br>    constructor(address distributor) <span class="hljs-keyword">public</span> &#123;<br>        _addDistributor(distributor);<br>    &#125;<br><br>    modifier <span class="hljs-title function_">onlyDistributor</span><span class="hljs-params">()</span> &#123;<br>        require(<br>            isDistributor(msg.sender),<br>            <span class="hljs-string">&quot;DistributorRole: caller does not have the Distributor role&quot;</span><br>        );<br>        _;<br>    &#125;<br><br>    function <span class="hljs-title function_">isDistributor</span><span class="hljs-params">(address account)</span> <span class="hljs-keyword">public</span> view <span class="hljs-title function_">returns</span> <span class="hljs-params">(bool)</span> &#123;<br>        <span class="hljs-keyword">return</span> _distributors.has(account);<br>    &#125;<br><br>    function <span class="hljs-title function_">addDistributor</span><span class="hljs-params">(address account)</span> <span class="hljs-keyword">public</span> onlyDistributor &#123;<br>        _addDistributor(account);<br>    &#125;<br><br>    function <span class="hljs-title function_">renounceDistributor</span><span class="hljs-params">()</span> <span class="hljs-keyword">public</span> &#123;<br>        _removeDistributor(msg.sender);<br>    &#125;<br><br>    function <span class="hljs-title function_">_addDistributor</span><span class="hljs-params">(address account)</span> internal &#123;<br>        _distributors.add(account);<br>        emit <span class="hljs-title function_">DistributorAdded</span><span class="hljs-params">(account)</span>;<br>    &#125;<br><br>    function <span class="hljs-title function_">_removeDistributor</span><span class="hljs-params">(address account)</span> internal &#123;<br>        _distributors.remove(account);<br>        emit <span class="hljs-title function_">DistributorRemoved</span><span class="hljs-params">(account)</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这段Solidity代码定义了一个名为<code>Distributor</code>的智能合约，该合约主要用于管理具有“经销商”角色的账户。以下是代码的详细解析：</p>
+<h3 id="VnCyS">导入依赖</h3>
+
+<ul>
+<li><code>import &quot;./Roles.sol&quot;;</code>：这行导入了另一个名为<code>Roles</code>的合约，假设这个合约提供了一些关于角色管理的功能，比如添加、移除和检查某个地址是否拥有特定的角色。</li>
+</ul>
+<h3 id="s6lMe">合约声明</h3>
+
+<ul>
+<li><code>contract Distributor &#123; ... &#125;</code>：定义了一个新的合约<code>Distributor</code>。</li>
+</ul>
+<h3 id="hNR7o">使用库</h3>
+
+<ul>
+<li><code>using Roles for Roles.Role;</code>：这句表示将<code>Roles</code>库的方法直接应用到<code>Roles.Role</code>类型上，使得可以更简洁地使用这些方法（例如直接调用<code>_distributors.add(account)</code>）。</li>
+</ul>
+<h3 id="fllmQ">事件</h3>
+
+<ul>
+<li><code>event DistributorAdded(address indexed account);</code> 和 <code>event DistributorRemoved(address indexed account);</code>：这两个事件分别在成功添加或移除一个经销商时被触发，其中<code>indexed</code>关键字意味着可以在日志中快速查找与特定账户相关的事件。</li>
+</ul>
+<h3 id="v3Hnq">私有变量</h3>
+
+<ul>
+<li><code>Roles.Role private _distributors;</code>：这是一个私有的角色列表，用来存储所有经销商的地址。</li>
+</ul>
+<h3 id="MWuyd">构造函数</h3>
+
+<ul>
+<li><code>constructor(address distributor) public &#123; _addDistributor(distributor); &#125;</code>：当创建此合同时，需要指定一个初始的经销商，并自动将其加入到经销商名单中。</li>
+</ul>
+<h3 id="rXX62">修饰符</h3>
+
+<ul>
+<li><code>modifier onlyDistributor() &#123; ... &#125;</code>：这是一个自定义的访问控制修饰符，确保只有当前是经销商的账号才能执行某些操作。如果不是经销商，则会抛出错误信息。</li>
+</ul>
+<h3 id="vcrj3">公共函数</h3>
+
+<ul>
+<li><code>function isDistributor(address account) public view returns (bool) &#123; ... &#125;</code>：允许任何人查询给定地址是否为经销商。</li>
+<li><code>function addDistributor(address account) public onlyDistributor &#123; ... &#125;</code>：允许现有经销商添加新的经销商。注意这里使用了<code>onlyDistributor</code>修饰符来限制访问权限。</li>
+<li><code>function renounceDistributor() public &#123; ... &#125;</code>：允许任何经销商放弃自己的经销商身份。</li>
+</ul>
+<h3 id="yp53H">内部函数</h3>
+
+<ul>
+<li><code>_addDistributor(address account) internal &#123; ... &#125;</code> 和 <code>_removeDistributor(address account) internal &#123; ... &#125;</code>：这两个内部函数分别用于向经销商列表中添加或移除地址，并且在这两个动作完成后都会发出相应的事件通知。</li>
+</ul>
+<h3 id="Rvqqb">总结</h3>
+
+<p>整体来看，这个<code>Distributor</code>合约实现了一个简单的角色管理系统，专注于管理经销商的身份认证。它通过引入外部的<code>Roles</code>库简化了角色管理逻辑，同时也提供了必要的功能来维护一个动态更新的经销商列表。这样的设计常见于需要区分不同用户权限的应用场景，如供应链管理、会员制服务等。</p>
+<h1 id="fJ5Sz">食品信息</h1>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs java">pragma solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.22</span> &lt;<span class="hljs-number">0.5</span><span class="hljs-number">.0</span>;<br>pragma experimental ABIEncoderV2;<br><br>contract FoodInfoItem &#123;<br>    string _currentTraceName;<br>    string _name;<br>    address _owner;<br>    uint8 _quality;<br>    uint8 _status;<br>    string[] _traceName;<br>    uint256[] _timestamp;<br>    address[] _traceAddress;<br>    uint8[] _traceQuality;<br><br>    <span class="hljs-comment">//生产食物</span><br>    constructor(<br>        string name,<br>        string traceName,<br>        uint8 quality,<br>        address producer<br>    ) <span class="hljs-keyword">public</span> &#123;<br>        _currentTraceName = traceName;<br>        _name = name;<br>        _owner = msg.sender;<br>        _quality = quality;<br>        _status = <span class="hljs-number">0</span>;<br>        _traceName.push(traceName);<br>        _timestamp.push(now);<br>        _traceAddress.push(producer);<br>        _traceQuality.push(quality);<br>    &#125;<br><br>    function <span class="hljs-title function_">addTraceInfoByDistributor</span><span class="hljs-params">(</span><br><span class="hljs-params">        string traceName,</span><br><span class="hljs-params">        address distributor,</span><br><span class="hljs-params">        uint8 quality</span><br><span class="hljs-params">    )</span> <span class="hljs-keyword">public</span> <span class="hljs-title function_">returns</span> <span class="hljs-params">(bool)</span> &#123;<br>        require(_status == <span class="hljs-number">0</span>, <span class="hljs-string">&quot;status must be producing&quot;</span>);<br>        require(_owner == msg.sender, <span class="hljs-string">&quot;only trace contract can invoke&quot;</span>);<br>        _timestamp.push(now);<br>        _traceName.push(traceName);<br>        _currentTraceName = traceName;<br>        _traceAddress.push(distributor);<br>        _quality = quality;<br>        _traceQuality.push(_quality);<br>        _status = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    function <span class="hljs-title function_">addTraceInfoByRetailer</span><span class="hljs-params">(</span><br><span class="hljs-params">        string traceName,</span><br><span class="hljs-params">        address retailer,</span><br><span class="hljs-params">        uint8 quality</span><br><span class="hljs-params">    )</span> <span class="hljs-keyword">public</span> <span class="hljs-title function_">returns</span> <span class="hljs-params">(bool)</span> &#123;<br>        <span class="hljs-comment">/* 【9】请在此注释后作答，勿删除此注释*/</span><br>        <span class="hljs-comment">//补充食品分销方法</span><br>        require(_status == <span class="hljs-number">1</span>, <span class="hljs-string">&quot;status must be distributor&quot;</span>);<br>        require(_owner == msg.sender, <span class="hljs-string">&quot;only trace contract can invoke&quot;</span>);<br>        _timestamp.push(now);<br>        _traceName.push(traceName);<br>        _currentTraceName = traceName;<br>        _traceAddress.push(retailer);<br>        _quality = quality;<br>        _traceQuality.push(_quality);<br>        _status = <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>     <br>    &#125;<br><br>    function <span class="hljs-title function_">getTraceInfo</span><span class="hljs-params">()</span><br>        <span class="hljs-keyword">public</span><br>        constant<br>        <span class="hljs-title function_">returns</span> <span class="hljs-params">(</span><br><span class="hljs-params">            uint256[],</span><br><span class="hljs-params">            string[],</span><br><span class="hljs-params">            address[],</span><br><span class="hljs-params">            uint8[]</span><br><span class="hljs-params">        )</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> (_timestamp, _traceName, _traceAddress, _traceQuality);<br>    &#125;<br><br>    function <span class="hljs-title function_">getFood</span><span class="hljs-params">()</span><br>        <span class="hljs-keyword">public</span><br>        constant<br>        <span class="hljs-title function_">returns</span> <span class="hljs-params">(</span><br><span class="hljs-params">            uint256,</span><br><span class="hljs-params">            string,</span><br><span class="hljs-params">            string,</span><br><span class="hljs-params">            string,</span><br><span class="hljs-params">            address,</span><br><span class="hljs-params">            uint8</span><br><span class="hljs-params">        )</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> (<br>            _timestamp[<span class="hljs-number">0</span>],<br>            _traceName[<span class="hljs-number">0</span>],<br>            _name,<br>            _currentTraceName,<br>            _traceAddress[<span class="hljs-number">0</span>],<br>            _quality<br>        );<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这段Solidity代码定义了一个名为<code>FoodInfoItem</code>的智能合约，用于追踪食品从生产到分销再到零售的过程。以下是对合约中各个部分的详细解析：</p>
+<h3 id="LMdE5">版本声明和特性启用</h3>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs solidity">pragma solidity &gt;=0.4.22 &lt;0.5.0;<br>pragma experimental ABIEncoderV2;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>第一行声明了合约支持的Solidity版本范围，合约需要编译器版本在0.4.22和0.5.0之间。</li>
+<li>第二行启用了<code>ABIEncoderV2</code>实验特性，这允许结构体和数组的返回。</li>
+</ul>
+<h3 id="dhvJT">合约定义</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">contract FoodInfoItem &#123;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>这里定义了一个名为<code>FoodInfoItem</code>的新合约。</li>
+</ul>
+<h3 id="WnZkq">状态变量</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">string _currentTraceName;<br>string _name;<br>address _owner;<br>uint8 _quality;<br>uint8 _status;<br>string[] _traceName;<br>uint256[] _timestamp;<br>address[] _traceAddress;<br>uint8[] _traceQuality;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>这些是合约的私有状态变量，用于存储食品信息，包括名称、所有者、质量、状态、追踪过程中的名称、时间戳、地址和质量。</li>
+</ul>
+<h3 id="vGMng">构造函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">constructor(<br>    string name,<br>    string traceName,<br>    uint8 quality,<br>    address producer<br>) <span class="hljs-keyword">public</span> &#123;<br>    <span class="hljs-comment">// 初始化状态变量...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>构造函数在创建合约实例时执行，用于初始化状态变量。</li>
+</ul>
+<h3 id="cpo6g">添加追踪信息的方法（由分销商调用）</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">addTraceInfoByDistributor</span><span class="hljs-params">(</span><br><span class="hljs-params">    string traceName,</span><br><span class="hljs-params">    address distributor,</span><br><span class="hljs-params">    uint8 quality</span><br><span class="hljs-params">)</span> <span class="hljs-keyword">public</span> <span class="hljs-title function_">returns</span> <span class="hljs-params">(bool)</span> &#123;<br>    <span class="hljs-comment">// 添加追踪信息...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该方法允许分销商添加食品追踪信息，并更新状态变量。</li>
+</ul>
+<h3 id="Uqtnx">添加追踪信息的方法（由零售商调用）</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">addTraceInfoByRetailer</span><span class="hljs-params">(</span><br><span class="hljs-params">    string traceName,</span><br><span class="hljs-params">    address retailer,</span><br><span class="hljs-params">    uint8 quality</span><br><span class="hljs-params">)</span> <span class="hljs-keyword">public</span> <span class="hljs-title function_">returns</span> <span class="hljs-params">(bool)</span> &#123;<br>    <span class="hljs-comment">// 补充食品分销方法...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该方法允许零售商添加食品追踪信息，并更新状态变量。</li>
+</ul>
+<h3 id="jT0jN">获取追踪信息的方法</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">getTraceInfo</span><span class="hljs-params">()</span><br>    <span class="hljs-keyword">public</span><br>    constant<br>    <span class="hljs-title function_">returns</span> <span class="hljs-params">(</span><br><span class="hljs-params">        uint256[],</span><br><span class="hljs-params">        string[],</span><br><span class="hljs-params">        address[],</span><br><span class="hljs-params">        uint8[]</span><br><span class="hljs-params">    )</span><br>&#123;<br>    <span class="hljs-comment">// 返回追踪信息...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该方法返回食品的完整追踪信息。</li>
+</ul>
+<h3 id="vNWca">获取食品信息的方法</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">getFood</span><span class="hljs-params">()</span><br>    <span class="hljs-keyword">public</span><br>    constant<br>    <span class="hljs-title function_">returns</span> <span class="hljs-params">(</span><br><span class="hljs-params">        uint256,</span><br><span class="hljs-params">        string,</span><br><span class="hljs-params">        string,</span><br><span class="hljs-params">        string,</span><br><span class="hljs-params">        address,</span><br><span class="hljs-params">        uint8</span><br><span class="hljs-params">    )</span><br>&#123;<br>    <span class="hljs-comment">// 返回食品的初始信息...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该方法返回食品的初始信息，如生产时的时间戳、追踪名称、食品名称、当前追踪名称、生产者地址和质量。</li>
+</ul>
+<h3 id="E4CQL">注意事项</h3>
+
+<ul>
+<li>合约中使用了<code>now</code>，它在Solidity 0.5.0之后被替换为<code>block.timestamp</code>，用于获取当前区块的时间戳。</li>
+<li><code>require</code>语句用于验证调用条件，确保合约状态和调用者权限的正确性。</li>
+</ul>
+<p>这个合约是一个基本的食品安全追踪系统，它允许追踪食品从生产到分销再到零售的每一个步骤。通过区块链技术，可以确保这些信息的不可篡改性和透明性。</p>
+<h1 id="P513C">角色库</h1>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java">pragma solidity ^<span class="hljs-number">0.4</span><span class="hljs-number">.25</span>;<br>library Roles &#123;<br>    struct Role &#123;<br>        mapping(address =&gt; bool) bearer;<br>    &#125;<br><br>    function <span class="hljs-title function_">add</span><span class="hljs-params">(Role storage role, address account)</span> internal &#123;<br>        require(!has(role,account),<span class="hljs-string">&quot;Role: has a account！&quot;</span>);<br>        role.bearer[account] = <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    function <span class="hljs-title function_">remove</span><span class="hljs-params">(Role storage role, address account)</span> internal &#123;<br>        require(has(role,account),<span class="hljs-string">&quot;Role: has not a account！&quot;</span>);<br>        role.bearer[account] = <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    function <span class="hljs-title function_">has</span><span class="hljs-params">(Role storage role, address account)</span><br>        internal<br>        view<br>        <span class="hljs-title function_">returns</span> <span class="hljs-params">(bool)</span><br>    &#123;<br>        require(account != address(<span class="hljs-number">0</span>), <span class="hljs-string">&quot;Role: has a zero address&quot;</span>);<br>        <span class="hljs-keyword">return</span> role.bearer[account];<br>    &#125;<br>      <br>    <br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这段Solidity代码定义了一个名为<code>Roles</code>的库，它包含了一个用于管理角色的简单数据结构和一些用于操作这些角色的函数。以下是对这段代码的详细解析：</p>
+<h3 id="z9Y4U">库定义</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">library Roles &#123;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>这里定义了一个名为<code>Roles</code>的库，库在Solidity中是一种可以重用的代码方式，它可以被其他合约调用。</li>
+</ul>
+<h3 id="azj4P">角色结构体</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">struct Role &#123;<br>    mapping(address =&gt; bool) bearer;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>Role</code>是一个结构体，它包含了一个映射（mapping），该映射将地址映射到布尔值。这里的<code>bearer</code>映射用于记录拥有特定角色的账户。</li>
+</ul>
+<h3 id="BBLst">添加角色函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">add</span><span class="hljs-params">(Role storage role, address account)</span> internal &#123;<br>    require(!has(role, account), <span class="hljs-string">&quot;Role: has a account！&quot;</span>);<br>    role.bearer[account] = <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>add</code>函数用于向给定的角色（<code>role</code>）中添加一个账户（<code>account</code>）。如果账户已经拥有角色，则会抛出错误。<code>internal</code>关键字意味着这个函数只能在当前库或继承了这个库的合约内部调用。</li>
+</ul>
+<h3 id="P48Or">移除角色函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">remove</span><span class="hljs-params">(Role storage role, address account)</span> internal &#123;<br>    require(has(role, account), <span class="hljs-string">&quot;Role: has not a account！&quot;</span>);<br>    role.bearer[account] = <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>remove</code>函数用于从给定的角色中移除一个账户。如果账户没有这个角色，则会抛出错误。</li>
+</ul>
+<h3 id="cGDw8">检查角色函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">has</span><span class="hljs-params">(Role storage role, address account)</span><br>    internal<br>    view<br>    <span class="hljs-title function_">returns</span> <span class="hljs-params">(bool)</span><br>&#123;<br>    require(account != address(<span class="hljs-number">0</span>), <span class="hljs-string">&quot;Role: has a zero address&quot;</span>);<br>    <span class="hljs-keyword">return</span> role.bearer[account];<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>has</code>函数用于检查一个账户是否拥有特定的角色。它返回一个布尔值，指示账户是否具有该角色。同时，它会检查账户地址是否为零地址，如果是，则抛出错误。</li>
+</ul>
+<h3 id="LeixZ">注意事项</h3>
+
+<ul>
+<li><code>require</code>语句用于确保函数调用的条件被满足，如果没有，则回滚交易。</li>
+<li><code>internal</code>关键字意味着函数只能在内部调用，外部无法直接通过合约接口调用。</li>
+<li><code>view</code>关键字表示该函数不会改变合约的状态。</li>
+</ul>
+<p>这个库可以被其他合约用来管理不同的角色，例如，一个去中心化应用（DApp）可能会使用这个库来管理管理员、用户、审核员等不同的角色，为不同的角色赋予不同的权限。这样的设计使得权限管理变得更加模块化和可复用。</p>
+<h1 id="pQcqH">食品安全追踪</h1>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs java">pragma solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.22</span> &lt;<span class="hljs-number">0.7</span><span class="hljs-number">.0</span>;<br>pragma experimental ABIEncoderV2;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./FoodInfoItem.sol&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./Distributor.sol&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./Producer.sol&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./Retailer.sol&quot;</span>;<br><br><br><span class="hljs-comment">//食品工厂合约，负责具体食品溯源信息的生成</span><br>contract Trace is Producer, Distributor, Retailer&#123;<br><br>        mapping (uint256 =&gt; address)  foods;<span class="hljs-comment">//食品溯源id到具体食品溯源合约的映射表</span><br>        uint[]  foodList;<br><br>        <span class="hljs-comment">//构造函数</span><br>        constructor(address producer, address distributor, address retailer) <br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">Producer</span><span class="hljs-params">(producer)</span> <br>	Distributor(distributor) <br>	Retailer(retailer)&#123;<br><br>        &#125;<br>        <span class="hljs-comment">//生成食品溯源信息接口</span><br>        <span class="hljs-comment">//只有Producer能调用</span><br>        <span class="hljs-comment">//name 食品名称</span><br>        <span class="hljs-comment">//traceNumber 食品溯源id</span><br>        <span class="hljs-comment">//traceName 当前用户名称</span><br>	    <span class="hljs-comment">//quality 当前食品质量</span><br>        function <span class="hljs-title function_">newFood</span><span class="hljs-params">(string name, uint256 traceNumber, string traceName, uint8 quality)</span> <br>	<span class="hljs-keyword">public</span> onlyProducer <span class="hljs-title function_">returns</span><span class="hljs-params">(address)</span><br>        &#123;<br>            require(foods[traceNumber] == address(<span class="hljs-number">0</span>), <span class="hljs-string">&quot;traceNumber already exist&quot;</span>);<br>            <span class="hljs-type">FoodInfoItem</span> <span class="hljs-variable">food</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FoodInfoItem</span>(name, traceName, quality, msg.sender);<br>            foods[traceNumber] = food;<br>            foodList.push(traceNumber);<br>            <span class="hljs-keyword">return</span> food;<br>        &#125;<br><br>        <span class="hljs-comment">//食品分销过程中增加溯源信息的接口</span><br>        <span class="hljs-comment">//只有Distributor能调用</span><br>        <span class="hljs-comment">//traceNumber 食品溯源id</span><br>        <span class="hljs-comment">//traceName 当前用户名称</span><br>        <span class="hljs-comment">//quality 当前食品质量</span><br>        function <span class="hljs-title function_">addTraceInfoByDistributor</span><span class="hljs-params">(uint256 traceNumber, string traceName, uint8 quality)</span> <br>	<span class="hljs-keyword">public</span> onlyDistributor <span class="hljs-title function_">returns</span><span class="hljs-params">(bool)</span> &#123;<br>            <span class="hljs-comment">/* 【8】请在此注释后作答，勿删除此注释*/</span><br>            <span class="hljs-comment">// 补充完整食品分销过程增加溯源信息的接口</span><br>          require(foods[traceNumber] != address(<span class="hljs-number">0</span>), <span class="hljs-string">&quot;traceNumber does not exist&quot;</span>);<br>            <span class="hljs-keyword">return</span> FoodInfoItem(foods[traceNumber]).addTraceInfoByDistributor(traceName, msg.sender, quality);<br>           <br>        &#125;<br><br>        <span class="hljs-comment">//食品出售过程中增加溯源信息的接口</span><br>        <span class="hljs-comment">//只有Retailer能调用</span><br>        <span class="hljs-comment">//traceNumber 食品溯源id</span><br>        <span class="hljs-comment">//traceName 当前用户名称</span><br>        <span class="hljs-comment">//quality 当前食品质量</span><br>        function <span class="hljs-title function_">addTraceInfoByRetailer</span><span class="hljs-params">(uint256 traceNumber, string traceName, uint8 quality)</span> <br>	<span class="hljs-keyword">public</span> onlyRetailer <span class="hljs-title function_">returns</span><span class="hljs-params">(bool)</span> &#123;<br>            require(foods[traceNumber] != address(<span class="hljs-number">0</span>), <span class="hljs-string">&quot;traceNumber does not exist&quot;</span>);<br>            <span class="hljs-keyword">return</span> FoodInfoItem(foods[traceNumber]).addTraceInfoByRetailer(traceName, msg.sender, quality);<br>        &#125;<br><br>        <span class="hljs-comment">//获取食品溯源信息接口</span><br>        <span class="hljs-comment">//string[] 保存食品流转过程中各个阶段的相关信息</span><br>        <span class="hljs-comment">//address[] 保存食品流转过程各个阶段的用户地址信息（和用户一一对应）</span><br>        <span class="hljs-comment">//uint8[] 保存食品流转过程中各个阶段的状态变化</span><br>        function <span class="hljs-title function_">getTraceInfo</span><span class="hljs-params">(uint256 traceNumber)</span> <span class="hljs-keyword">public</span> constant <span class="hljs-title function_">returns</span><span class="hljs-params">(uint[], string[], address[], uint8[])</span> &#123;<br>            <span class="hljs-comment">/* 【12】请在此注释后作答，勿删除此注释*/</span><br>            require(foods[traceNumber] != address(<span class="hljs-number">0</span>), <span class="hljs-string">&quot;traceNumber does not exist&quot;</span>);<br>            <span class="hljs-keyword">return</span> FoodInfoItem(foods[traceNumber]).getTraceInfo();<br>        &#125;<br><br>        function <span class="hljs-title function_">getFood</span><span class="hljs-params">(uint256 traceNumber)</span> <span class="hljs-keyword">public</span> constant <span class="hljs-title function_">returns</span><span class="hljs-params">(uint, string, string, string, address, uint8)</span> &#123;<br>            <span class="hljs-comment">/* 【9】请在此注释后作答，勿删除此注释*/</span><br>            <span class="hljs-comment">//补充食品信息获取接口</span><br>            require(foods[traceNumber] != address(<span class="hljs-number">0</span>), <span class="hljs-string">&quot;traceNumber does not exist&quot;</span>);<br>            <span class="hljs-keyword">return</span> FoodInfoItem(foods[traceNumber]).getFood();<br>         <br>        &#125;<br><br>        function <span class="hljs-title function_">getAllFood</span><span class="hljs-params">()</span> <span class="hljs-keyword">public</span> constant <span class="hljs-title function_">returns</span> <span class="hljs-params">(uint[])</span> &#123;<br>            <span class="hljs-keyword">return</span> foodList;<br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这段Solidity代码定义了一个名为<code>Trace</code>的智能合约，该合约继承了<code>Producer</code>、<code>Distributor</code>和<code>Retailer</code>三个接口（或合约），并实现了一个食品安全追踪系统。以下是该合约的详细解析：</p>
+<h3 id="esbNV">合约导入和版本声明</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">pragma solidity &gt;=<span class="hljs-number">0.4</span><span class="hljs-number">.22</span> &lt;<span class="hljs-number">0.7</span><span class="hljs-number">.0</span>;<br>pragma experimental ABIEncoderV2;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./FoodInfoItem.sol&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./Distributor.sol&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./Producer.sol&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./Retailer.sol&quot;</span>;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>声明了合约支持的Solidity版本范围，并启用了<code>ABIEncoderV2</code>实验特性。</li>
+<li>导入了<code>FoodInfoItem</code>、<code>Distributor</code>、<code>Producer</code>和<code>Retailer</code>合约，这些合约可能包含了与食品安全追踪相关的接口和功能。</li>
+</ul>
+<h3 id="sflM7">合约定义</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">contract Trace is Producer, Distributor, Retailer &#123;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>定义了一个名为<code>Trace</code>的合约，该合约继承了<code>Producer</code>、<code>Distributor</code>和<code>Retailer</code>，这意味着<code>Trace</code>合约具有这三个合约的所有功能。</li>
+</ul>
+<h3 id="Z0hWn">状态变量</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">mapping (uint256 =&gt; address) foods;<br>uint[] foodList;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>foods</code>是一个映射，将食品溯源ID映射到具体的<code>FoodInfoItem</code>合约地址。</li>
+<li><code>foodList</code>是一个数组，存储了所有的食品溯源ID。</li>
+</ul>
+<h3 id="EdNOl">构造函数</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">constructor(address producer, address distributor, address retailer)<br>    <span class="hljs-keyword">public</span><br>    <span class="hljs-title function_">Producer</span><span class="hljs-params">(producer)</span><br>    Distributor(distributor)<br>    Retailer(retailer) &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>构造函数接收生产者、分销商和零售商的地址，并调用相应的基础合约构造函数。</li>
+</ul>
+<h3 id="SGaJE">生成食品溯源信息接口</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">newFood</span><span class="hljs-params">(string name, uint256 traceNumber, string traceName, uint8 quality)</span><br>    <span class="hljs-keyword">public</span><br>    onlyProducer<br>    <span class="hljs-title function_">returns</span><span class="hljs-params">(address)</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该函数允许生产者创建新的食品溯源信息，并返回新创建的<code>FoodInfoItem</code>合约地址。</li>
+</ul>
+<h3 id="zYFbD">食品分销过程中增加溯源信息的接口</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">addTraceInfoByDistributor</span><span class="hljs-params">(uint256 traceNumber, string traceName, uint8 quality)</span><br>    <span class="hljs-keyword">public</span><br>    onlyDistributor<br>    <span class="hljs-title function_">returns</span><span class="hljs-params">(bool)</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该函数允许分销商为指定的食品溯源ID添加分销信息。</li>
+</ul>
+<h3 id="AlnU4">食品出售过程中增加溯源信息的接口</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">addTraceInfoByRetailer</span><span class="hljs-params">(uint256 traceNumber, string traceName, uint8 quality)</span><br>    <span class="hljs-keyword">public</span><br>    onlyRetailer<br>    <span class="hljs-title function_">returns</span><span class="hljs-params">(bool)</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该函数允许零售商为指定的食品溯源ID添加零售信息。</li>
+</ul>
+<h3 id="tSCpV">获取食品溯源信息接口</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">getTraceInfo</span><span class="hljs-params">(uint256 traceNumber)</span><br>    <span class="hljs-keyword">public</span><br>    constant<br>    <span class="hljs-title function_">returns</span><span class="hljs-params">(uint[], string[], address[], uint8[])</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该函数返回指定食品溯源ID的完整追踪信息。</li>
+</ul>
+<h3 id="QT2SZ">获取食品信息的方法</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">getFood</span><span class="hljs-params">(uint256 traceNumber)</span><br>    <span class="hljs-keyword">public</span><br>    constant<br>    <span class="hljs-title function_">returns</span><span class="hljs-params">(uint, string, string, string, address, uint8)</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该函数返回指定食品溯源ID的食品初始信息。</li>
+</ul>
+<h3 id="wXVaD">获取所有食品溯源ID</h3>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">function <span class="hljs-title function_">getAllFood</span><span class="hljs-params">()</span> <span class="hljs-keyword">public</span> constant <span class="hljs-title function_">returns</span> <span class="hljs-params">(uint[])</span> &#123;<br>    <span class="hljs-keyword">return</span> foodList;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>该函数返回所有食品溯源ID的列表。</li>
+</ul>
+<h3 id="YggQ6">注意事项</h3>
+
+<ul>
+<li>合约中使用了<code>onlyProducer</code>、<code>onlyDistributor</code>和<code>onlyRetailer</code>这些修饰符，它们应该在继承的合约中定义，以确保只有对应角色的地址能够调用特定的函数。</li>
+<li><code>require</code>语句用于验证食品溯源ID的存在性和唯一性。</li>
+</ul>
+<p>这个<code>Trace</code>合约通过整合生产者、分销商和零售商的功能，提供了一个完整的食品安全追踪解决方案。它通过区块链技术保证了食品信息的不篡改性，增加了整个食品供应链的透明度。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="category-chain-item">区块链</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E8%B5%9B%E9%A2%98%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" class="print-no-link">#区块链赛题智能合约</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>广州科贸区块链智能合约教程-食品溯源</div>
+      <div>https://www.zhengcookie.site/2025/07/03/广州科贸区块链智能合约教程-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhengcookie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/05/%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84%E8%AF%AD%E6%B3%95/" title="合约结构语法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">合约结构语法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/03/%E4%BB%80%E4%B9%88%E6%98%AF%E5%8C%BA%E5%9D%97%E9%93%BE/" title="什么是区块链?">
+                        <span class="hidden-mobile">什么是区块链?</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"sTZBx4mwQ0t3yfqJB5XmuIhz-gzGzoHsz","appKey":"KJPXk2hOqDfll4hbw93yYmUc","path":"window.location.pathname","placeholder":"请在这里写下你的评论","avatar":"/img/avatar.png","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"bg":null,"visitor":false,"option":null},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          
+<!--aplayer--> <link rel="stylesheet" href="https://www.zhengcookie.site/js/APlayer/dist/APlayer.min.css"> <div id="aplayer"></div> <script src="https://www.zhengcookie.site/js/APlayer/dist/APlayer.min.js"></script> <script src="https://www.zhengcookie.site/js/useaplayer.js"></script>
+
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+<!-- footer.ejs 中添加播放器 -->
+<div id="aplayer"></div>
+<script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js"></script>
+<script src="https://www.zhengcookie.site/js/useaplayer.js"></script>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
