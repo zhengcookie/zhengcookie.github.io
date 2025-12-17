@@ -1126,7 +1126,9 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> scale = <span class="hljs-number">1</span> / <span class="hljs-variable language_">window</span>.<span class="hljs-property">devicePixelRatio</span>;<br><span class="hljs-comment">// 这里 metaEl 指的是 meta 标签对应的 Dom</span><br>metaEl.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&#x27;content&#x27;</span>, <span class="hljs-string">`width=device-width,user-scalable=no,initial-scale=<span class="hljs-subst">$&#123;scale&#125;</span>,maximum-scale=<span class="hljs-subst">$&#123;scale&#125;</span>,minimum-scale=<span class="hljs-subst">$&#123;scale&#125;</span>`</span>);<br></code></pre></td></tr></table></figure>
 <p>这样解决了，但这样做的副作用也很大，整个页面被缩放了。这时 1px 已经被处理成物理像素大小，这样的大小在手机上显示边框很合适。但是，一些原本不需要被缩小的内容，比如文字、图片等，也被无差别缩小掉了。</p>
 
-              <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6466750810172767" data-ad-slot="9259278386"
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6466750810172767"
+    crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6466750810172767" data-ad-slot="9259278386"
     data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
