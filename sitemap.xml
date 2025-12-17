@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/js/APlayer/docs/zh-Hans/ecosystem.html</loc>
+    <loc>https://www.zhengcookie.site/js/APlayer/docs/zh-Hans/support.html</loc>
     
     <lastmod>2025-11-22</lastmod>
     
@@ -173,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/js/APlayer/docs/zh-Hans/support.html</loc>
+    <loc>https://www.zhengcookie.site/js/APlayer/docs/zh-Hans/ecosystem.html</loc>
     
     <lastmod>2025-11-22</lastmod>
     
@@ -416,7 +416,7 @@
 
   
   <url>
-    <loc>https://www.zhengcookie.site/tags/css/</loc>
+    <loc>https://www.zhengcookie.site/tags/html/</loc>
     <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -430,13 +430,6 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/tags/html/</loc>
-    <lastmod>2025-12-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.zhengcookie.site/tags/GoLang/</loc>
     <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -444,14 +437,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/tags/javascript/</loc>
-    <lastmod>2025-12-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zhengcookie.site/tags/vue/</loc>
+    <loc>https://www.zhengcookie.site/tags/css/</loc>
     <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -466,6 +452,20 @@
   
   <url>
     <loc>https://www.zhengcookie.site/tags/%E5%B7%A5%E4%BD%9C/</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zhengcookie.site/tags/javascript/</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zhengcookie.site/tags/vue/</loc>
     <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
