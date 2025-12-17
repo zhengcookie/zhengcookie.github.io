@@ -7,12 +7,11 @@
 
 <head>
   <meta charset="UTF-8">
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6466750810172767"
-     crossorigin="anonymous"></script>
+
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
   <link rel="icon" href="/img/fluid.png">
   
-    
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -420,10 +419,22 @@
   
   
 </div>
-<!-- footer.ejs 中添加播放器 -->
-<div id="aplayer"></div>
-<script src="https://cdn.jsdelivr.net/npm/aplayer@latest/dist/APlayer.min.js"></script>
-<!-- <script src="https://www.zhengcookie.site/js/useaplayer.js"></script> -->
+
+<!-- ================= 全站背景音乐（不要放到 if 里） ================= -->
+<div id="bgm-player"></div>
+
+<meting-js
+  server="netease"
+  type="playlist"
+  id="2086093868"
+  fixed="true"
+  autoplay="false"
+  loop="all"
+  order="random"
+  preload="auto"
+  volume="0.6"
+  mutex="true">
+</meting-js>
 
   </footer>
 
@@ -443,7 +454,10 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+<script  src="/js/events.js" ></script>~
 <script  src="/js/plugins.js" ></script>
 
 
@@ -480,6 +494,7 @@
 
 
   
+<script src="/js/bgm-fix.js"></script>
 <script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <script src="//cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script>
 
