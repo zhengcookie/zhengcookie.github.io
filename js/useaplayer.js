@@ -68,17 +68,4 @@ function initPlayer() {
 
 // 页面加载时初始化播放器
 window.onload = initPlayer;
-// 保存播放进度
-ap.on('play', function () {
-    localStorage.setItem('currentTime', ap.audio.currentTime);
-});
 
-// 恢复播放进度
-window.onload = function() {
-    if (localStorage.getItem('currentTime')) {
-        ap.audio.currentTime = localStorage.getItem('currentTime');
-    }
-};
-window.onbeforeunload = function() {
-    localStorage.setItem('currentTime', ap.audio.currentTime);
-};
