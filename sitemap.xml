@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.zhengcookie.site/zhengcookie/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/</loc>
+    
+    <lastmod>2025-12-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zhengcookie.site/zhengcookie/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-%E5%8C%BB%E7%96%97/</loc>
+    
+    <lastmod>2025-12-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.zhengcookie.site/music/index.html</loc>
     
     <lastmod>2025-12-20</lastmod>
@@ -182,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/js/APlayer/docs/zh-Hans/ecosystem.html</loc>
+    <loc>https://www.zhengcookie.site/js/APlayer/docs/zh-Hans/support.html</loc>
     
     <lastmod>2025-11-22</lastmod>
     
@@ -191,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/js/APlayer/docs/zh-Hans/support.html</loc>
+    <loc>https://www.zhengcookie.site/js/APlayer/docs/zh-Hans/ecosystem.html</loc>
     
     <lastmod>2025-11-22</lastmod>
     
@@ -218,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/js/APlayer/docs/landing.html</loc>
+    <loc>https://www.zhengcookie.site/js/APlayer/docs/index.html</loc>
     
     <lastmod>2025-11-22</lastmod>
     
@@ -227,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/js/APlayer/docs/index.html</loc>
+    <loc>https://www.zhengcookie.site/js/APlayer/docs/landing.html</loc>
     
     <lastmod>2025-11-22</lastmod>
     
@@ -344,25 +362,7 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/zhengcookie/%E5%B9%BF%E5%B7%9E%E7%A7%91%E8%B4%B8%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-1/</loc>
-    
-    <lastmod>2025-10-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.zhengcookie.site/zhengcookie/vue/</loc>
-    
-    <lastmod>2025-10-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.zhengcookie.site/zhengcookie/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%95%99%E7%A8%8B-%E5%8C%BB%E7%96%97/</loc>
     
     <lastmod>2025-10-01</lastmod>
     
@@ -441,14 +441,14 @@
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/tags/html/</loc>
+    <loc>https://www.zhengcookie.site/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2025-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.zhengcookie.site/tags/%E5%8C%BA%E5%9D%97%E9%93%BE%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E8%AF%AD%E6%B3%95/</loc>
+    <loc>https://www.zhengcookie.site/tags/html/</loc>
     <lastmod>2025-12-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
