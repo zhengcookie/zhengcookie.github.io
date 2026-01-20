@@ -1,18 +1,11 @@
+# 允许百度抓取
 User-agent: Baiduspider
+Allow: /
 
 Sitemap: https://www.zhengcookie.site/baidusitemap.xml
-Sitemap: https://www.zhengcookie.site/sitemap.xml
 
-# Example 1: Block only Googlebot
-User-agent: Googlebot
-Disallow: /
-
-# Example 2: Block Googlebot and Adsbot
-User-agent: Googlebot
-User-agent: AdsBot-Google
-Disallow: /
-
-# Example 3: Block all crawlers except AdsBot (AdsBot crawlers must be named explicitly)
+# 允许所有搜索引擎抓取（包括 Googlebot、AdsBot-Google）
 User-agent: *
-Disallow: /
+Allow: /
 
+Sitemap: https://www.zhengcookie.site/sitemap.xml
