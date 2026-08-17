@@ -1,0 +1,938 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="zhengcookie">
+  <meta name="keywords" content="DeepSeek Harness, dsh, agent框架, 智能体, Web UI, Cordis">
+  
+    <meta name="description" content="DeepSeek Harness（dsh）是 DeepSeek AI 开源的 agent harness 框架，采用&quot;一切皆插件&quot;架构。本文从安装、Web UI 配置模型与工作区、运行任务，到 headless &#x2F; CLI &#x2F; Python SDK 等多种调用方式，再到插件开发，带你一步步跑通自己的第一个 agent。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek Harness 使用指南：从安装到跑通你的第一个 agent">
+<meta property="og:url" content="https://zhengcookie.github.io/zhengcookie/DeepSeek-Harness%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="zhengcookie">
+<meta property="og:description" content="DeepSeek Harness（dsh）是 DeepSeek AI 开源的 agent harness 框架，采用&quot;一切皆插件&quot;架构。本文从安装、Web UI 配置模型与工作区、运行任务，到 headless &#x2F; CLI &#x2F; Python SDK 等多种调用方式，再到插件开发，带你一步步跑通自己的第一个 agent。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-20T09:39:06.000Z">
+<meta property="article:modified_time" content="2026-08-16T14:30:00.000Z">
+<meta property="article:author" content="zhengcookie">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="DeepSeek">
+<meta property="article:tag" content="agent">
+<meta property="article:tag" content="大模型">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>DeepSeek Harness 使用指南：从安装到跑通你的第一个 agent - zhengcookie</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhengcookie.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="zhengcookie" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DeepSeek Harness 使用指南：从安装到跑通你的第一个 agent"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-20 17:39" pubdate>
+          2026年1月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DeepSeek Harness 使用指南：从安装到跑通你的第一个 agent</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>本文基于 DeepSeek Harness（<code>dsh</code>）当前开发者预览版整理，命令与配置以官方文档为准。它正处于快速迭代阶段，未来会出现破坏兼容性的变更。</p>
+</blockquote>
+<h2 id="DeepSeek-Harness-是什么？"><a href="#DeepSeek-Harness-是什么？" class="headerlink" title="DeepSeek Harness 是什么？"></a>DeepSeek Harness 是什么？</h2><p><strong>DeepSeek Harness（简称 <code>dsh</code>）</strong> 是由 <a target="_blank" rel="noopener" href="https://deepseek.com/">DeepSeek AI</a> 开发的开源 <strong>agent harness（智能体框架）</strong>。</p>
+<p>它不是又一个大模型，而是一套”让大模型动起来干活”的运行时：给它一个工作区、一段目标、一组工具，它就能自主地读文件、写代码、跑命令、委派子任务、维护计划，直到完成目标。</p>
+<p>它的几个关键特点：</p>
+<ul>
+<li><strong>一切皆插件</strong>：核心能力（LLM 接入、工具、Web UI、headless、持久化……）都拆成插件，通过组合包自由拼装。</li>
+<li><strong>由 Cordis 驱动</strong>：底层用 <a target="_blank" rel="noopener" href="https://github.com/cordiverse/cordis">Cordis</a> 插件容器实现插件生命周期与组合，设计思想见论文 <em>A Programming Paradigm for Spatiotemporal Composability</em>。</li>
+<li><strong>多形态入口</strong>：网页端（Web UI）、命令行（CLI &#x2F; headless）、Python SDK 都能用。</li>
+<li><strong>配置分层叠加</strong>：内置组合包 → 配置文件 → 用户覆盖层，逐层叠加出最终行为。</li>
+</ul>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="1-环境要求"><a href="#1-环境要求" class="headerlink" title="1. 环境要求"></a>1. 环境要求</h3><ul>
+<li><strong>Node.js</strong>（<code>npx</code> 需要）。从源码跑时要求 <code>node ^22.19.0 || &gt;=24.0.0</code>，且用 <code>pnpm@11.7.0</code>。</li>
+<li>一个 <strong>DeepSeek API Key</strong>（或任意 OpenAI 兼容端点 &#x2F; 其他提供方密钥）。</li>
+<li>一个<strong>隔离的工作区目录</strong>（agent 会在上面读写文件、跑命令）。</li>
+</ul>
+<h3 id="2-一行启动-Web-UI"><a href="#2-一行启动-Web-UI" class="headerlink" title="2. 一行启动 Web UI"></a>2. 一行启动 Web UI</h3><p>无需克隆源码，Node.js 装好后直接：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">npx @deepseek-ai/dsh web<br></code></pre></td></tr></table></figure>
+
+<p>启动后访问 <strong><code>http://127.0.0.1:3080</code></strong> 即可。</p>
+<h3 id="3-从源码运行（推荐给想深入-开发的用户）"><a href="#3-从源码运行（推荐给想深入-开发的用户）" class="headerlink" title="3. 从源码运行（推荐给想深入&#x2F;开发的用户）"></a>3. 从源码运行（推荐给想深入&#x2F;开发的用户）</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/deepseek-ai/deepseek-harness.git<br><span class="hljs-built_in">cd</span> deepseek-harness<br>pnpm install<br>pnpm run build<br>pnpm dsh web<br></code></pre></td></tr></table></figure>
+
+<h2 id="使用-Web-UI-跑通第一个任务"><a href="#使用-Web-UI-跑通第一个任务" class="headerlink" title="使用 Web UI 跑通第一个任务"></a>使用 Web UI 跑通第一个任务</h2><h3 id="第一步：配置模型"><a href="#第一步：配置模型" class="headerlink" title="第一步：配置模型"></a>第一步：配置模型</h3><p>打开 <strong>设置 → 模型</strong>：</p>
+<ul>
+<li><strong>DeepSeek 卡片</strong>：直接填入你的 DeepSeek API 密钥并保存，模型路由立即可用，<strong>不需要重启服务器</strong>。</li>
+<li><strong>其他提供方</strong>（Anthropic &#x2F; OpenAI 等）：点”添加提供方”输入密钥。</li>
+<li><strong>自定义端点 &#x2F; 公司网关</strong>：点”添加自定义提供方”，填 Provider ID、基础 URL、API 协议、凭据和至少一个模型。</li>
+</ul>
+<p>几点说明：</p>
+<ul>
+<li>密钥是<strong>只写</strong>的：保存后页面只显示脱敏描述符，明文密钥存在 <code>$DSH_HOME/.credentials.yaml</code>。</li>
+<li>Provider ID 一旦创建就是永久的（请求、会话、凭据引用都用它），重命名就走”新建+删除”。</li>
+<li>模型变更在<strong>下一次请求</strong>生效，无需重启。</li>
+</ul>
+<h3 id="第二步：选择工作区"><a href="#第二步：选择工作区" class="headerlink" title="第二步：选择工作区"></a>第二步：选择工作区</h3><p>点击<strong>选择工作区</strong>，添加你启动 <code>dsh</code> 时的项目目录并选中。<strong>选中工作区前，会话输入框不可用。</strong></p>
+<h3 id="第三步：发任务"><a href="#第三步：发任务" class="headerlink" title="第三步：发任务"></a>第三步：发任务</h3><p>启动一个会话，发送一句话，例如：</p>
+<blockquote>
+<p>Summarize this repository and identify its main packages.</p>
+</blockquote>
+<p>agent 会读取&#x2F;编辑工作区文件、运行命令、委派子任务并维护计划；当操作超出当前权限策略需要审批时，Web UI 会先询问你，而不是擅自执行。</p>
+<h3 id="常见排错"><a href="#常见排错" class="headerlink" title="常见排错"></a>常见排错</h3><ul>
+<li><strong><code>MISSING_CREDENTIAL</code></strong>：去模型页存密钥，或提供被引用的环境变量。</li>
+<li><strong><code>UNKNOWN_MODEL</code></strong>：在模型选择器里选一个已配置的模型。</li>
+<li><strong><code>获取可用模型</code> 返回 401</strong>：检查密钥；该功能调用 OpenAI 兼容的 <code>GET /models</code>，不提供该端点的服务请手动输入模型。</li>
+</ul>
+<h2 id="其他调用方式"><a href="#其他调用方式" class="headerlink" title="其他调用方式"></a>其他调用方式</h2><h3 id="CLI-headless-模式"><a href="#CLI-headless-模式" class="headerlink" title="CLI &#x2F; headless 模式"></a>CLI &#x2F; headless 模式</h3><p><code>dsh</code> 是启动 profile 用的命令，不同 profile 对应不同形态：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dsh web</code></td>
+<td>启动 Web UI（<code>--profile web</code> 的别名）</td>
+</tr>
+<tr>
+<td><code>dsh --profile headless &quot;job&quot;</code></td>
+<td>运行一个全新的持久化会话，打印最终答案并退出</td>
+</tr>
+<tr>
+<td><code>dsh --profile &lt;name&gt;</code></td>
+<td>启动指定 profile</td>
+</tr>
+<tr>
+<td><code>dsh plugin --profile &lt;name&gt; &lt;pnpm args&gt;</code></td>
+<td>通过 pnpm 管理该 profile 的插件</td>
+</tr>
+</tbody></table>
+<p><strong>运行命令时的当前目录</strong>就是默认 workspace 根目录。头尾部 flag 约定：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">dsh --profile web --port 8080        <span class="hljs-comment"># --port 是 web app 的参数</span><br>dsh --profile headless <span class="hljs-string">&quot;run the tests&quot;</span>   <span class="hljs-comment"># 引号里是任务</span><br>dsh --<span class="hljs-built_in">help</span>                           <span class="hljs-comment"># 启动器自身的帮助</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Python-SDK"><a href="#Python-SDK" class="headerlink" title="Python SDK"></a>Python SDK</h3><p>装 SDK：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/deepseek-ai/deepseek-harness.git<br><span class="hljs-built_in">cd</span> deepseek-harness<br>python -m venv .venv<br>. .venv/bin/activate<br>python -m pip install deepseek-harness-sdk<br></code></pre></td></tr></table></figure>
+
+<p>设置凭据后跑一个任务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> DEEPSEEK_API_KEY=sk-your-key-here<br><br>python examples/jsonrpc-agent/minimal.py \<br>  --workspace /absolute/path/to/workspace \<br>  --session-root /absolute/path/to/sessions \<br>  --session-id example-001 \<br>  <span class="hljs-string">&quot;Inspect the repository and fix the failing tests.&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>或在自己的程序里直接用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path<br><span class="hljs-keyword">from</span> deepseek_harness <span class="hljs-keyword">import</span> DeepSeekHarness<br><br>config = Path(<span class="hljs-string">&quot;examples/jsonrpc-agent/minimal.cordis.yml&quot;</span>).resolve()<br>workspace = Path(<span class="hljs-string">&quot;/absolute/path/to/workspace&quot;</span>).resolve()<br>sessions = Path(<span class="hljs-string">&quot;/absolute/path/to/sessions&quot;</span>).resolve()<br><br><span class="hljs-keyword">with</span> DeepSeekHarness(<br>    provider=<span class="hljs-string">&quot;deepseek-official&quot;</span>,<br>    model=<span class="hljs-string">&quot;deepseek-v4-flash&quot;</span>,<br>    max_tokens=<span class="hljs-number">49_152</span>,<br>    cwd=<span class="hljs-built_in">str</span>(workspace),<br>    session_root=<span class="hljs-built_in">str</span>(sessions),<br>    cordis=<span class="hljs-built_in">str</span>(config),<br>) <span class="hljs-keyword">as</span> harness:<br>    result = harness.run(<br>        <span class="hljs-string">&quot;Inspect the repository and fix the failing tests.&quot;</span>,<br>        session_id=<span class="hljs-string">&quot;example-001&quot;</span>,<br>    )<br><br><span class="hljs-built_in">print</span>(result.final_response)<br></code></pre></td></tr></table></figure>
+
+<p><strong>用好 session id 的两条经验</strong>：</p>
+<ul>
+<li>复用同一个 harness + session id 会<strong>保留该会话的 Bash 进程</strong>（工作目录、已导出的变量、shell 函数都在）。</li>
+<li><strong>独立任务用新的 session id</strong>；只有下次调用需要延续同一段对话时才复用旧 id。</li>
+</ul>
+<blockquote>
+<p>SDK 组合默认是 <code>danger-full-access</code>，agent 能改运行时进程有权访问的任何路径。<strong>请只在可丢弃的 checkout 或容器内运行</strong>，别在重要目录上跑。</p>
+</blockquote>
+<h2 id="插件开发：扩展-dsh"><a href="#插件开发：扩展-dsh" class="headerlink" title="插件开发：扩展 dsh"></a>插件开发：扩展 dsh</h2><p><code>dsh</code> 的核心能力几乎都是插件。文档里把插件开发分成两块：</p>
+<h3 id="基础插件（basic）"><a href="#基础插件（basic）" class="headerlink" title="基础插件（basic）"></a>基础插件（basic）</h3><ul>
+<li><strong>config</strong>：声明自己的配置项，暴露给用户覆盖。</li>
+<li><strong>tool</strong>：给 agent 新增工具（比如自定义的查询接口）。</li>
+<li><strong>publish</strong>：把你的插件作为 npm 包发布，供他人 <code>dsh plugin</code> 安装；为你的插件仓库加上 <strong><code>dsh-plugin</code></strong> topic 便于被发现。</li>
+</ul>
+<h3 id="框架机制（framework）"><a href="#框架机制（framework）" class="headerlink" title="框架机制（framework）"></a>框架机制（framework）</h3><ul>
+<li><strong>service</strong>：定义可注入的服务。</li>
+<li><strong>events</strong>：订阅&#x2F;发布事件。</li>
+<li>组合语法基于 Cordis，入门可看 <a href="docs/cordis-primer.md">Cordis primer</a>。</li>
+</ul>
+<h2 id="配置与目录结构速览"><a href="#配置与目录结构速览" class="headerlink" title="配置与目录结构速览"></a>配置与目录结构速览</h2><ul>
+<li><strong><code>$DSH_HOME</code></strong>：用户级配置与凭据目录，密钥、settings 都在这里。</li>
+<li><strong>profile 目录</strong>：包含 <code>package.json</code>（插件依赖）、<code>dsh.profile</code>（metadata 清单 + bundles）、<code>cordis.patch.yml</code>（用户 patch 层）。</li>
+<li><strong>配置叠加顺序</strong>：内置组合包 patch → profile 的 <code>cordis.patch.yml</code> → home 级 <code>$DSH_HOME/cordis.patch.yml</code> → <code>--patch</code> 覆盖层。</li>
+<li>用 <code>--dump-default-config</code> &#x2F; <code>--dump-config</code> 可以在不启动的情况下查看组合后的配置树。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>DeepSeek Harness 把”让大模型真正干活”这件事拆成了可插拔、可自由组合的运行时。对普通用户来说，<strong><code>npx @deepseek-ai/dsh web</code> + 填一个 API Key + 选一个工作区 + 发一句话</strong> 就能跑通第一个 agent；对开发者而言，CLI、Python SDK 和插件体系提供了更深的扩展空间。</p>
+<p>需要踩稳的三件事：</p>
+<ol>
+<li><strong>工作区要隔离</strong>：别在重要目录上让 agent 全权读写。</li>
+<li><strong>API Key 只写不读</strong>：存好后看不到明文。</li>
+<li><strong>预览版变化快</strong>：跟随官方 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">README</a> 与 <a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/discussions">Discussions</a> 迭代。</li>
+</ol>
+<hr>
+<p><strong>参考资料</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness 官方仓库</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/tree/main/docs/user/guide">使用 Web UI 指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/tree/main/docs/user/guide/providers.md">配置模型 &#x2F; Providers</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/tree/main/docs/user/guide/python-sdk.md">Python SDK 快速上手</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness/tree/main/apps/cli/README.md">CLI 说明</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="category-chain-item">AI大模型</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DeepSeek/" class="print-no-link">#DeepSeek</a>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/agent/" class="print-no-link">#agent</a>
+      
+        <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="print-no-link">#大模型</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DeepSeek Harness 使用指南：从安装到跑通你的第一个 agent</div>
+      <div>https://zhengcookie.github.io/zhengcookie/DeepSeek-Harness使用指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>zhengcookie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
